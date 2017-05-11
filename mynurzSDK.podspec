@@ -1,42 +1,21 @@
-#
-# Be sure to run `pod lib lint mynurzSDK.podspec' to ensure this is a
-# valid spec before submitting.
-#
-# Any lines starting with a # are optional, but their use is encouraged
-# To learn more about a Podspec see http://guides.cocoapods.org/syntax/podspec.html
-#
-
 Pod::Spec.new do |s|
-  s.name             = 'mynurzSDK'
-  s.version          = '0.1.0'
-  s.summary          = 'A short description of mynurzSDK.'
+s.name             = 'mynurzSDK'
+s.version          = '0.1.0'
+s.summary          = 'Software Development Kit for accessing Mynurz API'
 
-# This description is used to generate tags and improve search results.
-#   * Think: What does it do? Why did you write it? What is the focus?
-#   * Try to keep it short, snappy and to the point.
-#   * Write the description between the DESC delimiters below.
-#   * Finally, don't worry about the indent, CocoaPods strips it!
+s.homepage         = 'https://mynurz.com'
+s.license          = { :type => 'MIT', :file => 'LICENSE' }
+s.author           = { 'roby.kronusasia@gmail.com' => 'roby.kronusasia@gmail.com' }
+s.source           = { :git => 'https://github.com/robzimpulse/mynurzSDK', :tag => s.version.to_s }
 
-  s.description      = <<-DESC
-TODO: Add long description of the pod here.
-                       DESC
+s.ios.deployment_target = '8.0'
+s.pod_target_xcconfig = { 'SWIFT_VERSION' => '3' }
+s.source_files = 'MynurzSDK/Classes/**/*'
 
-  s.homepage         = 'https://github.com/kugelfang.killaruna@gmail.com/mynurzSDK'
-  # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
-  s.license          = { :type => 'MIT', :file => 'LICENSE' }
-  s.author           = { 'kugelfang.killaruna@gmail.com' => 'kugelfang.killaruna@gmail.com' }
-  s.source           = { :git => 'https://github.com/kugelfang.killaruna@gmail.com/mynurzSDK.git', :tag => s.version.to_s }
-  # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
+s.dependency "AlamofireImage"
+s.dependency "Alamofire"
+s.dependency "RealmSwift"
+s.dependency "SwiftyJSON"
+s.dependency "EZSwiftExtensions"
 
-  s.ios.deployment_target = '8.0'
-
-  s.source_files = 'mynurzSDK/Classes/**/*'
-  
-  # s.resource_bundles = {
-  #   'mynurzSDK' => ['mynurzSDK/Assets/*.png']
-  # }
-
-  # s.public_header_files = 'Pod/Classes/**/*.h'
-  # s.frameworks = 'UIKit', 'MapKit'
-  # s.dependency 'AFNetworking', '~> 2.3'
 end
