@@ -8,6 +8,7 @@
 
 import Foundation
 import Alamofire
+import SwiftyJSON
 
 class MynurzSDKRequestHandler: RequestAdapter, RequestRetrier {
     private var accessToken: String
@@ -43,31 +44,64 @@ class MynurzSDKRequestHandler: RequestAdapter, RequestRetrier {
         guard let response = request.task?.response as? HTTPURLResponse else {return}
         guard response.statusCode == 401 else { completion(false, 0.0); return }
         requestsToRetry.append(completion)
-        if !isRefreshing {
-            refreshTokens { [weak self] succeeded, accessToken in
-                guard let strongSelf = self else { return }
-                strongSelf.lock.lock() ; defer { strongSelf.lock.unlock() }
-                if let accessToken = accessToken {
-                    strongSelf.accessToken = accessToken
-                }
-                strongSelf.requestsToRetry.forEach { $0(succeeded, 0.0) }
-                strongSelf.requestsToRetry.removeAll()
+        refreshTokens { succeeded, accessToken in
+            self.lock.lock() ; defer { self.lock.unlock() }
+            if let accessToken = accessToken {
+                self.accessToken = accessToken
             }
+            self.requestsToRetry.forEach { $0(succeeded, 0.0) }
+            self.requestsToRetry.removeAll()
         }
     }
     
     private func refreshTokens(completion: @escaping RefreshCompletion) {
         guard !isRefreshing else { return }
         isRefreshing = true
+        sessionManager.adapter = self
+        let start = DispatchTime.now()
         sessionManager.request(refreshTokenUrl, method: .post, parameters: ["token":self.accessToken], encoding: JSONEncoding.default)
-            .responseJSON { [weak self] response in
-                guard let strongSelf = self else { return }
-                if let json = response.result.value as? [String: Any], let accessToken = json["token"] as? String {
-                    completion(true, accessToken)
-                } else {
-                    completion(false, nil)
+            .responseJSON { response in
+                self.isRefreshing = false
+                
+                let stop = DispatchTime.now()
+                let timeInterval = Double(stop.uptimeNanoseconds - start.uptimeNanoseconds) / 1_000_000_000
+                
+                guard let validResponse = response.response else {
+                    completion(false,nil)
+                    return
                 }
-                strongSelf.isRefreshing = false
+                
+                print("\(HTTPMethod.post) \(self.refreshTokenUrl) \(validResponse.statusCode) \(timeInterval)")
+                
+                guard let validData = response.data else {
+                    print("empty response body")
+                    completion(false,nil)
+                    return
+                }
+                
+                let json = JSON(data: validData)
+                
+                guard json["status"].bool != nil else {
+                    print("invalid response body for status")
+                    completion(false,nil)
+                    return
+                }
+                
+                guard json["message"].string != nil else {
+                    print("invalid response body for message")
+                    completion(false,nil)
+                    return
+                }
+                
+                guard let token = json["data"]["token"].string else {
+                    print("no token found on data response")
+                    completion(false,nil)
+                    return
+                }
+                
+                print("Token refreshed")
+                TokenController.shared.put(token: token)
+                completion(true,token)
         }
     }
 }

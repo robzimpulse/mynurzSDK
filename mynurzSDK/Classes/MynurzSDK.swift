@@ -72,6 +72,7 @@ public class MynurzSDK: NSObject, CLLocationManagerDelegate{
     
     init(state: MynurzSDKStateDevelopment) {
         super.init()
+        Realm.Configuration.defaultConfiguration = Realm.Configuration(deleteRealmIfMigrationNeeded: true)
         if state == .Live {
             self.API_URL_HOST = "https://mynurz.com"
         }
@@ -87,14 +88,6 @@ public class MynurzSDK: NSObject, CLLocationManagerDelegate{
             locManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
             locManager.startUpdatingLocation()
         }
-        
-        Realm.Configuration.defaultConfiguration = Realm.Configuration(deleteRealmIfMigrationNeeded: true)
-        var requestHandler = MynurzSDKRequestHandler(accessToken: "", refreshTokenUrl: self.API_URL_HOST+API_REFRESH_TOKEN)
-        if let token = TokenController.shared.get() {
-            requestHandler = MynurzSDKRequestHandler(accessToken: token.token, refreshTokenUrl: self.API_URL_HOST+API_REFRESH_TOKEN)
-        }
-        self.sessionManager.adapter = requestHandler
-        self.sessionManager.retrier = requestHandler
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.setOfflineState), name:NSNotification.Name.UIApplicationDidEnterBackground, object: nil)
         
@@ -140,12 +133,10 @@ public class MynurzSDK: NSObject, CLLocationManagerDelegate{
     
     public override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         guard let value = change?[NSKeyValueChangeKey.newKey] as? Bool else {return}
-        
         if value {
             if let validTimer = self.timer {
                 validTimer.invalidate()
             }
-            
             self.timer = Timer.runThisEvery(seconds: 5.0, handler: {_ in
                 guard let validLatitude = self.latitude else {return}
                 guard let validLongitude = self.longitude else {return}
@@ -188,9 +179,6 @@ public class MynurzSDK: NSObject, CLLocationManagerDelegate{
         switch code {
         case .Login:
             let token = data["token"].string ?? ""
-            let handler = MynurzSDKRequestHandler(accessToken: token, refreshTokenUrl: self.API_URL_HOST+API_REFRESH_TOKEN)
-            self.sessionManager.adapter = handler
-            self.sessionManager.retrier = handler
             TokenController.shared.put(token: token)
             break
         case .GetProfile:
@@ -205,7 +193,16 @@ public class MynurzSDK: NSObject, CLLocationManagerDelegate{
         
     }
     
+    private func updateSessionManager(){
+        let requestHandler = MynurzSDKRequestHandler(accessToken: TokenController.shared.get()?.token ?? "", refreshTokenUrl: self.API_URL_HOST+API_REFRESH_TOKEN)
+        self.sessionManager.adapter = requestHandler
+        self.sessionManager.retrier = requestHandler
+    }
+    
     private func request(url: String, image: UIImage, code: MynurzSDKRequestCode, progressCode: MynurzSDKRequestCode){
+        
+        self.updateSessionManager()
+        
         let start = DispatchTime.now()
         self.sessionManager.upload(multipartFormData: { multipartFormData in
             if let imageData = UIImageJPEGRepresentation(image, 0.7) {
@@ -215,6 +212,8 @@ public class MynurzSDK: NSObject, CLLocationManagerDelegate{
         }, to: url, method: .post, encodingCompletion: { encodingResult in
             switch encodingResult {
             case .success(let upload, _, _):
+                upload.validate()
+                
                 upload.uploadProgress(closure: { (Progress) in
                     let stop = DispatchTime.now()
                     let nanoTime = stop.uptimeNanoseconds - start.uptimeNanoseconds
@@ -228,7 +227,6 @@ public class MynurzSDK: NSObject, CLLocationManagerDelegate{
                     print("\(HTTPMethod.post) \(url.self) \(message) \(code) \(timeInterval)")
                     validDelegate.responseSuccess(message: message, code: progressCode, data: data)
                 })
-                
                 
                 upload.responseJSON(completionHandler: { response in
                     let stop = DispatchTime.now()
@@ -283,9 +281,13 @@ public class MynurzSDK: NSObject, CLLocationManagerDelegate{
     }
     
     private func request(method: HTTPMethod, url: String, parameters: [String:String]?, code: MynurzSDKRequestCode){
+        
+        self.updateSessionManager()
+        
         let start = DispatchTime.now()
         self.sessionManager
             .request(url, method: method, parameters: parameters, encoding: URLEncoding.default)
+            .validate()
             .responseJSON{ response in
                 let stop = DispatchTime.now()
                 let timeInterval = Double(stop.uptimeNanoseconds - start.uptimeNanoseconds) / 1_000_000_000
