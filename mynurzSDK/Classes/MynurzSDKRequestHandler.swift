@@ -59,7 +59,7 @@ class MynurzSDKRequestHandler: RequestAdapter, RequestRetrier {
         isRefreshing = true
         sessionManager.adapter = self
         let start = DispatchTime.now()
-        sessionManager.request(refreshTokenUrl, method: .post, parameters: ["token":self.accessToken], encoding: JSONEncoding.default)
+        sessionManager.request(refreshTokenUrl, method: .get, encoding: JSONEncoding.default)
             .responseJSON { response in
                 self.isRefreshing = false
                 
@@ -71,7 +71,7 @@ class MynurzSDKRequestHandler: RequestAdapter, RequestRetrier {
                     return
                 }
                 
-                print("\(HTTPMethod.post) \(self.refreshTokenUrl) \(validResponse.statusCode) \(timeInterval)")
+                print("\(HTTPMethod.get) \(self.refreshTokenUrl) \(validResponse.statusCode) \(timeInterval)")
                 
                 guard let validData = response.data else {
                     print("empty response body")
@@ -99,8 +99,26 @@ class MynurzSDKRequestHandler: RequestAdapter, RequestRetrier {
                     return
                 }
                 
+                guard let tokenIssuedAt = json["data"]["token_issued_at"].int else {
+                    print("no token_issued_at found on data response")
+                    completion(false,nil)
+                    return
+                }
+                
+                guard let tokenExpiredAt = json["data"]["token_expired_at"].int else {
+                    print("no token_expired_at found on data response")
+                    completion(false,nil)
+                    return
+                }
+                
+                guard let tokenLimitToRefresh = json["data"]["token_limit_to_refresh"].int else {
+                    print("no token_limit_to_refresh found on data response")
+                    completion(false,nil)
+                    return
+                }
+                
                 print("Token refreshed")
-                TokenController.shared.put(token: token)
+                TokenController.shared.put(token: token, tokenIssuedAt: tokenIssuedAt, tokenExpiredAt: tokenExpiredAt, tokenLimitToRefresh: tokenLimitToRefresh)
                 completion(true,token)
         }
     }

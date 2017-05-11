@@ -30,6 +30,7 @@ public enum MynurzSDKRequestCode: Int {
     UpdateOnlineState,
     
     Login,
+    RefreshToken,
     ForgetPassword,
     Logout,
     GetProfile,

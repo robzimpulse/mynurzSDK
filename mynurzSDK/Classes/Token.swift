@@ -11,6 +11,9 @@ import RealmSwift
 
 public class Token: Object{
     dynamic public var token = ""
+    dynamic public var tokenIssuedAt = 0
+    dynamic public var tokenExpiredAt = 0
+    dynamic public var tokenLimitToRefresh = 0
 }
 
 public class TokenController {
@@ -23,11 +26,14 @@ public class TokenController {
         return self.realm!.objects(Token.self).first
     }
     
-    func put(token: String){
+    func put(token: String, tokenIssuedAt: Int, tokenExpiredAt: Int, tokenLimitToRefresh: Int){
         self.realm = try! Realm()
         try! self.realm!.write {
             let currentToken = Token()
             currentToken.token = token
+            currentToken.tokenIssuedAt = tokenIssuedAt
+            currentToken.tokenExpiredAt = tokenExpiredAt
+            currentToken.tokenLimitToRefresh = tokenLimitToRefresh
             if let oldToken = self.realm!.objects(Token.self).first {
                 self.realm?.delete(oldToken)
             }

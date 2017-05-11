@@ -15,13 +15,14 @@ import CoreLocation
 import RealmSwift
 
 public class MynurzSDK: NSObject, CLLocationManagerDelegate{
-
+    
     public var reachablilityManager: NetworkReachabilityManager?
     public var delegate: MynurzSDKDelegate?
     public static let local = MynurzSDK(state: .Local)
     public static let staging = MynurzSDK(state: .Staging)
     public static let live = MynurzSDK(state: .Live)
     public dynamic var autoUpdateMap = false
+    public var autoUpdateOnline = false
     
     private var context = 0
     private var locManager = CLLocationManager()
@@ -55,6 +56,7 @@ public class MynurzSDK: NSObject, CLLocationManagerDelegate{
     
     lazy var debouncedOnlineState : Debouncer = {
         return Debouncer(delay: 0.2, callback: {
+            if !self.autoUpdateOnline {return}
             let urlString = self.API_URL_HOST + self.API_UPDATE_ONLINE_STATE
             self.request(method: .post, url: urlString, parameters: ["online": "1"], code: .UpdateOnlineState)
         })
@@ -62,6 +64,7 @@ public class MynurzSDK: NSObject, CLLocationManagerDelegate{
     
     lazy var debouncedOfflineState : Debouncer = {
         return Debouncer(delay: 0.2, callback: {
+            if !self.autoUpdateOnline {return}
             let urlString = self.API_URL_HOST + self.API_UPDATE_ONLINE_STATE
             self.request(method: .post, url: urlString, parameters: ["online": "0"], code: .UpdateOnlineState)
         })
@@ -168,18 +171,23 @@ public class MynurzSDK: NSObject, CLLocationManagerDelegate{
     }
     
     @objc private func setOfflineState(){
+        if !isTokenValid() {return}
         self.debouncedOfflineState.call()
     }
     
     @objc private func setOnlineState(){
+        if !isTokenValid() {return}
         self.debouncedOnlineState.call()
     }
     
     private func updateData(data: JSON, code: MynurzSDKRequestCode){
         switch code {
-        case .Login:
+        case .Login,.RefreshToken:
             let token = data["token"].string ?? ""
-            TokenController.shared.put(token: token)
+            let tokenIssuedAt = data["token_issued_at"].int ?? 0
+            let tokenExpiredAt = data["token_expired_at"].int ?? 0
+            let tokenLimitToRefresh = data["token_limit_to_refresh"].int ?? 0
+            TokenController.shared.put(token: token, tokenIssuedAt: tokenIssuedAt, tokenExpiredAt: tokenExpiredAt, tokenLimitToRefresh: tokenLimitToRefresh)
             break
         case .GetProfile:
             print(data)
@@ -190,7 +198,6 @@ public class MynurzSDK: NSObject, CLLocationManagerDelegate{
             print(self.errorTag+"Unhandled update data for code \(code)")
             return
         }
-        
     }
     
     private func updateSessionManager(){
@@ -311,6 +318,8 @@ public class MynurzSDK: NSObject, CLLocationManagerDelegate{
                 
                 let json = JSON(data: validData)
                 
+                print(json)
+                
                 guard let status = json["status"].bool else {
                     validDelegate.responseError(message: "Invalid response body for status", code: code, errorCode: .InvalidResponseData, data: json)
                     return
@@ -343,6 +352,16 @@ public class MynurzSDK: NSObject, CLLocationManagerDelegate{
         self.request(method: .post, url: urlString, parameters: params, code: .Login)
     }
     
+    public func isTokenCanBeRefreshed() -> Bool {
+        guard let token = TokenController.shared.get() else {return false}
+        return Date().timeIntervalSince1970.toInt < token.tokenLimitToRefresh
+    }
+    
+    public func isTokenValid() -> Bool {
+        guard let token = TokenController.shared.get() else {return false}
+        return Date().timeIntervalSince1970.toInt < token.tokenExpiredAt
+    }
+    
     public func logout(){
         let urlString = self.API_URL_HOST + self.API_LOGOUT
         self.request(method: .get, url: urlString, parameters: nil, code: .Logout)
@@ -357,6 +376,11 @@ public class MynurzSDK: NSObject, CLLocationManagerDelegate{
     public func getProfile(){
         let urlString = self.API_URL_HOST + self.API_PROFILE
         self.request(method: .get, url: urlString, parameters: nil, code: .GetProfile)
+    }
+    
+    public func refreshToken(){
+        let urlString = self.API_URL_HOST + self.API_REFRESH_TOKEN
+        self.request(method: .get, url: urlString, parameters: nil, code: .RefreshToken)
     }
     
     public func updateName(firstname: String, lastname: String){
@@ -376,7 +400,6 @@ public class MynurzSDK: NSObject, CLLocationManagerDelegate{
         let params = ["password" : password, "password_confirmation": confirmPassword]
         self.request(method: .post, url: urlString, parameters: params, code: .UpdatePassword)
     }
-
     
     // MARK: - Customer Role API
     
@@ -385,7 +408,7 @@ public class MynurzSDK: NSObject, CLLocationManagerDelegate{
         let params = ["first_name" : firstName, "last_name" : lastName,"email":email,"password":password,"password_confirmation": passwordConfirmation,"mobile_phone":mobilePhone]
         self.request(method: .post, url: urlString, parameters: params, code: .RegisterCustomer)
     }
-
+    
     public func updateSubscriptionCustomer(status: Bool){
         let urlString = self.API_URL_HOST + self.API_CUSTOMER_UPDATE_SUBSCRIBE
         let param = ["subscribe": (status ? "1" : "0")]
