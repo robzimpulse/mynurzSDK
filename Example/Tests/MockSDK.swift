@@ -26,11 +26,4 @@ class MockSDK: MynurzSDKDelegate {
         self.lastErrorCode = nil
         print("response success : \(message) - \(code)")
     }
-    
-    func reset(){
-        self.lastCode = nil
-        self.lastErrorCode = nil
-        self.lastData = nil
-    }
-    
 }

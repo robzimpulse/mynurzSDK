@@ -21,10 +21,6 @@ class AuthTest: QuickSpec {
         
         describe("Customer & Freelancer Authentication") {
             
-            beforeEach {
-                mock.reset()
-            }
-            
             it("register customer") {
                 sdk.registerCustomer(
                     firstName: "user",

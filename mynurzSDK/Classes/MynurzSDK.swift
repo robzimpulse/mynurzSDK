@@ -205,7 +205,7 @@ public class MynurzSDK: NSObject, CLLocationManagerDelegate{
         
     }
     
-    private func request(url: String, image: UIImage, code: MynurzSDKRequestCode){
+    private func request(url: String, image: UIImage, code: MynurzSDKRequestCode, progressCode: MynurzSDKRequestCode){
         let start = DispatchTime.now()
         self.sessionManager.upload(multipartFormData: { multipartFormData in
             if let imageData = UIImageJPEGRepresentation(image, 0.7) {
@@ -226,7 +226,7 @@ public class MynurzSDK: NSObject, CLLocationManagerDelegate{
                         return
                     }
                     print("\(HTTPMethod.post) \(url.self) \(message) \(code) \(timeInterval)")
-                    validDelegate.responseSuccess(message: message, code: code, data: data)
+                    validDelegate.responseSuccess(message: message, code: progressCode, data: data)
                 })
                 
                 
@@ -392,7 +392,7 @@ public class MynurzSDK: NSObject, CLLocationManagerDelegate{
     
     public func updatePhotoProfileCustomer(photo: UIImage){
         let urlString = self.API_URL_HOST + self.API_CUSTOMER_UPDATE_PHOTO_PROFILE
-        self.request(url: urlString, image: photo, code: .UpdateCustomerPhotoProfile)
+        self.request(url: urlString, image: photo, code: .UpdateCustomerPhotoProfile, progressCode:.UpdateCustomerPhotoProfileProgress)
     }
     
     public func updateAddressCustomer(address: String, zip: String, district: Int, city: Int, state: Int, country: Int){
@@ -411,12 +411,12 @@ public class MynurzSDK: NSObject, CLLocationManagerDelegate{
     
     public func updatePhotoProfileFreelancer(photo: UIImage){
         let urlString = self.API_URL_HOST + self.API_FREELANCER_UPDATE_PHOTO_PROFILE
-        self.request(url: urlString, image: photo, code: .UpdateFreelancerPhotoProfile)
+        self.request(url: urlString, image: photo, code: .UpdateFreelancerPhotoProfile, progressCode:.UpdateFreelancerPhotoProfileProgress)
     }
     
     public func updatePhotoIDCardFreelancer(photo: UIImage){
         let urlString = self.API_URL_HOST + self.API_FREELANCER_UPDATE_PHOTO_ID_CARD
-        self.request(url: urlString, image: photo, code: .UpdateFreelancerIDCard)
+        self.request(url: urlString, image: photo, code: .UpdateFreelancerIDCard, progressCode: .UpdateFreelancerIDCardProgress)
     }
     
     public func updateProfileFreelancer(profession: Int, gender: String, religion: Int, countryCode: String){

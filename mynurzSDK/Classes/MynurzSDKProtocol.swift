@@ -40,13 +40,16 @@ public enum MynurzSDKRequestCode: Int {
     RegisterFreelancer,
     UpdateFreelancerSubscription,
     UpdateFreelancerPhotoProfile,
+    UpdateFreelancerPhotoProfileProgress,
     UpdateFreelancerIDCard,
+    UpdateFreelancerIDCardProgress,
     UpdateFreelancerProfile,
     UpdateFreelancerPackagePrice,
     
     RegisterCustomer,
     UpdateCustomerSubscription,
     UpdateCustomerPhotoProfile,
+    UpdateCustomerPhotoProfileProgress,
     UpdateCustomerAddress
     
 }
