@@ -9,24 +9,26 @@
 import Foundation
 import RealmSwift
 
-public class Token: Object{
-    dynamic public var token = ""
-    dynamic public var tokenIssuedAt = 0
-    dynamic public var tokenExpiredAt = 0
-    dynamic public var tokenLimitToRefresh = 0
+class Token: Object{
+    dynamic var token = ""
+    dynamic var tokenIssuedAt = 0
+    dynamic var tokenExpiredAt = 0
+    dynamic var tokenLimitToRefresh = 0
+    dynamic var roleId = 0
 }
 
-public class TokenController {
+class TokenController {
     
-    public static let shared = TokenController()
-    private var realm: Realm?
+    static let sharedInstance = TokenController()
     
-    public func get() -> Token? {
+    var realm: Realm?
+    
+    func get() -> Token? {
         self.realm = try! Realm()
         return self.realm!.objects(Token.self).first
     }
     
-    func put(token: String, tokenIssuedAt: Int, tokenExpiredAt: Int, tokenLimitToRefresh: Int){
+    func put(token:String, tokenIssuedAt:Int, tokenExpiredAt:Int, tokenLimitToRefresh:Int, roleId:Int){
         self.realm = try! Realm()
         try! self.realm!.write {
             let currentToken = Token()
@@ -34,6 +36,7 @@ public class TokenController {
             currentToken.tokenIssuedAt = tokenIssuedAt
             currentToken.tokenExpiredAt = tokenExpiredAt
             currentToken.tokenLimitToRefresh = tokenLimitToRefresh
+            currentToken.roleId = roleId
             if let oldToken = self.realm!.objects(Token.self).first {
                 self.realm?.delete(oldToken)
             }
@@ -41,7 +44,7 @@ public class TokenController {
         }
     }
     
-    public func drop(){
+    func drop(){
         self.realm = try! Realm()
         try! self.realm!.write {
             self.realm?.delete((self.realm?.objects(Token.self))!)

@@ -1,16 +1,17 @@
 //
-//  MynurzSDKRequestAdapter.swift
+//  TokenHandler.swift
 //  Pods
 //
-//  Created by Robyarta on 5/5/17.
+//  Created by Robyarta on 5/15/17.
 //
 //
 
 import Foundation
 import Alamofire
 import SwiftyJSON
+import EZSwiftExtensions
 
-class MynurzSDKRequestHandler: RequestAdapter, RequestRetrier {
+class SessionHandler: RequestAdapter, RequestRetrier {
     private var accessToken: String
     private typealias RefreshCompletion = (_ succeeded: Bool, _ accessToken: String?) -> Void
     private let lock = NSLock()
@@ -21,7 +22,6 @@ class MynurzSDKRequestHandler: RequestAdapter, RequestRetrier {
     private let sessionManager: SessionManager = {
         let configuration = URLSessionConfiguration.default
         configuration.httpAdditionalHeaders = SessionManager.defaultHTTPHeaders
-        
         return SessionManager(configuration: configuration)
     }()
     
@@ -117,8 +117,14 @@ class MynurzSDKRequestHandler: RequestAdapter, RequestRetrier {
                     return
                 }
                 
+                guard let roleId = json["data"]["role_id"].int else {
+                    print("no role_id found on data response")
+                    completion(false,nil)
+                    return
+                }
+                
                 print("Token refreshed")
-                TokenController.shared.put(token: token, tokenIssuedAt: tokenIssuedAt, tokenExpiredAt: tokenExpiredAt, tokenLimitToRefresh: tokenLimitToRefresh)
+                TokenController.sharedInstance.put(token: token, tokenIssuedAt: tokenIssuedAt, tokenExpiredAt: tokenExpiredAt, tokenLimitToRefresh: tokenLimitToRefresh, roleId: roleId)
                 completion(true,token)
         }
     }
