@@ -10,14 +10,17 @@ import Foundation
 import RealmSwift
 import Alamofire
 import EZSwiftExtensions
+import SwiftyJSON
 
 public class MynurzSDK: NSObject {
 
     public static let sharedInstance = MynurzSDK()
     let requestManager = RequestManager.sharedInstance
     let endpointManager = EndpointManager.sharedInstance
+    let pusherManager = PusherManager.sharedInstance
     var reachablilityManager: NetworkReachabilityManager?
     var delegate: MynurzSDKDelegate?
+    
     lazy var isTokenValid: Bool = {
         guard let validToken = TokenController.sharedInstance.get() else {return false}
         return validToken.tokenExpiredAt > Date().timeIntervalSince1970.toInt
@@ -56,11 +59,17 @@ public class MynurzSDK: NSObject {
         networkManager.startListening()
         
         reachablilityManager = networkManager
+        
+    }
+    
+    deinit {
+        self.pusherManager.unsubscribeAll()
     }
     
     public func setDelegate(delegate: MynurzSDKDelegate){
         self.delegate = delegate
         self.requestManager.delegate = delegate
+        self.pusherManager.delegate = delegate
     }
     
     // MARK : - Public Endpoint
@@ -146,6 +155,35 @@ public class MynurzSDK: NSObject {
     public func updatePhone(mobilePhone: String){
         let param = ["mobile_phone":mobilePhone]
         requestManager.request(method: .post, url: endpointManager.CUSTOMER_PHONE, parameters: param, code: .UpdatePhone)
+    }
+    
+    public func getPatient(){
+        requestManager.request(method: .get, url: endpointManager.GET_CUSTOMER_PATIENT, parameters: nil, code: .GetPatient)
+    }
+    
+    public func addPatient(name:String, dob:String, gender: gender, weight: Double, height: Double, nationality:String, relationshipId:Int, photo: UIImage?){
+        var param = [String:Any]()
+        if let validPhoto = photo {
+            param = ["name":name, "dob":dob, "gender": gender.rawValue, "weight":weight,"photo":validPhoto,"height":height, "nationality":nationality,"relationship_id":relationshipId.toString] as [String : Any]
+        }else{
+            param = ["name":name, "dob":dob, "gender": gender.rawValue, "weight":weight,"height":height, "nationality":nationality,"relationship_id":relationshipId.toString] as [String : Any]
+        }
+        requestManager.request(url: endpointManager.ADD_CUSTOMER_PATIENT, parameters: param, code: .AddPatient, progressCode: .AddPatientProgress)
+    }
+    
+    public func updatePatient(withID id:Int, name:String, dob:String, gender: gender, weight: Double, height: Double, nationality:String, relationshipId:Int, photo:UIImage?){
+        var param = [String:Any]()
+        if let validPhoto = photo {
+            param = ["name":name, "dob":dob, "gender": gender.rawValue, "weight":weight,"photo":validPhoto,"height":height, "nationality":nationality,"relationship_id":relationshipId.toString,"id":id] as [String : Any]
+        }else{
+            param = ["name":name, "dob":dob, "gender": gender.rawValue, "weight":weight,"height":height, "nationality":nationality,"relationship_id":relationshipId.toString,"id":id] as [String : Any]
+        }
+        requestManager.request(url: endpointManager.UPDATE_CUSTOMER_PATIENT, parameters: param, code: .UpdatePatient, progressCode: .UpdatePatientProgress)
+    }
+    
+    public func removePatient(patientId: Int){
+        let param = ["id":patientId]
+        requestManager.request(method: .post, url: endpointManager.REMOVE_CUSTOMER_PATIENT, parameters: param, code: .RemovePatient)
     }
     
 }

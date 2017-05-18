@@ -10,7 +10,13 @@ import UIKit
 import mynurzSDK
 import SwiftyJSON
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, MynurzSDKDelegate {
+    
+    let sdk = MynurzSDK.sharedInstance
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,5 +26,13 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
 
+    func responseError(message: String, code: RequestCode, errorCode: ErrorCode, data: JSON?) {
+        print("Response error on \(self.className) : \(message) - \(code) - \(errorCode)")
+    }
+    
+    func responseSuccess(message: String, code: RequestCode, data: JSON) {
+        print("Response success on \(self.className) : \(message) - \(code)")
+    }
+    
 }
 

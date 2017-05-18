@@ -17,5 +17,6 @@ s.dependency "Alamofire"
 s.dependency "RealmSwift"
 s.dependency "SwiftyJSON"
 s.dependency "EZSwiftExtensions"
+s.dependency "PusherSwift"
 
 end

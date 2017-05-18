@@ -21,29 +21,6 @@ class BasicTest: QuickSpec {
         
         self.sdk.setDelegate(delegate: mock)
         
-        describe("Public endpoint") {
-            
-            it("login") {
-                self.sdk.login(email: "customer@example.com", password: "kiasu123")
-                expect(self.mock.code).toEventually(equal(RequestCode.Login), timeout: self.waitingTime)
-            }
-            
-            it("register") {
-                self.sdk.registerCustomer(firstname: "kugelfang", lastname: "killaruna", email: "customer@example.com", password: "kiasu123", passwordConfirmation: "kiasu123", mobilePhone: "+6281222542156")
-                expect(self.mock.code).toEventually(equal(RequestCode.RegisterCustomer), timeout: self.waitingTime)
-            }
-            
-            it("reset link"){
-                self.sdk.resetLink(email: "customer@example.com")
-                expect(self.mock.code).toEventually(equal(RequestCode.ResetLink), timeout: self.waitingTime)
-            }
-            
-            it("logout"){
-                self.sdk.logout()
-                expect(self.mock.code).toEventually(equal(RequestCode.Logout), timeout: self.waitingTime)
-            }
-            
-        }
         describe("Customer endpoint") {
             
             beforeEach {
@@ -114,6 +91,45 @@ class BasicTest: QuickSpec {
             it("update phone") {
                 self.sdk.updatePhone(mobilePhone: "+6281222542156")
                 expect(self.mock.code).toEventually(equal(RequestCode.UpdatePhone), timeout: self.waitingTime)
+            }
+            
+            it("add patient with image") {
+                self.sdk.addPatient(name: "patient2", dob: "1993-07-27", gender: .male, weight: 80.0, height: 175.0, nationality: "IDN", relationshipId: 2, photo: UIImage.blankImage())
+                expect(self.mock.code).toEventually(equal(RequestCode.AddPatient), timeout: self.waitingTime)
+            }
+            
+            it("update patient") {
+                self.sdk.updatePatient(withID: 3, name: "kugelfang", dob: "1993-08-12", gender: .female, weight: 50.0, height: 180.0, nationality: "IDN", relationshipId: 4, photo: nil)
+                expect(self.mock.code).toEventually(equal(RequestCode.UpdatePatient), timeout: self.waitingTime)
+            }
+            
+            it("remove patient") {
+                self.sdk.removePatient(patientId: 1)
+                expect(self.mock.code).toEventually(equal(RequestCode.RemovePatient), timeout: self.waitingTime)
+            }
+            
+        }
+        
+        describe("Public endpoint") {
+            
+            it("login") {
+                self.sdk.login(email: "customer@example.com", password: "kiasu123")
+                expect(self.mock.code).toEventually(equal(RequestCode.Login), timeout: self.waitingTime)
+            }
+            
+            it("register") {
+                self.sdk.registerCustomer(firstname: "kugelfang", lastname: "killaruna", email: "customer@example.com", password: "kiasu123", passwordConfirmation: "kiasu123", mobilePhone: "+6281222542156")
+                expect(self.mock.code).toEventually(equal(RequestCode.RegisterCustomer), timeout: self.waitingTime)
+            }
+            
+            it("reset link"){
+                self.sdk.resetLink(email: "customer@example.com")
+                expect(self.mock.code).toEventually(equal(RequestCode.ResetLink), timeout: self.waitingTime)
+            }
+            
+            it("logout"){
+                self.sdk.logout()
+                expect(self.mock.code).toEventually(equal(RequestCode.Logout), timeout: self.waitingTime)
             }
             
         }

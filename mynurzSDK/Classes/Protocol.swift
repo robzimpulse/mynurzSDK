@@ -14,7 +14,8 @@ public enum ErrorCode: Int {
     InvalidResponseData,
     RejectedByServer,
     RequestError,
-    NoNetwork
+    NoNetwork,
+    NoNetworkPusher
 }
 
 public enum RequestCode: Int {
@@ -38,10 +39,29 @@ public enum RequestCode: Int {
     UpdateAddress,
     UpdateName,
     UpdatePassword,
-    UpdatePhone
+    UpdatePhone,
+    
+    GetPatient,
+    AddPatient,
+    AddPatientProgress,
+    UpdatePatient,
+    UpdatePatientProgress,
+    RemovePatient
 }
 
 public protocol MynurzSDKDelegate {
     func responseError(message: String, code: RequestCode, errorCode: ErrorCode, data: JSON?)
     func responseSuccess(message: String, code: RequestCode, data: JSON)
+}
+
+extension Data {
+    
+    init<T>(from value: T) {
+        var value = value
+        self.init(buffer: UnsafeBufferPointer(start: &value, count: 1))
+    }
+    
+    func to<T>(type: T.Type) -> T {
+        return self.withUnsafeBytes { $0.pointee }
+    }
 }
