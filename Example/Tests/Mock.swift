@@ -24,7 +24,7 @@ class Mock: NSObject, MynurzSDKDelegate {
     
     func responseError(message: String, code: RequestCode, errorCode: ErrorCode, data: JSON?) {
         print("Response error : \(message) - \(code) - \(errorCode) - \(self.className)")
-        print(data as Any)
+//        print(data as Any)
         self.message = message
         self.code = code
     }
