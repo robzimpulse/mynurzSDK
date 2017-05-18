@@ -2,255 +2,137 @@
 //  ProfileController.swift
 //  Pods
 //
-//  Created by Robyarta on 5/16/17.
+//  Created by Robyarta on 5/17/17.
 //
 //
 
 //
-//  Token.swift
-//  Pods
+//  Profile.swift
+//  mynurz
 //
-//  Created by Robyarta on 5/6/17.
-//
+//  Created by Robyarta on 5/12/17.
+//  Copyright © 2017 kronus. All rights reserved.
 //
 
 import Foundation
 import RealmSwift
 
-class State: Object{
-    dynamic var id = 0
-    dynamic var name = ""
-}
-
-class Skill: Object{
-    dynamic var id = 0
-    dynamic var name = ""
-}
-
-class Role: Object{
-    dynamic var id = 0
-    dynamic var name = ""
-}
-
-class Profession: Object{
-    dynamic var id = 0
-    dynamic var name = ""
-}
-
-class JobStatus: Object{
-    dynamic var id = 0
-    dynamic var name = ""
-}
-
-class Country: Object{
-    dynamic var id = 0
-    dynamic var name = ""
-}
-
-class City: Object{
-    dynamic var id = 0
-    dynamic var name = ""
-}
-
-class PromotionCategory: Object{
-    dynamic var id = 0
-    dynamic var name = ""
-}
-
-class SkillExperience: Object{
-    dynamic var id = 0
-    dynamic var name = ""
-}
-
-class Religion: Object{
-    dynamic var id = 0
-    dynamic var name = ""
-}
-
-class District: Object{
-    dynamic var id = 0
-    dynamic var name = ""
-}
-
-class Employment: Object{
-    dynamic var id = 0
-    dynamic var name = ""
-}
-
-class Area: Object{
-    dynamic var id = 0
-    dynamic var name = ""
-}
-
-class Degree: Object{
-    dynamic var id = 0
-    dynamic var name = ""
-}
-
-
-class ProfileController {
+public class freelancerProfile: Object {
+    dynamic public var id = 0
+    dynamic public var firstName = ""
+    dynamic public var lastName = ""
+    dynamic public var email = ""
+    dynamic public var phone = ""
+    dynamic public var roleId = 0
+    dynamic public var createdAt = 0
+    dynamic public var updatedAt = 0
     
-    static let sharedInstance = ProfileController()
+    dynamic public var uid = ""
+    dynamic public var profession = 0
+    dynamic public var gender = ""
+    dynamic public var religion = 0
+    dynamic public var photo = ""
+    dynamic public var idCard = ""
+    dynamic public var countryCode = 0
+    dynamic public var packagePrice = 0
+}
+
+public class customerProfile: Object {
+    dynamic public var id = 0
+    dynamic public var firstName = ""
+    dynamic public var lastName = ""
+    dynamic public var email = ""
+    dynamic public var phone = ""
+    dynamic public var roleId = 0
+    dynamic public var createdAt = 0
+    dynamic public var updatedAt = 0
     
-    var realm: Realm?
+    dynamic public var uid = ""
+    dynamic public var photo = ""
+    dynamic public var address = ""
+    dynamic public var countryCode = 0
+    dynamic public var stateId = 0
+    dynamic public var cityId = 0
+    dynamic public var districtId = 0
+    dynamic public var areaId = 0
+    dynamic public var zipCode = ""
+}
+
+public class ProfileController {
     
-    func put(stateWithId id:Int, name:String){
+    public static let sharedInstance = ProfileController()
+    private var realm: Realm?
+    
+    public func getFreelancer() -> freelancerProfile? {
+        self.realm = try! Realm()
+        return self.realm!.objects(freelancerProfile.self).first
+    }
+    
+    public func getCustomer() -> customerProfile? {
+        self.realm = try! Realm()
+        return self.realm!.objects(customerProfile.self).first
+    }
+    
+    public func putFreelancer(id: Int, firstName: String, lastName: String, email: String, phone: String, roleId: Int, createdAt: Int, updatedAt: Int, uid: String, profession: Int, gender: String, religion: Int, photo: String, idCard: String, countryCode: Int, packagePrice: Int){
         self.realm = try! Realm()
         try! self.realm!.write {
-            let state = State()
-            state.id = id
-            state.name = name
-            self.realm!.add(state)
+            let freelancer = freelancerProfile()
+            freelancer.id = id
+            freelancer.firstName = firstName
+            freelancer.lastName = lastName
+            freelancer.email = email
+            freelancer.phone = phone
+            freelancer.roleId = roleId
+            freelancer.createdAt = createdAt
+            freelancer.updatedAt = updatedAt
+            freelancer.uid = uid
+            freelancer.profession = profession
+            freelancer.gender = gender
+            freelancer.religion = religion
+            freelancer.photo = photo
+            freelancer.idCard = idCard
+            freelancer.countryCode = countryCode
+            freelancer.packagePrice = packagePrice
+            if let oldFreelancer = self.realm!.objects(freelancerProfile.self).first {
+                self.realm?.delete(oldFreelancer)
+            }
+            self.realm!.add(freelancer)
         }
     }
     
-    func put(skillWithId id:Int, name:String){
+    public func putCustomer(id: Int, firstName: String, lastName: String, email: String, phone: String, roleId: Int, createdAt: Int, updatedAt: Int, uid: String, photo: String, address: String, countryCode: Int, stateId: Int, cityId: Int, districtId: Int, areaId: Int, zipCode: String){
         self.realm = try! Realm()
         try! self.realm!.write {
-            let state = Skill()
-            state.id = id
-            state.name = name
-            self.realm!.add(state)
-        }
-    }
-
-    func put(roleWithId id:Int, name:String){
-        self.realm = try! Realm()
-        try! self.realm!.write {
-            let state = Role()
-            state.id = id
-            state.name = name
-            self.realm!.add(state)
-        }
-    }
-
-    func put(professionWithId id:Int, name:String){
-        self.realm = try! Realm()
-        try! self.realm!.write {
-            let state = Profession()
-            state.id = id
-            state.name = name
-            self.realm!.add(state)
-        }
-    }
-    
-    func put(jobStatusWithId id:Int, name:String){
-        self.realm = try! Realm()
-        try! self.realm!.write {
-            let state = JobStatus()
-            state.id = id
-            state.name = name
-            self.realm!.add(state)
-        }
-    }
-
-    func put(countryWithId id:Int, name:String){
-        self.realm = try! Realm()
-        try! self.realm!.write {
-            let state = Country()
-            state.id = id
-            state.name = name
-            self.realm!.add(state)
-        }
-    }
-
-    func put(cityWithId id:Int, name:String){
-        self.realm = try! Realm()
-        try! self.realm!.write {
-            let state = City()
-            state.id = id
-            state.name = name
-            self.realm!.add(state)
-        }
-    }
-
-    func put(promotionCategoryWithId id:Int, name:String){
-        self.realm = try! Realm()
-        try! self.realm!.write {
-            let state = PromotionCategory()
-            state.id = id
-            state.name = name
-            self.realm!.add(state)
-        }
-    }
-
-    func put(skillExperienceWithId id:Int, name:String){
-        self.realm = try! Realm()
-        try! self.realm!.write {
-            let state = SkillExperience()
-            state.id = id
-            state.name = name
-            self.realm!.add(state)
-        }
-    }
-
-    func put(religionWithId id:Int, name:String){
-        self.realm = try! Realm()
-        try! self.realm!.write {
-            let state = Religion()
-            state.id = id
-            state.name = name
-            self.realm!.add(state)
-        }
-    }
-
-    func put(districtWithId id:Int, name:String){
-        self.realm = try! Realm()
-        try! self.realm!.write {
-            let state = District()
-            state.id = id
-            state.name = name
-            self.realm!.add(state)
-        }
-    }
-
-    func put(employmentWithId id:Int, name:String){
-        self.realm = try! Realm()
-        try! self.realm!.write {
-            let state = Employment()
-            state.id = id
-            state.name = name
-            self.realm!.add(state)
+            let customer = customerProfile()
+            customer.id = id
+            customer.firstName = firstName
+            customer.lastName = lastName
+            customer.email = email
+            customer.phone = phone
+            customer.roleId = roleId
+            customer.createdAt = createdAt
+            customer.updatedAt = updatedAt
+            customer.uid = uid
+            customer.photo = photo
+            customer.address = address
+            customer.countryCode = countryCode
+            customer.stateId = stateId
+            customer.cityId = cityId
+            customer.districtId = districtId
+            customer.areaId = areaId
+            customer.zipCode = zipCode
+            if let oldCustomer = self.realm!.objects(customerProfile.self).first {
+                self.realm?.delete(oldCustomer)
+            }
+            self.realm!.add(customer)
         }
     }
     
-    func put(areaWithId id:Int, name:String){
+    public func drop(){
         self.realm = try! Realm()
         try! self.realm!.write {
-            let state = Area()
-            state.id = id
-            state.name = name
-            self.realm!.add(state)
-        }
-    }
-
-    func put(degreeWithId id:Int, name:String){
-        self.realm = try! Realm()
-        try! self.realm!.write {
-            let state = Degree()
-            state.id = id
-            state.name = name
-            self.realm!.add(state)
-        }
-    }
-    
-    func drop(){
-        self.realm = try! Realm()
-        try! self.realm!.write {
-            self.realm!.delete(self.realm!.objects(State.self))
-            self.realm!.delete(self.realm!.objects(Skill.self))
-            self.realm!.delete(self.realm!.objects(Role.self))
-            self.realm!.delete(self.realm!.objects(Profession.self))
-            self.realm!.delete(self.realm!.objects(JobStatus.self))
-            self.realm!.delete(self.realm!.objects(Country.self))
-            self.realm!.delete(self.realm!.objects(City.self))
-            self.realm!.delete(self.realm!.objects(PromotionCategory.self))
-            self.realm!.delete(self.realm!.objects(SkillExperience.self))
-            self.realm!.delete(self.realm!.objects(Religion.self))
-            self.realm!.delete(self.realm!.objects(District.self))
-            self.realm!.delete(self.realm!.objects(Employment.self))
-            self.realm!.delete(self.realm!.objects(Area.self))
-            self.realm!.delete(self.realm!.objects(Degree.self))
+            self.realm?.delete((self.realm?.objects(freelancerProfile.self))!)
+            self.realm?.delete((self.realm?.objects(customerProfile.self))!)
         }
     }
 }

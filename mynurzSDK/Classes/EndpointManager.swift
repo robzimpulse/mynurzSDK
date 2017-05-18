@@ -29,6 +29,10 @@ public class EndpointManager: NSObject {
     lazy var RESET_LINK: String = {return self.host.appending("/api/reset")}()
     lazy var REFRESH_TOKEN: String = {return self.host.appending("/api/refresh_token")}()
     lazy var SETTING: String = {return self.host.appending("/api/setting")}()
+    lazy var GET_STATE: String = {return self.host.appending("/api/states")}()
+    lazy var GET_CITY: String = {return self.host.appending("/api/cities")}()
+    lazy var GET_DISTRICT: String = {return self.host.appending("/api/districts")}()
+    lazy var GET_AREA: String = {return self.host.appending("/api/areas")}()
     lazy var LOGOUT: String = {return self.host.appending("/api/logout")}()
     
     // MARK: - Customer End Point
@@ -40,7 +44,6 @@ public class EndpointManager: NSObject {
     lazy var CUSTOMER_NAME: String = {return self.host.appending("/api/customer/name")}()
     lazy var CUSTOMER_PASSWORD: String = {return self.host.appending("/api/customer/password")}()
     lazy var CUSTOMER_PHONE: String = {return self.host.appending("/api/customer/phone")}()
-
     
     // MARK: - Freelancer End Point
     

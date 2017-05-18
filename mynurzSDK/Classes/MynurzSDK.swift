@@ -63,7 +63,7 @@ public class MynurzSDK: NSObject {
         self.requestManager.delegate = delegate
     }
     
-    // MARK : - Customer endpoint
+    // MARK : - Public Endpoint
     
     public func login(email:String, password: String){
         let param = ["email": email, "password": password]
@@ -89,8 +89,63 @@ public class MynurzSDK: NSObject {
         requestManager.request(method: .get, url: endpointManager.SETTING, parameters: nil, code: .Setting)
     }
     
+    public func getStates(countryId: Int){
+        let url = endpointManager.GET_STATE + "?country_id=\(countryId)"
+        requestManager.request(method: .get, url: url, parameters: nil, code: .GetStates)
+    }
+    
+    public func getCities(stateId: Int){
+        let url = endpointManager.GET_CITY + "?state_id=\(stateId)"
+        requestManager.request(method: .get, url: url, parameters: nil, code: .GetCities)
+    }
+    
+    public func getDistricts(cityId: Int){
+        let url = endpointManager.GET_DISTRICT + "?city_id=\(cityId)"
+        requestManager.request(method: .get, url: url, parameters: nil, code: .GetDistricts)
+    }
+    
+    public func getAreas(districtId: Int){
+        let url = endpointManager.GET_AREA + "?district_id=\(districtId)"
+        requestManager.request(method: .get, url: url, parameters: nil, code: .GetAreas)
+    }
+    
     public func logout(){
         requestManager.request(method: .get, url: endpointManager.LOGOUT, parameters: nil, code: .Logout)
+    }
+    
+    // MARK : - Customer Endpoint
+    
+    public func getProfile(){
+        requestManager.request(method: .get, url: endpointManager.CUSTOMER_PROFILE, parameters: nil, code: .GetProfile)
+    }
+    
+    public func updatePhoto(photo: UIImage){
+        requestManager.request(url: endpointManager.CUSTOMER_PHOTO, image: photo, code: .UpdatePhoto, progressCode: .UpdatePhotoProgress)
+    }
+    
+    public func updateSubscribe(status: Bool){
+        let param = ["subscribe":status]
+        requestManager.request(method: .post, url: endpointManager.CUSTOMER_SUBSCRIBE, parameters: param, code: .UpdateSubscribe)
+    }
+    
+    public func updateAddress(address: String, country: Int, state: Int, city: Int, district: Int, zip: String){
+        let param = ["address":address,"country":country.toString,"state":state.toString,"city":city.toString,"district":district.toString,"zip":zip]
+        requestManager.request(method: .post, url: endpointManager.CUSTOMER_ADDRESS, parameters: param, code: .UpdateAddress)
+    }
+    
+    public func updateName(firstname: String, lastname: String){
+        let param = ["first_name":firstname, "last_name":lastname]
+        requestManager.request(method: .post, url: endpointManager.CUSTOMER_NAME, parameters: param, code: .UpdateName)
+    }
+    
+    public func updatePassword(password: String, passwordConfirmation: String){
+        let param = ["password":password, "password_confirmation":passwordConfirmation]
+        requestManager.request(method: .post, url: endpointManager.CUSTOMER_PASSWORD, parameters: param, code: .UpdatePassword)
+    }
+    
+    public func updatePhone(mobilePhone: String){
+        let param = ["mobile_phone":mobilePhone]
+        requestManager.request(method: .post, url: endpointManager.CUSTOMER_PHONE, parameters: param, code: .UpdatePhone)
     }
     
 }

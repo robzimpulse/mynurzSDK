@@ -25,8 +25,20 @@ public enum RequestCode: Int {
     RegisterFreelancer,
     ResetLink,
     Setting,
-    Logout
+    GetStates,
+    GetCities,
+    GetDistricts,
+    GetAreas,
+    Logout,
     
+    GetProfile,
+    UpdatePhoto,
+    UpdatePhotoProgress,
+    UpdateSubscribe,
+    UpdateAddress,
+    UpdateName,
+    UpdatePassword,
+    UpdatePhone
 }
 
 public protocol MynurzSDKDelegate {

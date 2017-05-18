@@ -42,14 +42,14 @@ class SessionHandler: RequestAdapter, RequestRetrier {
     func should(_ manager: SessionManager, retry request: Request, with error: Error, completion: @escaping RequestRetryCompletion) {
         lock.lock() ; defer { lock.unlock() }
         guard let response = request.task?.response as? HTTPURLResponse else {return}
-        guard response.statusCode == 401 else { completion(false, 0.0); return }
+        guard response.statusCode == 401 else { completion(false, 0.0); return}
         requestsToRetry.append(completion)
         refreshTokens { succeeded, accessToken in
             self.lock.lock() ; defer { self.lock.unlock() }
             if let accessToken = accessToken {
                 self.accessToken = accessToken
             }
-            self.requestsToRetry.forEach { $0(succeeded, 0.0) }
+            self.requestsToRetry.forEach {$0(succeeded, 1.0)}
             self.requestsToRetry.removeAll()
         }
     }
@@ -124,6 +124,7 @@ class SessionHandler: RequestAdapter, RequestRetrier {
                 }
                 
                 print("Token refreshed")
+                print(json)
                 TokenController.sharedInstance.put(token: token, tokenIssuedAt: tokenIssuedAt, tokenExpiredAt: tokenExpiredAt, tokenLimitToRefresh: tokenLimitToRefresh, roleId: roleId)
                 completion(true,token)
         }
