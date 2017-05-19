@@ -145,7 +145,7 @@ class DataManager: NSObject {
                 settingController.put(areaWithId: id, name: name)
             }
             return
-        case .GetProfile:
+        case .GetProfileCustomer:
             guard let id = data["data"]["id"].int else {return}
             guard let firstName = data["data"]["first_name"].string else {return}
             guard let lastName = data["data"]["last_name"].string else {return}
@@ -157,7 +157,7 @@ class DataManager: NSObject {
             guard let uid = data["data"]["customer_data"]["uid"].string else {return}
             guard let photo = data["data"]["customer_data"]["photo"].string else {return}
             guard let address = data["data"]["customer_data"]["address"].string else {return}
-            guard let countryCode = data["data"]["customer_data"]["country_code"].int else {return}
+            guard let countryCode = data["data"]["customer_data"]["country_code"].string else {return}
             guard let stateId = data["data"]["customer_data"]["state_id"].int else {return}
             guard let cityId = data["data"]["customer_data"]["city_id"].int else {return}
             guard let districtId = data["data"]["customer_data"]["district_id"].int else {return}
@@ -165,6 +165,26 @@ class DataManager: NSObject {
             guard let zipCode = data["data"]["customer_data"]["zip_code"].string else {return}
             
             profileController.putCustomer(id: id, firstName: firstName, lastName: lastName, email: email, phone: phone, roleId: roleId, createdAt: createdAt, updatedAt: updatedAt, uid: uid, photo: photo, address: address, countryCode: countryCode, stateId: stateId, cityId: cityId, districtId: districtId, areaId: areaId, zipCode: zipCode)
+            return
+        case .GetProfileFreelancer:
+            guard let id = data["data"]["id"].int else {return}
+            guard let firstName = data["data"]["first_name"].string else {return}
+            guard let lastName = data["data"]["last_name"].string else {return}
+            guard let email = data["data"]["email"].string else {return}
+            guard let phone = data["data"]["phone"].string else {return}
+            guard let roleId = data["data"]["role_id"].int else {return}
+            guard let createdAt = data["data"]["created_at"].int else {return}
+            guard let updatedAt = data["data"]["updated_at"].int else {return}
+            guard let uid = data["data"]["freelancer_data"]["uid"].string else {return}
+            guard let profession = data["data"]["freelancer_data"]["profession_id"].int else {return}
+            guard let gender = data["data"]["freelancer_data"]["gender"].string else {return}
+            guard let religion = data["data"]["freelancer_data"]["religion_id"].int else {return}
+            guard let photo = data["data"]["freelancer_data"]["photo"].string else {return}
+            guard let idCard = data["data"]["freelancer_data"]["id_card"].string else {return}
+            guard let countryCode = data["data"]["freelancer_data"]["country_code"].string else {return}
+            guard let packagePrice = data["data"]["freelancer_data"]["package_price"].int else {return}
+            
+            profileController.putFreelancer(id: id, firstName: firstName, lastName: lastName, email: email, phone: phone, roleId: roleId, createdAt: createdAt, updatedAt: updatedAt, uid: uid, profession: profession, gender: gender, religion: religion, photo: photo, idCard: idCard, countryCode: countryCode, packagePrice: packagePrice)
             return
         case .Logout:
             profileController.drop()

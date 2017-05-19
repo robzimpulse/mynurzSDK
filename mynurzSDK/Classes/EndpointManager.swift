@@ -60,6 +60,7 @@ public class EndpointManager: NSObject {
     lazy var FREELANCER_NAME: String = {return self.host.appending("/api/freelancer/name")}()
     lazy var FREELANCER_PASSWORD: String = {return self.host.appending("/api/freelancer/password")}()
     lazy var FREELANCER_PHONE: String = {return self.host.appending("/api/freelancer/phone")}()
+    lazy var FREELANCER_ADDRESS: String = {return self.host.appending("/api/freelancer/address")}()
     
     lazy var FREELANCER_ACADEMIC_ADD: String = {return self.host.appending("/api/freelancer/academic/add")}()
     lazy var FREELANCER_ACADEMIC_UPDATE: String = {return self.host.appending("/api/freelancer/academic/update")}()

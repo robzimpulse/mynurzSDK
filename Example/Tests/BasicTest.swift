@@ -59,53 +59,140 @@ class BasicTest: QuickSpec {
             }
             
             it("get profile") {
-                self.sdk.getProfile()
-                expect(self.mock.code).toEventually(equal(RequestCode.GetProfile), timeout: self.waitingTime)
+                self.sdk.getProfileCustomer()
+                expect(self.mock.code).toEventually(equal(RequestCode.GetProfileCustomer), timeout: self.waitingTime)
             }
             
             it("update photo") {
-                self.sdk.updatePhoto(photo: UIImage.blankImage())
-                expect(self.mock.code).toEventually(equal(RequestCode.UpdatePhoto), timeout: self.waitingTime)
+                self.sdk.updatePhotoCustomer(photo: UIImage.blankImage())
+                expect(self.mock.code).toEventually(equal(RequestCode.UpdatePhotoCustomer), timeout: self.waitingTime)
             }
             
             it("update subscription status") {
-                self.sdk.updateSubscribe(status: true)
-                expect(self.mock.code).toEventually(equal(RequestCode.UpdateSubscribe), timeout: self.waitingTime)
+                self.sdk.updateSubscribeCustomer(status: true)
+                expect(self.mock.code).toEventually(equal(RequestCode.UpdateSubscribeCustomer), timeout: self.waitingTime)
             }
             
             it("update address") {
-                self.sdk.updateAddress(address: "new address", country: 1, state: 1, city: 1, district: 1, zip: "60285")
-                expect(self.mock.code).toEventually(equal(RequestCode.UpdateAddress), timeout: self.waitingTime)
+                self.sdk.updateAddressCustomer(address: "new address", countryCode: "IDN", stateId: 10, cityId: 10, districtId: 10, areaId: 10, zipCode: "12345")
+                expect(self.mock.code).toEventually(equal(RequestCode.UpdateAddressCustomer), timeout: self.waitingTime)
             }
             
             it("update name") {
-                self.sdk.updateName(firstname: "kugelfang", lastname: "killaruna")
-                expect(self.mock.code).toEventually(equal(RequestCode.UpdateName), timeout: self.waitingTime)
+                self.sdk.updateNameCustomer(firstname: "kugelfang", lastname: "killaruna")
+                expect(self.mock.code).toEventually(equal(RequestCode.UpdateNameCustomer), timeout: self.waitingTime)
             }
             
             it("update password") {
-                self.sdk.updatePassword(password: "kiasu123", passwordConfirmation: "kiasu123")
-                expect(self.mock.code).toEventually(equal(RequestCode.UpdatePassword), timeout: self.waitingTime)
+                self.sdk.updatePasswordCustomer(password: "kiasu123", passwordConfirmation: "kiasu123")
+                expect(self.mock.code).toEventually(equal(RequestCode.UpdatePasswordCustomer), timeout: self.waitingTime)
             }
             
             it("update phone") {
-                self.sdk.updatePhone(mobilePhone: "+6281222542156")
-                expect(self.mock.code).toEventually(equal(RequestCode.UpdatePhone), timeout: self.waitingTime)
+                self.sdk.updatePhoneCustomer(mobilePhone: "+6281222542156")
+                expect(self.mock.code).toEventually(equal(RequestCode.UpdatePhoneCustomer), timeout: self.waitingTime)
             }
             
             it("add patient with image") {
-                self.sdk.addPatient(name: "patient2", dob: "1993-07-27", gender: .male, weight: 80.0, height: 175.0, nationality: "IDN", relationshipId: 2, photo: UIImage.blankImage())
-                expect(self.mock.code).toEventually(equal(RequestCode.AddPatient), timeout: self.waitingTime)
+                self.sdk.addPatientCustomer(name: "patient2", dob: "1993-07-27", gender: .male, weight: 80.0, height: 175.0, nationality: "IDN", relationshipId: 2, photo: UIImage.blankImage())
+                expect(self.mock.code).toEventually(equal(RequestCode.AddPatientCustomer), timeout: self.waitingTime)
             }
             
             it("update patient") {
-                self.sdk.updatePatient(withID: 3, name: "kugelfang", dob: "1993-08-12", gender: .female, weight: 50.0, height: 180.0, nationality: "IDN", relationshipId: 4, photo: nil)
-                expect(self.mock.code).toEventually(equal(RequestCode.UpdatePatient), timeout: self.waitingTime)
+                self.sdk.updatePatientCustomer(withID: 3, name: "kugelfang", dob: "1993-08-12", gender: .female, weight: 50.0, height: 180.0, nationality: "IDN", relationshipId: 4, photo: nil)
+                expect(self.mock.code).toEventually(equal(RequestCode.UpdatePatientCustomer), timeout: self.waitingTime)
             }
             
             it("remove patient") {
-                self.sdk.removePatient(patientId: 1)
-                expect(self.mock.code).toEventually(equal(RequestCode.RemovePatient), timeout: self.waitingTime)
+                self.sdk.removePatientCustomer(patientId: 1)
+                expect(self.mock.code).toEventually(equal(RequestCode.RemovePatientCustomer), timeout: self.waitingTime)
+            }
+            
+        }
+        
+        describe("Freelancer endpoint") {
+            beforeEach {
+                self.sdk.login(email: "freelancer@example.com", password: "kiasu123")
+                expect(self.mock.code).toEventually(equal(RequestCode.Login), timeout: self.waitingTime)
+            }
+            
+            afterEach {
+                self.sdk.logout()
+                expect(self.mock.code).toEventually(equal(RequestCode.Logout), timeout: self.waitingTime)
+            }
+            
+            it("get profile") {
+                self.sdk.getProfileFreelancer()
+                expect(self.mock.code).toEventually(equal(RequestCode.GetProfileFreelancer), timeout: self.waitingTime)
+            }
+            
+            it("update photo") {
+                self.sdk.updatePhotoFreelancer(photo: UIImage.blankImage())
+                expect(self.mock.code).toEventually(equal(RequestCode.UpdatePhotoFreelancer), timeout: self.waitingTime)
+            }
+            
+            it("update id card") {
+                self.sdk.updateIDCardFreelancer(photo: UIImage.blankImage())
+                expect(self.mock.code).toEventually(equal(RequestCode.UpdateIDCardFreelancer), timeout: self.waitingTime)
+            }
+            
+            it("update profile") {
+                self.sdk.updateProfileFreelancer(professionId: 1, gender: .male, religionId: 2, countryCode: "IDN")
+                expect(self.mock.code).toEventually(equal(RequestCode.UpdateProfileFreelancer), timeout: self.waitingTime)
+            }
+            
+            it("update subscribe") {
+                self.sdk.updateSubscribeFreelancer(status: true)
+                expect(self.mock.code).toEventually(equal(RequestCode.UpdateSubscribeFreelancer), timeout: self.waitingTime)
+            }
+            
+            it("update package price") {
+                self.sdk.updatePackagePriceFreelancer(packagePrice: 350000)
+                expect(self.mock.code).toEventually(equal(RequestCode.UpdatePackagePriceFreelancer), timeout: self.waitingTime)
+            }
+            
+            it("update name") {
+                self.sdk.updateNameFreelancer(firstname: "freelancer", lastname: "testing")
+                expect(self.mock.code).toEventually(equal(RequestCode.UpdateNameFreelancer), timeout: self.waitingTime)
+            }
+            
+            it("update password") {
+                self.sdk.updatePasswordFreelancer(password: "kiasu123", passwordConfirmation: "kiasu123")
+                expect(self.mock.code).toEventually(equal(RequestCode.UpdatePasswordFreelancer), timeout: self.waitingTime)
+            }
+            
+            it("update phone") {
+                self.sdk.updatePhoneFreelancer(mobilePhone: "+6281222542156")
+                expect(self.mock.code).toEventually(equal(RequestCode.UpdatePhoneFreelancer), timeout: self.waitingTime)
+            }
+            
+            it("update address") {
+                self.sdk.updateAddressFreelancer(address: "test address", countryCode: "IDN", stateId: 10, cityId: 10, districtId: 10, areaId: 10, zipCode: "123456")
+            }
+            
+            it("get states") {
+                self.sdk.getStates(countryId: 100)
+                expect(self.mock.code).toEventually(equal(RequestCode.GetStates), timeout: self.waitingTime)
+            }
+            
+            it("get cities") {
+                self.sdk.getCities(stateId: 10)
+                expect(self.mock.code).toEventually(equal(RequestCode.GetCities), timeout: self.waitingTime)
+            }
+            
+            it("get districts") {
+                self.sdk.getDistricts(cityId: 10)
+                expect(self.mock.code).toEventually(equal(RequestCode.GetDistricts), timeout: self.waitingTime)
+            }
+            
+            it("get areas") {
+                self.sdk.getAreas(districtId: 10)
+                expect(self.mock.code).toEventually(equal(RequestCode.GetAreas), timeout: self.waitingTime)
+            }
+            
+            it("get setting") {
+                self.sdk.setting()
+                expect(self.mock.code).toEventually(equal(RequestCode.Setting), timeout: self.waitingTime)
             }
             
         }
@@ -117,9 +204,14 @@ class BasicTest: QuickSpec {
                 expect(self.mock.code).toEventually(equal(RequestCode.Login), timeout: self.waitingTime)
             }
             
-            it("register") {
+            it("register customer") {
                 self.sdk.registerCustomer(firstname: "kugelfang", lastname: "killaruna", email: "customer@example.com", password: "kiasu123", passwordConfirmation: "kiasu123", mobilePhone: "+6281222542156")
                 expect(self.mock.code).toEventually(equal(RequestCode.RegisterCustomer), timeout: self.waitingTime)
+            }
+            
+            it("register freelancer") {
+                self.sdk.registerFreelancer(firstname: "freelancer", lastname: "register", email: "freelancer@example.com", password: "kiasu123", passwordConfirmation: "kiasu123", mobilePhone: "+6281222542155")
+                expect(self.mock.code).toEventually(equal(RequestCode.RegisterFreelancer), timeout: self.waitingTime)
             }
             
             it("reset link"){

@@ -33,7 +33,7 @@ public class freelancerProfile: Object {
     dynamic public var religion = 0
     dynamic public var photo = ""
     dynamic public var idCard = ""
-    dynamic public var countryCode = 0
+    dynamic public var countryCode = ""
     dynamic public var packagePrice = 0
 }
 
@@ -50,7 +50,7 @@ public class customerProfile: Object {
     dynamic public var uid = ""
     dynamic public var photo = ""
     dynamic public var address = ""
-    dynamic public var countryCode = 0
+    dynamic public var countryCode = ""
     dynamic public var stateId = 0
     dynamic public var cityId = 0
     dynamic public var districtId = 0
@@ -73,7 +73,7 @@ public class ProfileController {
         return self.realm!.objects(customerProfile.self).first
     }
     
-    public func putFreelancer(id: Int, firstName: String, lastName: String, email: String, phone: String, roleId: Int, createdAt: Int, updatedAt: Int, uid: String, profession: Int, gender: String, religion: Int, photo: String, idCard: String, countryCode: Int, packagePrice: Int){
+    public func putFreelancer(id: Int, firstName: String, lastName: String, email: String, phone: String, roleId: Int, createdAt: Int, updatedAt: Int, uid: String, profession: Int, gender: String, religion: Int, photo: String, idCard: String, countryCode: String, packagePrice: Int){
         self.realm = try! Realm()
         try! self.realm!.write {
             let freelancer = freelancerProfile()
@@ -100,7 +100,7 @@ public class ProfileController {
         }
     }
     
-    public func putCustomer(id: Int, firstName: String, lastName: String, email: String, phone: String, roleId: Int, createdAt: Int, updatedAt: Int, uid: String, photo: String, address: String, countryCode: Int, stateId: Int, cityId: Int, districtId: Int, areaId: Int, zipCode: String){
+    public func putCustomer(id: Int, firstName: String, lastName: String, email: String, phone: String, roleId: Int, createdAt: Int, updatedAt: Int, uid: String, photo: String, address: String, countryCode: String, stateId: Int, cityId: Int, districtId: Int, areaId: Int, zipCode: String){
         self.realm = try! Realm()
         try! self.realm!.write {
             let customer = customerProfile()

@@ -94,6 +94,12 @@ public class MynurzSDK: NSObject {
         requestManager.request(method: .post, url: endpointManager.RESET_LINK, parameters: param, code: .ResetLink)
     }
     
+    public func logout(){
+        requestManager.request(method: .get, url: endpointManager.LOGOUT, parameters: nil, code: .Logout)
+    }
+    
+    // MARK : - Authenticated Endpoint
+    
     public func setting(){
         requestManager.request(method: .get, url: endpointManager.SETTING, parameters: nil, code: .Setting)
     }
@@ -118,72 +124,117 @@ public class MynurzSDK: NSObject {
         requestManager.request(method: .get, url: url, parameters: nil, code: .GetAreas)
     }
     
-    public func logout(){
-        requestManager.request(method: .get, url: endpointManager.LOGOUT, parameters: nil, code: .Logout)
+    // MARK : - Freelancer Endpoint
+    
+    public func getProfileFreelancer(){
+        requestManager.request(method: .get, url: endpointManager.FREELANCER_PROFILE, parameters: nil, code: .GetProfileFreelancer)
+    }
+    
+    public func updatePhotoFreelancer(photo: UIImage){
+        requestManager.request(url: endpointManager.FREELANCER_PHOTO, image: photo, code: .UpdatePhotoFreelancer, progressCode: .UpdatePhotoFreelancerProgress)
+    }
+    
+    public func updateIDCardFreelancer(photo: UIImage){
+        requestManager.request(url: endpointManager.FREELANCER_IDCARD, image: photo, code: .UpdateIDCardFreelancer, progressCode: .UpdateIDCardFreelancerProgress)
+    }
+    
+    public func updatePackagePriceFreelancer(packagePrice: Int){
+        let param = ["package_price":packagePrice]
+        requestManager.request(method: .post, url: endpointManager.FREELANCER_PACKAGE_PRICE, parameters: param, code: .UpdatePackagePriceFreelancer)
+    }
+    
+    public func updateProfileFreelancer(professionId: Int, gender: gender, religionId: Int, countryCode: String){
+        let param = ["profession_id":professionId.toString,"gender":gender.rawValue,"religion_id":religionId.toString,"country_code":countryCode]
+        requestManager.request(method: .post, url: endpointManager.FREELANCER_PROFILE, parameters: param, code: .UpdateProfileFreelancer)
+    }
+    
+    public func updateSubscribeFreelancer(status: Bool){
+        let param = ["subscribe":status]
+        requestManager.request(method: .post, url: endpointManager.FREELANCER_SUBSCRIBE, parameters: param, code: .UpdateSubscribeFreelancer)
+    }
+    
+    public func updateNameFreelancer(firstname: String, lastname: String){
+        let param = ["first_name":firstname, "last_name":lastname]
+        requestManager.request(method: .post, url: endpointManager.FREELANCER_NAME, parameters: param, code: .UpdateNameFreelancer)
+    }
+    
+    public func updatePasswordFreelancer(password: String, passwordConfirmation: String){
+        let param = ["password":password, "password_confirmation":passwordConfirmation]
+        requestManager.request(method: .post, url: endpointManager.FREELANCER_PASSWORD, parameters: param, code: .UpdatePasswordFreelancer)
+    }
+    
+    public func updatePhoneFreelancer(mobilePhone: String){
+        let param = ["mobile_phone":mobilePhone]
+        requestManager.request(method: .post, url: endpointManager.FREELANCER_PHONE, parameters: param, code: .UpdatePhoneFreelancer)
+    }
+    
+    public func updateAddressFreelancer(address: String, countryCode: String, stateId: Int, cityId: Int, districtId: Int, areaId: Int, zipCode: String){
+        let param = ["address":address,"country_code":countryCode,"state_id":stateId.toString,"city_id":cityId.toString,"district_id":districtId.toString,"zip_code":zipCode,"area_id":areaId.toString]
+        requestManager.request(method: .post, url: endpointManager.FREELANCER_ADDRESS, parameters: param, code: .UpdateAddressFreelancer)
     }
     
     // MARK : - Customer Endpoint
     
-    public func getProfile(){
-        requestManager.request(method: .get, url: endpointManager.CUSTOMER_PROFILE, parameters: nil, code: .GetProfile)
+    public func getProfileCustomer(){
+        requestManager.request(method: .get, url: endpointManager.CUSTOMER_PROFILE, parameters: nil, code: .GetProfileCustomer)
     }
     
-    public func updatePhoto(photo: UIImage){
-        requestManager.request(url: endpointManager.CUSTOMER_PHOTO, image: photo, code: .UpdatePhoto, progressCode: .UpdatePhotoProgress)
+    public func updatePhotoCustomer(photo: UIImage){
+        requestManager.request(url: endpointManager.CUSTOMER_PHOTO, image: photo, code: .UpdatePhotoCustomer, progressCode: .UpdatePhotoCustomerProgress)
     }
     
-    public func updateSubscribe(status: Bool){
+    public func updateSubscribeCustomer(status: Bool){
         let param = ["subscribe":status]
-        requestManager.request(method: .post, url: endpointManager.CUSTOMER_SUBSCRIBE, parameters: param, code: .UpdateSubscribe)
+        requestManager.request(method: .post, url: endpointManager.CUSTOMER_SUBSCRIBE, parameters: param, code: .UpdateSubscribeCustomer)
     }
     
-    public func updateAddress(address: String, country: Int, state: Int, city: Int, district: Int, zip: String){
-        let param = ["address":address,"country":country.toString,"state":state.toString,"city":city.toString,"district":district.toString,"zip":zip]
-        requestManager.request(method: .post, url: endpointManager.CUSTOMER_ADDRESS, parameters: param, code: .UpdateAddress)
+    public func updateAddressCustomer(address: String, countryCode: String, stateId: Int, cityId: Int, districtId: Int, areaId: Int, zipCode: String){
+        let param = ["address":address,"country_code":countryCode,"state_id":stateId.toString,"city_id":cityId.toString,"district_id":districtId.toString,"zip_code":zipCode,"area_id":areaId.toString]
+        requestManager.request(method: .post, url: endpointManager.CUSTOMER_ADDRESS, parameters: param, code: .UpdateAddressCustomer)
     }
     
-    public func updateName(firstname: String, lastname: String){
+    public func updateNameCustomer(firstname: String, lastname: String){
         let param = ["first_name":firstname, "last_name":lastname]
-        requestManager.request(method: .post, url: endpointManager.CUSTOMER_NAME, parameters: param, code: .UpdateName)
+        requestManager.request(method: .post, url: endpointManager.CUSTOMER_NAME, parameters: param, code: .UpdateNameCustomer)
     }
     
-    public func updatePassword(password: String, passwordConfirmation: String){
+    public func updatePasswordCustomer(password: String, passwordConfirmation: String){
         let param = ["password":password, "password_confirmation":passwordConfirmation]
-        requestManager.request(method: .post, url: endpointManager.CUSTOMER_PASSWORD, parameters: param, code: .UpdatePassword)
+        requestManager.request(method: .post, url: endpointManager.CUSTOMER_PASSWORD, parameters: param, code: .UpdatePasswordCustomer)
     }
     
-    public func updatePhone(mobilePhone: String){
+    public func updatePhoneCustomer(mobilePhone: String){
         let param = ["mobile_phone":mobilePhone]
-        requestManager.request(method: .post, url: endpointManager.CUSTOMER_PHONE, parameters: param, code: .UpdatePhone)
+        requestManager.request(method: .post, url: endpointManager.CUSTOMER_PHONE, parameters: param, code: .UpdatePhoneCustomer)
     }
     
-    public func getPatient(){
-        requestManager.request(method: .get, url: endpointManager.GET_CUSTOMER_PATIENT, parameters: nil, code: .GetPatient)
+    public func getPatientCustomer(){
+        requestManager.request(method: .get, url: endpointManager.GET_CUSTOMER_PATIENT, parameters: nil, code: .GetPatientCustomer)
     }
     
-    public func addPatient(name:String, dob:String, gender: gender, weight: Double, height: Double, nationality:String, relationshipId:Int, photo: UIImage?){
+    public func addPatientCustomer(name:String, dob:String, gender: gender, weight: Double, height: Double, nationality:String, relationshipId:Int, photo: UIImage?){
         var param = [String:Any]()
         if let validPhoto = photo {
             param = ["name":name, "dob":dob, "gender": gender.rawValue, "weight":weight,"photo":validPhoto,"height":height, "nationality":nationality,"relationship_id":relationshipId.toString] as [String : Any]
         }else{
             param = ["name":name, "dob":dob, "gender": gender.rawValue, "weight":weight,"height":height, "nationality":nationality,"relationship_id":relationshipId.toString] as [String : Any]
         }
-        requestManager.request(url: endpointManager.ADD_CUSTOMER_PATIENT, parameters: param, code: .AddPatient, progressCode: .AddPatientProgress)
+        requestManager.request(url: endpointManager.ADD_CUSTOMER_PATIENT, parameters: param, code: .AddPatientCustomer, progressCode: .AddPatientCustomerProgress)
     }
     
-    public func updatePatient(withID id:Int, name:String, dob:String, gender: gender, weight: Double, height: Double, nationality:String, relationshipId:Int, photo:UIImage?){
+    public func updatePatientCustomer(withID id:Int, name:String, dob:String, gender: gender, weight: Double, height: Double, nationality:String, relationshipId:Int, photo:UIImage?){
         var param = [String:Any]()
         if let validPhoto = photo {
             param = ["name":name, "dob":dob, "gender": gender.rawValue, "weight":weight,"photo":validPhoto,"height":height, "nationality":nationality,"relationship_id":relationshipId.toString,"id":id] as [String : Any]
         }else{
             param = ["name":name, "dob":dob, "gender": gender.rawValue, "weight":weight,"height":height, "nationality":nationality,"relationship_id":relationshipId.toString,"id":id] as [String : Any]
         }
-        requestManager.request(url: endpointManager.UPDATE_CUSTOMER_PATIENT, parameters: param, code: .UpdatePatient, progressCode: .UpdatePatientProgress)
+        requestManager.request(url: endpointManager.UPDATE_CUSTOMER_PATIENT, parameters: param, code: .UpdatePatientCustomer, progressCode: .UpdatePatientCustomerProgress)
     }
     
-    public func removePatient(patientId: Int){
+    public func removePatientCustomer(patientId: Int){
         let param = ["id":patientId]
-        requestManager.request(method: .post, url: endpointManager.REMOVE_CUSTOMER_PATIENT, parameters: param, code: .RemovePatient)
+        requestManager.request(method: .post, url: endpointManager.REMOVE_CUSTOMER_PATIENT, parameters: param, code: .RemovePatientCustomer)
     }
     
 }
