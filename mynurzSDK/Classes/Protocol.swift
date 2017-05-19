@@ -36,32 +36,26 @@ public enum RequestCode: Int {
     UpdatePhoto,
     UpdatePhotoProgress,
     UpdateSubscribe,
+    UpdateSubscribeProgress,
     UpdateAddress,
+    UpdateAddressProgress,
     UpdateName,
+    UpdateNameProgress,
     UpdatePassword,
+    UpdatePasswordProgress,
     UpdatePhone,
+    UpdatePhoneProgress,
     
     GetPatient,
     AddPatient,
     AddPatientProgress,
     UpdatePatient,
     UpdatePatientProgress,
-    RemovePatient
+    RemovePatient,
+    RemovePatientProgress
 }
 
 public protocol MynurzSDKDelegate {
     func responseError(message: String, code: RequestCode, errorCode: ErrorCode, data: JSON?)
     func responseSuccess(message: String, code: RequestCode, data: JSON)
-}
-
-extension Data {
-    
-    init<T>(from value: T) {
-        var value = value
-        self.init(buffer: UnsafeBufferPointer(start: &value, count: 1))
-    }
-    
-    func to<T>(type: T.Type) -> T {
-        return self.withUnsafeBytes { $0.pointee }
-    }
 }
