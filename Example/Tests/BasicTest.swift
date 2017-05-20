@@ -24,7 +24,7 @@ class BasicTest: QuickSpec {
         describe("Customer endpoint") {
             
             beforeEach {
-                self.sdk.login(email: "customer@example.com", password: "kiasu123")
+                self.sdk.login(email: "customer@kronusasia.com", password: "11111")
                 expect(self.mock.code).toEventually(equal(RequestCode.Login), timeout: self.waitingTime)
             }
             
@@ -84,7 +84,7 @@ class BasicTest: QuickSpec {
             }
             
             it("update password") {
-                self.sdk.updatePasswordCustomer(password: "kiasu123", passwordConfirmation: "kiasu123")
+                self.sdk.updatePasswordCustomer(password: "11111", passwordConfirmation: "11111")
                 expect(self.mock.code).toEventually(equal(RequestCode.UpdatePasswordCustomer), timeout: self.waitingTime)
             }
             
@@ -112,7 +112,7 @@ class BasicTest: QuickSpec {
         
         describe("Freelancer endpoint") {
             beforeEach {
-                self.sdk.login(email: "freelancer@example.com", password: "kiasu123")
+                self.sdk.login(email: "freelancer@kronusasia.com", password: "11111")
                 expect(self.mock.code).toEventually(equal(RequestCode.Login), timeout: self.waitingTime)
             }
             
@@ -157,7 +157,7 @@ class BasicTest: QuickSpec {
             }
             
             it("update password") {
-                self.sdk.updatePasswordFreelancer(password: "kiasu123", passwordConfirmation: "kiasu123")
+                self.sdk.updatePasswordFreelancer(password: "11111", passwordConfirmation: "11111")
                 expect(self.mock.code).toEventually(equal(RequestCode.UpdatePasswordFreelancer), timeout: self.waitingTime)
             }
             
@@ -200,22 +200,22 @@ class BasicTest: QuickSpec {
         describe("Public endpoint") {
             
             it("login") {
-                self.sdk.login(email: "customer@example.com", password: "kiasu123")
+                self.sdk.login(email: "customer@kronusasia.com", password: "11111")
                 expect(self.mock.code).toEventually(equal(RequestCode.Login), timeout: self.waitingTime)
             }
             
             it("register customer") {
-                self.sdk.registerCustomer(firstname: "kugelfang", lastname: "killaruna", email: "customer@example.com", password: "kiasu123", passwordConfirmation: "kiasu123", mobilePhone: "+6281222542156")
+                self.sdk.registerCustomer(firstname: "kugelfang", lastname: "killaruna", email: "customer@kronusasia.com", password: "11111", passwordConfirmation: "11111", mobilePhone: "+6281222542156")
                 expect(self.mock.code).toEventually(equal(RequestCode.RegisterCustomer), timeout: self.waitingTime)
             }
             
             it("register freelancer") {
-                self.sdk.registerFreelancer(firstname: "freelancer", lastname: "register", email: "freelancer@example.com", password: "kiasu123", passwordConfirmation: "kiasu123", mobilePhone: "+6281222542155")
+                self.sdk.registerFreelancer(firstname: "freelancer", lastname: "register", email: "freelancer@kronusasia.com", password: "11111", passwordConfirmation: "11111", mobilePhone: "+6281222542155")
                 expect(self.mock.code).toEventually(equal(RequestCode.RegisterFreelancer), timeout: self.waitingTime)
             }
             
             it("reset link"){
-                self.sdk.resetLink(email: "customer@example.com")
+                self.sdk.resetLink(email: "customer@kronusasia.com")
                 expect(self.mock.code).toEventually(equal(RequestCode.ResetLink), timeout: self.waitingTime)
             }
             
