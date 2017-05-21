@@ -17,7 +17,6 @@ public class MynurzSDK: NSObject {
     public static let sharedInstance = MynurzSDK()
     let requestManager = RequestManager.sharedInstance
     let endpointManager = EndpointManager.sharedInstance
-    let pusherManager = PusherManager.sharedInstance
     var reachablilityManager: NetworkReachabilityManager?
     var delegate: MynurzSDKDelegate?
     
@@ -59,17 +58,12 @@ public class MynurzSDK: NSObject {
         networkManager.startListening()
         
         reachablilityManager = networkManager
-        
-    }
-    
-    deinit {
-        self.pusherManager.unsubscribeAll()
     }
     
     public func setDelegate(delegate: MynurzSDKDelegate){
         self.delegate = delegate
         self.requestManager.delegate = delegate
-        self.pusherManager.delegate = delegate
+        self.requestManager.dataManager.pusherManager.delegate = delegate
     }
     
     // MARK : - Public Endpoint

@@ -17,6 +17,7 @@ class DataManager: NSObject {
     let tokenController = TokenController.sharedInstance
     let settingController = SettingController.sharedInstance
     let profileController = ProfileController.sharedInstance
+    public let pusherManager = PusherManager.sharedInstance
     
     func putData(code:RequestCode, data: JSON){
         switch code {
@@ -165,6 +166,8 @@ class DataManager: NSObject {
             guard let zipCode = data["data"]["customer_data"]["zip_code"].string else {return}
             
             profileController.putCustomer(id: id, firstName: firstName, lastName: lastName, email: email, phone: phone, roleId: roleId, createdAt: createdAt, updatedAt: updatedAt, uid: uid, photo: photo, address: address, countryCode: countryCode, stateId: stateId, cityId: cityId, districtId: districtId, areaId: areaId, zipCode: zipCode)
+            
+            pusherManager.startListening()
             return
         case .GetProfileFreelancer:
             guard let id = data["data"]["id"].int else {return}
@@ -185,6 +188,8 @@ class DataManager: NSObject {
             guard let packagePrice = data["data"]["freelancer_data"]["package_price"].int else {return}
             
             profileController.putFreelancer(id: id, firstName: firstName, lastName: lastName, email: email, phone: phone, roleId: roleId, createdAt: createdAt, updatedAt: updatedAt, uid: uid, profession: profession, gender: gender, religion: religion, photo: photo, idCard: idCard, countryCode: countryCode, packagePrice: packagePrice)
+            
+            pusherManager.startListening()
             return
         case .Logout:
             profileController.drop()

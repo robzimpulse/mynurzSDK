@@ -72,9 +72,9 @@ public enum RequestCode: Int {
     UpdatePatientCustomer,
     UpdatePatientCustomerProgress,
     RemovePatientCustomer,
-    RemovePatientCustomerProgress
+    RemovePatientCustomerProgress,
     
-    
+    ReceivedChat
 }
 
 public protocol MynurzSDKDelegate {
