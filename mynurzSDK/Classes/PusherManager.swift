@@ -63,35 +63,53 @@ class PusherManager: NSObject, PusherDelegate, AuthRequestBuilderProtocol{
         }
     }
     
-    public func startListening(){
-        guard let validPusher = self.pusher else {return}
-        
+    public func isUserOnline(userId: String) -> Bool{
+        guard let validPresenceChannel = self.presenceListener else {return false}
+        guard validPresenceChannel.findMember(userId: userId) != nil else {return false}
+        return true
+    }
+    
+    public func stopListening(){
         if let customer = ProfileController.sharedInstance.getCustomer() {
             
             if let validListener = self.customerListener {
                 self.unsubscribe(withChannelName: "private-chat.user.\(customer.id)", callbackId: validListener)
             }
             
-            self.customerListener = self.subscribe(toChannelName: "private-chat.user.\(customer.id)", event: "message", callback: { data in
-                guard let validDelegate = self.delegate else {return}
-                validDelegate.responseSuccess(message: "1 New Message", code: .ReceivedChat, data: JSON(data as Any))
-            })
-            
-            self.presenceListener = validPusher.subscribeToPresenceChannel(channelName: "presence-user.\(customer.id)")
         }
         
         if let freelancer = ProfileController.sharedInstance.getFreelancer() {
             
             if let validListener = self.freelancerListener {
-                self.unsubscribe(withChannelName: "private-chat.user.\(freelancer.id)", callbackId: validListener)
+                self.unsubscribe(withChannelName: "private-chat.freelancer.\(freelancer.id)", callbackId: validListener)
             }
+        }
+        
+    }
+    
+    public func startListening(){
+        guard let validPusher = self.pusher else {return}
+        
+        self.stopListening()
+        
+        if let customer = ProfileController.sharedInstance.getCustomer() {
             
-            self.freelancerListener = self.subscribe(toChannelName: "private-chat.user.\(freelancer.id)", event: "message", callback: { data in
+            self.customerListener = self.subscribe(toChannelName: "private-chat.user.\(customer.id)", event: "message", callback: { data in
                 guard let validDelegate = self.delegate else {return}
                 validDelegate.responseSuccess(message: "1 New Message", code: .ReceivedChat, data: JSON(data as Any))
             })
             
-            self.presenceListener = validPusher.subscribeToPresenceChannel(channelName: "presence-freelancer.\(freelancer.id)")
+            self.presenceListener = validPusher.subscribeToPresenceChannel(channelName: "presence-user")
+        }
+        
+        if let freelancer = ProfileController.sharedInstance.getFreelancer() {
+            
+            self.freelancerListener = self.subscribe(toChannelName: "private-chat.freelancer.\(freelancer.id)", event: "message", callback: { data in
+                guard let validDelegate = self.delegate else {return}
+                validDelegate.responseSuccess(message: "1 New Message", code: .ReceivedChat, data: JSON(data as Any))
+            })
+            
+            self.presenceListener = validPusher.subscribeToPresenceChannel(channelName: "presence-freelancer")
         }
         
     }
@@ -114,11 +132,11 @@ class PusherManager: NSObject, PusherDelegate, AuthRequestBuilderProtocol{
     }
     
     func changedConnectionState(from old: ConnectionState, to new: ConnectionState) {
-        print("changedConnectionState : \(old) - \(new)")
+//        print("changedConnectionState : \(old) - \(new)")
     }
     
     func debugLog(message: String) {
-        print("debugLog : \(message)")
+//        print("debugLog : \(message)")
     }
     
     func subscribedToChannel(name: String) {
@@ -126,7 +144,7 @@ class PusherManager: NSObject, PusherDelegate, AuthRequestBuilderProtocol{
     }
     
     func failedToSubscribeToChannel(name: String, response: URLResponse?, data: String?, error: NSError?) {
-        print("failedToSubscribeToChannel : \(name) - \(error.debugDescription) - \(data as Any)")
+//        print("failedToSubscribeToChannel : \(name) - \(error.debugDescription) - \(data as Any)")
     }
     
     

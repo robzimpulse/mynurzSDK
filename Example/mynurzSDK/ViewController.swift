@@ -18,9 +18,6 @@ class ViewController: UIViewController, MynurzSDKDelegate {
         super.viewDidLoad()
         self.sdk.setDelegate(delegate: self)
         self.sdk.login(email: "customer@kronusasia.com", password: "11111")
-        Timer.runThisAfterDelay(seconds: 10.0, after: {
-            self.sdk.getProfileCustomer()
-        })
     }
 
     override func didReceiveMemoryWarning() {
@@ -35,6 +32,20 @@ class ViewController: UIViewController, MynurzSDKDelegate {
     func responseSuccess(message: String, code: RequestCode, data: JSON) {
         print("Response success on \(self.className) : \(message) - \(code)")
         print(data)
+        
+        switch code {
+        case .Login:
+            self.sdk.getProfileCustomer()
+            break
+        case .GetProfileCustomer:
+            Timer.runThisAfterDelay(seconds: 5.0, after: {
+                print("user online : \(self.sdk.isUserOnline(userId: "1"))")
+            })
+            break
+        default:
+            break
+        }
+        
     }
     
 }

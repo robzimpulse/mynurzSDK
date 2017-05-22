@@ -66,6 +66,10 @@ public class MynurzSDK: NSObject {
         self.requestManager.dataManager.pusherManager.delegate = delegate
     }
     
+    public func isUserOnline(userId: String) -> Bool{
+        return self.requestManager.dataManager.pusherManager.isUserOnline(userId: userId)
+    }
+    
     // MARK : - Public Endpoint
     
     public func login(email:String, password: String){
