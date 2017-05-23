@@ -12,12 +12,12 @@ import SwiftyJSON
 
 class ViewController: UIViewController, MynurzSDKDelegate {
     
-//    let sdk = MynurzSDK.sharedInstance
+    let sdk = MynurzSDK.sharedInstance
 
     override func viewDidLoad() {
         super.viewDidLoad()
-//        self.sdk.setDelegate(delegate: self)
-//        self.sdk.login(email: "customer@kronusasia.com", password: "11111")
+        self.sdk.setDelegate(delegate: self)
+        self.sdk.login(email: "customer@kronusasia.com", password: "11111")
     }
 
     override func didReceiveMemoryWarning() {
@@ -31,15 +31,17 @@ class ViewController: UIViewController, MynurzSDKDelegate {
     
     func responseSuccess(message: String, code: RequestCode, data: JSON) {
         print("Response success on \(self.className) : \(message) - \(code)")
-        print(data)
+//        print(data)
         
         switch code {
         case .Login:
-//            self.sdk.getProfileCustomer()
+            self.sdk.getProfileCustomer()
             break
         case .GetProfileCustomer:
-            Timer.runThisAfterDelay(seconds: 5.0, after: {
-//                print("user online : \(self.sdk.isUserOnline(userId: "1"))")
+            Timer.runThisAfterDelay(seconds: 5.0, after: { _ in
+                _ = Timer.runThisEvery(seconds: 3.0, handler: { _ in
+                    self.sdk.updateLocation(latitude: 30.0, longitude: 35.0)
+                })
             })
             break
         default:

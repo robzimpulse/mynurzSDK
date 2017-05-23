@@ -11,6 +11,7 @@ import RealmSwift
 import Alamofire
 import EZSwiftExtensions
 import SwiftyJSON
+import CoreLocation
 
 public class MynurzSDK: NSObject {
 
@@ -68,6 +69,10 @@ public class MynurzSDK: NSObject {
     
     public func isUserOnline(userId: String) -> Bool{
         return self.requestManager.dataManager.pusherManager.isUserOnline(userId: userId)
+    }
+    
+    public func updateLocation(latitude:CLLocationDegrees, longitude:CLLocationDegrees){
+        self.requestManager.dataManager.pusherManager.updateLocation(latitude: latitude, longitude: longitude)
     }
     
     // MARK : - Public Endpoint

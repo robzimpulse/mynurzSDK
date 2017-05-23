@@ -9,15 +9,20 @@
 import UIKit
 import PusherSwift
 import SwiftyJSON
+import CoreLocation
 
 class PusherManager: NSObject, PusherDelegate, AuthRequestBuilderProtocol{
     let endpointManager = EndpointManager.sharedInstance
     public static let sharedInstance = PusherManager()
     var delegate: MynurzSDKDelegate?
     var pusher: Pusher?
-    var customerListener: String?
-    var freelancerListener: String?
     var presenceListener: PusherPresenceChannel?
+    var locationListener: PusherChannel?
+    var locationBindId: String?
+    var chatListener: PusherChannel?
+    var chatBindId: String?
+    var userId: Int?
+    
     lazy var state: ConnectionState = {
         guard let validPusher = self.pusher else { return ConnectionState.disconnected }
         return validPusher.connection.connectionState
@@ -63,28 +68,28 @@ class PusherManager: NSObject, PusherDelegate, AuthRequestBuilderProtocol{
         }
     }
     
-    public func isUserOnline(userId: String) -> Bool{
+    func isUserOnline(userId: String) -> Bool{
         guard let validPresenceChannel = self.presenceListener else {return false}
         guard validPresenceChannel.findMember(userId: userId) != nil else {return false}
         return true
     }
     
     public func stopListening(){
-        if let customer = ProfileController.sharedInstance.getCustomer() {
-            
-            if let validListener = self.customerListener {
-                self.unsubscribe(withChannelName: "private-chat.user.\(customer.id)", callbackId: validListener)
+        guard let validPusher = self.pusher else {return}
+        
+        if let validListener = chatListener {
+            if let validBindId = chatBindId {
+                validListener.unbind(eventName: "message", callbackId: validBindId)
             }
-            
+            validPusher.unsubscribe(validListener.name)
         }
         
-        if let freelancer = ProfileController.sharedInstance.getFreelancer() {
-            
-            if let validListener = self.freelancerListener {
-                self.unsubscribe(withChannelName: "private-chat.freelancer.\(freelancer.id)", callbackId: validListener)
+        if let validListener = locationListener {
+            if let validBindId = locationBindId {
+                validListener.unbind(eventName: "update_location", callbackId: validBindId)
             }
+            validPusher.unsubscribe(validListener.name)
         }
-        
     }
     
     public func startListening(){
@@ -94,41 +99,50 @@ class PusherManager: NSObject, PusherDelegate, AuthRequestBuilderProtocol{
         
         if let user = ProfileController.sharedInstance.getCustomer() {
             
-            self.customerListener = self.subscribe(toChannelName: "private-chat.user.\(user.id)", event: "message", callback: { data in
+            let listener = validPusher.subscribe("private-chat.user.\(user.id)")
+            let bindId = listener.bind(eventName: "message", callback: {data in
                 guard let validDelegate = self.delegate else {return}
                 validDelegate.responseSuccess(message: "1 New Message", code: .ReceivedChat, data: JSON(data as Any))
             })
-            
+            self.userId = user.id
+            self.chatListener = listener
+            self.chatBindId = bindId
             self.presenceListener = validPusher.subscribeToPresenceChannel(channelName: "presence-user")
+            
         }
         
         if let user = ProfileController.sharedInstance.getFreelancer() {
             
-            self.customerListener = self.subscribe(toChannelName: "private-chat.user.\(user.id)", event: "message", callback: { data in
+            let listener = validPusher.subscribe("private-chat.freelancer.\(user.id)")
+            let bindId = listener.bind(eventName: "message", callback: {data in
                 guard let validDelegate = self.delegate else {return}
                 validDelegate.responseSuccess(message: "1 New Message", code: .ReceivedChat, data: JSON(data as Any))
             })
-            
+            self.userId = user.id
+            self.chatListener = listener
+            self.chatBindId = bindId
             self.presenceListener = validPusher.subscribeToPresenceChannel(channelName: "presence-user")
+
         }
+        
+        let listener = validPusher.subscribe("private-location")
+        let bindId = listener.bind(eventName: "client-location", callback: {data in
+            guard let validDelegate = self.delegate else {return}
+            validDelegate.responseSuccess(message: "Update Location", code: .UpdateLocation, data: JSON(data as Any))
+        })
+        self.locationListener = listener
+        self.locationBindId = bindId
         
     }
     
-    public func subscribe(toChannelName name: String, event: String, callback: @escaping (Any?) -> Void) -> String?{
-        guard let validPusher = pusher else {return nil}
-        let channel = validPusher.subscribe(name)
-        return channel.bind(eventName: event, callback: callback)
-    }
-    
-    public func unsubscribe(withChannelName name: String, callbackId: String){
-        guard let validPusher = pusher else {return}
-        validPusher.unbind(callbackId: name)
-        validPusher.unsubscribe(name)
-    }
-    
-    public func unbindAll(){
-        guard let validPusher = pusher else {return}
-        validPusher.unbindAll()
+    func updateLocation(latitude: CLLocationDegrees, longitude: CLLocationDegrees){
+        guard let validListener = self.locationListener else {return}
+        guard let validUserId = self.userId else {return}
+        validListener.trigger(eventName: "client-location", data: [
+            "userId":validUserId,
+            "latitude":latitude.toString,
+            "longitude":longitude.toString
+        ])
     }
     
     func changedConnectionState(from old: ConnectionState, to new: ConnectionState) {
@@ -140,7 +154,7 @@ class PusherManager: NSObject, PusherDelegate, AuthRequestBuilderProtocol{
     }
     
     func subscribedToChannel(name: String) {
-        print("subscribedToChannel : \(name)")
+//        print("subscribedToChannel : \(name)")
     }
     
     func failedToSubscribeToChannel(name: String, response: URLResponse?, data: String?, error: NSError?) {

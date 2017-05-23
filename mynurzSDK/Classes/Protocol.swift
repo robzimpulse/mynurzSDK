@@ -74,7 +74,8 @@ public enum RequestCode: Int {
     RemovePatientCustomer,
     RemovePatientCustomerProgress,
     
-    ReceivedChat
+    ReceivedChat,
+    UpdateLocation
 }
 
 public protocol MynurzSDKDelegate {

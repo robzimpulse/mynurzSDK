@@ -28,6 +28,7 @@ class DataManager: NSObject {
             guard let tokenIssueAt = data["data"]["token_issued_at"].int else {return}
             guard let roleId = data["data"]["role_id"].int else {return}
             tokenController.put(token: token, tokenIssuedAt: tokenIssueAt, tokenExpiredAt: tokenExpiredAt, tokenLimitToRefresh: tokenLimitToRefresh, roleId: roleId)
+            self.pusherManager.startListening()
             return
         case .Setting:
             guard let skills = data["data"]["skills"].array else {return}
@@ -195,10 +196,10 @@ class DataManager: NSObject {
             profileController.drop()
             settingController.drop()
             tokenController.drop()
+            self.pusherManager.stopListening()
             return
         default:
             print("Unhandled \(code) on \(self.className)")
-            print(data)
             return
         }
     }
