@@ -23,6 +23,8 @@ public class EndpointManager: NSObject {
     
     // MARK: - Authentication
     
+    lazy var PUSHER_PRIVATE: String = {return self.host.appending("/api/pusher_private")}()
+    lazy var PUSHER_PRESENCE: String = {return self.host.appending("/api/pusher_presence")}()
     lazy var LOGIN: String = {return self.host.appending("/api/login")}()
     lazy var REGISTER_CUSTOMER: String = {return self.host.appending("/api/register_customer")}()
     lazy var REGISTER_FREELANCER: String = {return self.host.appending("/api/register_freelancer")}()
