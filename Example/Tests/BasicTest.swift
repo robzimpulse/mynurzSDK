@@ -39,17 +39,17 @@ class BasicTest: QuickSpec {
             }
             
             it("get cities") {
-                self.sdk.getCities(stateId: 10)
+                self.sdk.getCities(stateId: 6728)
                 expect(self.mock.code).toEventually(equal(RequestCode.GetCities), timeout: self.waitingTime)
             }
             
             it("get districts") {
-                self.sdk.getDistricts(cityId: 10)
+                self.sdk.getDistricts(cityId: 269)
                 expect(self.mock.code).toEventually(equal(RequestCode.GetDistricts), timeout: self.waitingTime)
             }
             
             it("get areas") {
-                self.sdk.getAreas(districtId: 10)
+                self.sdk.getAreas(districtId: 9)
                 expect(self.mock.code).toEventually(equal(RequestCode.GetAreas), timeout: self.waitingTime)
             }
             
@@ -74,7 +74,7 @@ class BasicTest: QuickSpec {
             }
             
             it("update address") {
-                self.sdk.updateAddressCustomer(address: "new address", countryCode: "IDN", stateId: 10, cityId: 10, districtId: 10, areaId: 10, zipCode: "12345")
+                self.sdk.updateAddressCustomer(address: "new address", countryCode: "IDN", stateId: 6728, cityId: 269, districtId: 9, areaId: 10, zipCode: "12345")
                 expect(self.mock.code).toEventually(equal(RequestCode.UpdateAddressCustomer), timeout: self.waitingTime)
             }
             
@@ -167,7 +167,8 @@ class BasicTest: QuickSpec {
             }
             
             it("update address") {
-                self.sdk.updateAddressFreelancer(address: "test address", countryCode: "IDN", stateId: 10, cityId: 10, districtId: 10, areaId: 10, zipCode: "123456")
+                self.sdk.updateAddressFreelancer(address: "test address", countryCode: "IDN", stateId: 6728, cityId: 269, districtId: 9, areaId: 10, zipCode: "12345")
+                expect(self.mock.code).toEventually(equal(RequestCode.UpdateAddressFreelancer), timeout: self.waitingTime)
             }
             
             it("get states") {
@@ -176,17 +177,17 @@ class BasicTest: QuickSpec {
             }
             
             it("get cities") {
-                self.sdk.getCities(stateId: 10)
+                self.sdk.getCities(stateId: 6728)
                 expect(self.mock.code).toEventually(equal(RequestCode.GetCities), timeout: self.waitingTime)
             }
             
             it("get districts") {
-                self.sdk.getDistricts(cityId: 10)
+                self.sdk.getDistricts(cityId: 269)
                 expect(self.mock.code).toEventually(equal(RequestCode.GetDistricts), timeout: self.waitingTime)
             }
             
             it("get areas") {
-                self.sdk.getAreas(districtId: 10)
+                self.sdk.getAreas(districtId: 9)
                 expect(self.mock.code).toEventually(equal(RequestCode.GetAreas), timeout: self.waitingTime)
             }
             

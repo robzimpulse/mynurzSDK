@@ -92,9 +92,9 @@ class PusherManager: NSObject, PusherDelegate, AuthRequestBuilderProtocol{
         
         self.stopListening()
         
-        if let customer = ProfileController.sharedInstance.getCustomer() {
+        if let user = ProfileController.sharedInstance.getCustomer() {
             
-            self.customerListener = self.subscribe(toChannelName: "private-chat.user.\(customer.id)", event: "message", callback: { data in
+            self.customerListener = self.subscribe(toChannelName: "private-chat.user.\(user.id)", event: "message", callback: { data in
                 guard let validDelegate = self.delegate else {return}
                 validDelegate.responseSuccess(message: "1 New Message", code: .ReceivedChat, data: JSON(data as Any))
             })
@@ -102,14 +102,14 @@ class PusherManager: NSObject, PusherDelegate, AuthRequestBuilderProtocol{
             self.presenceListener = validPusher.subscribeToPresenceChannel(channelName: "presence-user")
         }
         
-        if let freelancer = ProfileController.sharedInstance.getFreelancer() {
+        if let user = ProfileController.sharedInstance.getFreelancer() {
             
-            self.freelancerListener = self.subscribe(toChannelName: "private-chat.freelancer.\(freelancer.id)", event: "message", callback: { data in
+            self.customerListener = self.subscribe(toChannelName: "private-chat.user.\(user.id)", event: "message", callback: { data in
                 guard let validDelegate = self.delegate else {return}
                 validDelegate.responseSuccess(message: "1 New Message", code: .ReceivedChat, data: JSON(data as Any))
             })
             
-            self.presenceListener = validPusher.subscribeToPresenceChannel(channelName: "presence-freelancer")
+            self.presenceListener = validPusher.subscribeToPresenceChannel(channelName: "presence-user")
         }
         
     }
