@@ -11,7 +11,7 @@ import PusherSwift
 import SwiftyJSON
 
 class PusherManager: NSObject, PusherDelegate, AuthRequestBuilderProtocol{
-
+    let endpointManager = EndpointManager.sharedInstance
     public static let sharedInstance = PusherManager()
     var delegate: MynurzSDKDelegate?
     var pusher: Pusher?
@@ -40,7 +40,7 @@ class PusherManager: NSObject, PusherDelegate, AuthRequestBuilderProtocol{
         guard let firstString = channelName.split("-").first else {return nil}
         switch firstString {
         case "private":
-            var urlRequest = URLRequest(url: URL(string: "http://mynurznew.app/api/pusher_private")!)
+            var urlRequest = URLRequest(url: URL(string: endpointManager.PUSHER_PRIVATE)!)
             urlRequest.setValue("Bearer " + token.token, forHTTPHeaderField: "Authorization")
             urlRequest.setValue("XMLHttpRequest", forHTTPHeaderField: "X-Requested-With")
             urlRequest.setValue("application/json", forHTTPHeaderField: "Accept")
@@ -49,7 +49,7 @@ class PusherManager: NSObject, PusherDelegate, AuthRequestBuilderProtocol{
             urlRequest.httpMethod = "POST"
             return urlRequest
             case "presence":
-            var urlRequest = URLRequest(url: URL(string: "http://mynurznew.app/api/pusher_presence")!)
+            var urlRequest = URLRequest(url: URL(string: endpointManager.PUSHER_PRESENCE)!)
             urlRequest.setValue("Bearer " + token.token, forHTTPHeaderField: "Authorization")
             urlRequest.setValue("XMLHttpRequest", forHTTPHeaderField: "X-Requested-With")
             urlRequest.setValue("application/json", forHTTPHeaderField: "Accept")
