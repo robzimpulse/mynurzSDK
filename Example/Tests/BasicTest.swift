@@ -108,6 +108,16 @@ class BasicTest: QuickSpec {
                 expect(self.mock.code).toEventually(equal(RequestCode.RemovePatientCustomer), timeout: self.waitingTime)
             }
             
+            it("add inquiry") {
+                self.sdk.addInquiry(patientId: 1, patientCondition: "patient condition", address: "jalan kebon jeruk", countryCode: "IDN", stateId: 6728, areaId: 4, districtId: 9, cityId: 269, zipCode: "12345", professionId: 1, gender: .male, startDate: Date(), endDate: Date(), jobDetail: "detail job")
+                expect(self.mock.code).toEventually(equal(RequestCode.AddInquiryCustomer), timeout: self.waitingTime)
+            }
+            
+            it("update inquiry") {
+                self.sdk.updateInquiry(inquiryId: 1, patientId: 1, patientCondition: "patient condition", address: "jalan kebon jeruk", countryCode: "IDN", stateId: 6728, areaId: 4, districtId: 9, cityId: 269, zipCode: "12345", professionId: 1, gender: .male, startDate: Date(), endDate: Date(), jobDetail: "detail job")
+                expect(self.mock.code).toEventually(equal(RequestCode.UpdateInquiryCustomer), timeout: self.waitingTime)
+            }
+            
         }
         
         describe("Freelancer endpoint") {

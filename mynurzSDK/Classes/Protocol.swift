@@ -74,6 +74,12 @@ public enum RequestCode: Int {
     RemovePatientCustomer,
     RemovePatientCustomerProgress,
     
+    GetInquiryCustomer,
+    AddInquiryCustomer,
+    AddInquiryCustomerProgress,
+    UpdateInquiryCustomer,
+    UpdateInquiryCustomerProgress,
+    
     ReceivedChat,
     UpdateLocation
 }

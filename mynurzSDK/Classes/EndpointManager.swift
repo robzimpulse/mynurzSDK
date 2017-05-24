@@ -52,6 +52,10 @@ public class EndpointManager: NSObject {
     lazy var UPDATE_CUSTOMER_PATIENT: String = {return self.host.appending("/api/customer/patient/update")}()
     lazy var REMOVE_CUSTOMER_PATIENT: String = {return self.host.appending("/api/customer/patient/remove")}()
     
+    lazy var GET_CUSTOMER_INQUIRY: String = {return self.host.appending("/api/customer/inquiry")}()
+    lazy var ADD_CUSTOMER_INQUIRY: String = {return self.host.appending("/api/customer/inquiry/add")}()
+    lazy var UPDATE_CUSTOMER_INQUIRY: String = {return self.host.appending("/api/customer/inquiry/update")}()
+    
     // MARK: - Freelancer End Point
     
     lazy var FREELANCER_PHOTO: String = {return self.host.appending("/api/freelancer/photo")}()

@@ -240,4 +240,18 @@ public class MynurzSDK: NSObject {
         requestManager.request(method: .post, url: endpointManager.REMOVE_CUSTOMER_PATIENT, parameters: param, code: .RemovePatientCustomer)
     }
     
+    public func getInquiryCustomer(){
+        requestManager.request(method: .get, url: endpointManager.GET_CUSTOMER_INQUIRY, parameters: nil, code: .GetInquiryCustomer)
+    }
+    
+    public func addInquiry(patientId: Int, patientCondition: String, address: String, countryCode: String, stateId: Int, areaId: Int, districtId: Int, cityId: Int, zipCode: String, professionId: Int, gender: gender, startDate: Date, endDate: Date, jobDetail: String){
+        let param = ["patient_id":patientId,"patient_condition":patientCondition,"address":address,"country_code":countryCode,"state_id":stateId,"area_id":areaId,"district_id":districtId,"city_id":cityId,"zip_code":zipCode,"profession_id":professionId,"gender":gender.rawValue,"start_date":startDate.toString(format: "Y-m-d"),"end_date":endDate.toString(format: "Y-m-d"),"job_detail":jobDetail] as [String : Any]
+        requestManager.request(method: .post, url: endpointManager.ADD_CUSTOMER_INQUIRY, parameters: param, code: .AddInquiryCustomer)
+    }
+
+    public func updateInquiry(inquiryId: Int,patientId: Int, patientCondition: String, address: String, countryCode: String, stateId: Int, areaId: Int, districtId: Int, cityId: Int, zipCode: String, professionId: Int, gender: gender, startDate: Date, endDate: Date, jobDetail: String){
+        let param = ["id":inquiryId,"patient_id":patientId,"patient_condition":patientCondition,"address":address,"country_code":countryCode,"state_id":stateId,"area_id":areaId,"district_id":districtId,"city_id":cityId,"zip_code":zipCode,"profession_id":professionId,"gender":gender.rawValue,"start_date":startDate.toString(format: "Y-m-d"),"end_date":endDate.toString(format: "Y-m-d"),"job_detail":jobDetail] as [String : Any]
+        requestManager.request(method: .post, url: endpointManager.UPDATE_CUSTOMER_INQUIRY, parameters: param, code: .UpdateInquiryCustomer)
+    }
+    
 }
