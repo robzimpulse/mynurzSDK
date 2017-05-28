@@ -47,6 +47,9 @@ public class EndpointManager: NSObject {
     lazy var CUSTOMER_PASSWORD: String = {return self.host.appending("/api/customer/password")}()
     lazy var CUSTOMER_PHONE: String = {return self.host.appending("/api/customer/phone")}()
     
+    lazy var CUSTOMER_SEARCH_FREELANCER: String = {return self.host.appending("/api/customer/search_freelancer")}()
+    lazy var CUSTOMER_SEARCH_CUSTOMER: String = {return self.host.appending("/api/customer/search_customer")}()
+    
     lazy var GET_CUSTOMER_PATIENT: String = {return self.host.appending("/api/customer/patient")}()
     lazy var ADD_CUSTOMER_PATIENT: String = {return self.host.appending("/api/customer/patient/add")}()
     lazy var UPDATE_CUSTOMER_PATIENT: String = {return self.host.appending("/api/customer/patient/update")}()
@@ -67,6 +70,9 @@ public class EndpointManager: NSObject {
     lazy var FREELANCER_PASSWORD: String = {return self.host.appending("/api/freelancer/password")}()
     lazy var FREELANCER_PHONE: String = {return self.host.appending("/api/freelancer/phone")}()
     lazy var FREELANCER_ADDRESS: String = {return self.host.appending("/api/freelancer/address")}()
+    
+    lazy var FREELANCER_SEARCH_FREELANCER: String = {return self.host.appending("/api/freelancer/search_freelancer")}()
+    lazy var FREELANCER_SEARCH_CUSTOMER: String = {return self.host.appending("/api/freelancer/search_customer")}()
     
     lazy var FREELANCER_ACADEMIC_ADD: String = {return self.host.appending("/api/freelancer/academic/add")}()
     lazy var FREELANCER_ACADEMIC_UPDATE: String = {return self.host.appending("/api/freelancer/academic/update")}()

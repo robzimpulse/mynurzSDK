@@ -30,6 +30,8 @@ public enum RequestCode: Int {
     GetCities,
     GetDistricts,
     GetAreas,
+    SearchCustomer,
+    SearchFreelancer,
     Logout,
     
     GetProfileFreelancer,

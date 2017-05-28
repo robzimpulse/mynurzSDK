@@ -108,13 +108,28 @@ class BasicTest: QuickSpec {
                 expect(self.mock.code).toEventually(equal(RequestCode.RemovePatientCustomer), timeout: self.waitingTime)
             }
             
+            it("search specific freelancer") {
+                self.sdk.searchFreelancer(uid: nil, email: nil, mobilePhone: nil)
+                expect(self.mock.code).toEventually(equal(RequestCode.SearchFreelancer), timeout: self.waitingTime)
+            }
+            
+            it("search specific customer") {
+                self.sdk.searchCustomer(uid: nil, email: nil, mobilePhone: nil)
+                expect(self.mock.code).toEventually(equal(RequestCode.SearchCustomer), timeout: self.waitingTime)
+            }
+            
+            it("get all submitted inquiry") {
+                self.sdk.getInquiryCustomer()
+                expect(self.mock.code).toEventually(equal(RequestCode.GetInquiryCustomer), timeout: self.waitingTime)
+            }
+            
             it("add inquiry") {
-                self.sdk.addInquiry(patientId: 1, patientCondition: "patient condition", address: "jalan kebon jeruk", countryCode: "IDN", stateId: 6728, areaId: 4, districtId: 9, cityId: 269, zipCode: "12345", professionId: 1, gender: .male, startDate: Date(), endDate: Date(), jobDetail: "detail job")
+                self.sdk.addInquiryCustomer(patientId: 1, patientCondition: "patient condition", address: "jalan kebon jeruk", countryCode: "IDN", stateId: 6728, areaId: 4, districtId: 9, cityId: 269, zipCode: "12345", professionId: 1, gender: .male, startDate: Date(), endDate: Date(), jobDetail: "detail job")
                 expect(self.mock.code).toEventually(equal(RequestCode.AddInquiryCustomer), timeout: self.waitingTime)
             }
             
             it("update inquiry") {
-                self.sdk.updateInquiry(inquiryId: 1, patientId: 1, patientCondition: "patient condition", address: "jalan kebon jeruk", countryCode: "IDN", stateId: 6728, areaId: 4, districtId: 9, cityId: 269, zipCode: "12345", professionId: 1, gender: .male, startDate: Date(), endDate: Date(), jobDetail: "detail job")
+                self.sdk.updateInquiryCustomer(inquiryId: 1, patientId: 1, patientCondition: "patient condition", address: "jalan kebon jeruk", countryCode: "IDN", stateId: 6728, areaId: 4, districtId: 9, cityId: 269, zipCode: "12345", professionId: 1, gender: .male, startDate: Date(), endDate: Date(), jobDetail: "detail job")
                 expect(self.mock.code).toEventually(equal(RequestCode.UpdateInquiryCustomer), timeout: self.waitingTime)
             }
             
@@ -204,6 +219,40 @@ class BasicTest: QuickSpec {
             it("get setting") {
                 self.sdk.setting()
                 expect(self.mock.code).toEventually(equal(RequestCode.Setting), timeout: self.waitingTime)
+            }
+            
+            it("search specific freelancer") {
+                self.sdk.searchFreelancer(uid: nil, email: nil, mobilePhone: nil)
+                expect(self.mock.code).toEventually(equal(RequestCode.SearchFreelancer), timeout: self.waitingTime)
+            }
+            
+            it("search specific customer") {
+                self.sdk.searchCustomer(uid: nil, email: nil, mobilePhone: nil)
+                expect(self.mock.code).toEventually(equal(RequestCode.SearchCustomer), timeout: self.waitingTime)
+            }
+            
+            it("get all available inquiries") {
+                
+            }
+            
+            it("get all submitted proposal") {
+                
+            }
+            
+            it("submit proposal") {
+                
+            }
+            
+            it("add freelancer to specific proposal") {
+                
+            }
+            
+            it("remove freelancer from specific proposal") {
+                
+            }
+            
+            it("publish specific proposal") {
+                
             }
             
         }

@@ -127,6 +127,46 @@ public class MynurzSDK: NSObject {
         requestManager.request(method: .get, url: url, parameters: nil, code: .GetAreas)
     }
     
+    public func searchCustomer(uid: String?, email: String?, mobilePhone:String?){
+        guard let token = TokenController.sharedInstance.get() else {return}
+        var data = [String]()
+        var url = ""
+        if let validUid = uid {
+            data.append("uid=\(validUid)")
+        }
+        if let validMobilePhone = mobilePhone {
+            data.append("mobile_phone=\(validMobilePhone)")
+        }
+        if let validEmail = email {
+            data.append("email=\(validEmail)")
+        }
+        
+        if token.roleId == 2 {url.append(endpointManager.CUSTOMER_SEARCH_CUSTOMER)}
+        else if token.roleId == 3 {url.append(endpointManager.FREELANCER_SEARCH_CUSTOMER)}
+        url.append(data.joined(separator: "&"))
+        requestManager.request(method: .get, url: url, parameters: nil, code: .SearchCustomer)
+    }
+    
+    public func searchFreelancer(uid: String?, email: String?, mobilePhone:String?){
+        guard let token = TokenController.sharedInstance.get() else {return}
+        var data = [String]()
+        var url = ""
+        if let validUid = uid {
+            data.append("uid=\(validUid)")
+        }
+        if let validMobilePhone = mobilePhone {
+            data.append("mobile_phone=\(validMobilePhone)")
+        }
+        if let validEmail = email {
+            data.append("email=\(validEmail)")
+        }
+        
+        if token.roleId == 2 {url.append(endpointManager.CUSTOMER_SEARCH_FREELANCER)}
+        else if token.roleId == 3 {url.append(endpointManager.FREELANCER_SEARCH_FREELANCER)}
+        url.append(data.joined(separator: "&"))
+        requestManager.request(method: .get, url: url, parameters: nil, code: .SearchFreelancer)
+    }
+    
     // MARK : - Freelancer Endpoint
     
     public func getProfileFreelancer(){
@@ -244,13 +284,15 @@ public class MynurzSDK: NSObject {
         requestManager.request(method: .get, url: endpointManager.GET_CUSTOMER_INQUIRY, parameters: nil, code: .GetInquiryCustomer)
     }
     
-    public func addInquiry(patientId: Int, patientCondition: String, address: String, countryCode: String, stateId: Int, areaId: Int, districtId: Int, cityId: Int, zipCode: String, professionId: Int, gender: gender, startDate: Date, endDate: Date, jobDetail: String){
-        let param = ["patient_id":patientId,"patient_condition":patientCondition,"address":address,"country_code":countryCode,"state_id":stateId,"area_id":areaId,"district_id":districtId,"city_id":cityId,"zip_code":zipCode,"profession_id":professionId,"gender":gender.rawValue,"start_date":startDate.toString(format: "Y-m-d"),"end_date":endDate.toString(format: "Y-m-d"),"job_detail":jobDetail] as [String : Any]
+    public func addInquiryCustomer(patientId: Int, patientCondition: String, address: String, countryCode: String, stateId: Int, areaId: Int, districtId: Int, cityId: Int, zipCode: String, professionId: Int, gender: gender, startDate: Date, endDate: Date, jobDetail: String){
+        let param = ["patient_id":patientId,"patient_condition":patientCondition,"address":address,"country_code":countryCode,"state_id":stateId,"area_id":areaId,"district_id":districtId,"city_id":cityId,"zip_code":zipCode,"profession_id":professionId,"gender":gender.rawValue,"start_date":startDate.toString(format: "yyyy-MM-dd"),"end_date":endDate.toString(format: "yyyy-MM-dd"),"job_detail":jobDetail] as [String : Any]
+        print(param)
         requestManager.request(method: .post, url: endpointManager.ADD_CUSTOMER_INQUIRY, parameters: param, code: .AddInquiryCustomer)
     }
 
-    public func updateInquiry(inquiryId: Int,patientId: Int, patientCondition: String, address: String, countryCode: String, stateId: Int, areaId: Int, districtId: Int, cityId: Int, zipCode: String, professionId: Int, gender: gender, startDate: Date, endDate: Date, jobDetail: String){
-        let param = ["id":inquiryId,"patient_id":patientId,"patient_condition":patientCondition,"address":address,"country_code":countryCode,"state_id":stateId,"area_id":areaId,"district_id":districtId,"city_id":cityId,"zip_code":zipCode,"profession_id":professionId,"gender":gender.rawValue,"start_date":startDate.toString(format: "Y-m-d"),"end_date":endDate.toString(format: "Y-m-d"),"job_detail":jobDetail] as [String : Any]
+    public func updateInquiryCustomer(inquiryId: Int,patientId: Int, patientCondition: String, address: String, countryCode: String, stateId: Int, areaId: Int, districtId: Int, cityId: Int, zipCode: String, professionId: Int, gender: gender, startDate: Date, endDate: Date, jobDetail: String){
+        let param = ["id":inquiryId,"patient_id":patientId,"patient_condition":patientCondition,"address":address,"country_code":countryCode,"state_id":stateId,"area_id":areaId,"district_id":districtId,"city_id":cityId,"zip_code":zipCode,"profession_id":professionId,"gender":gender.rawValue,"start_date":startDate.toString(format: "yyyy-MM-dd"),"end_date":endDate.toString(format: "yyyy-MM-dd"),"job_detail":jobDetail] as [String : Any]
+        print(param)
         requestManager.request(method: .post, url: endpointManager.UPDATE_CUSTOMER_INQUIRY, parameters: param, code: .UpdateInquiryCustomer)
     }
     
