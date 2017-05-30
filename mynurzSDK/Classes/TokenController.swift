@@ -11,9 +11,9 @@ import RealmSwift
 
 class Token: Object{
     dynamic var token = ""
-    dynamic var tokenIssuedAt = 0
-    dynamic var tokenExpiredAt = 0
-    dynamic var tokenLimitToRefresh = 0
+    dynamic var tokenIssuedAt = ""
+    dynamic var tokenExpiredAt = ""
+    dynamic var tokenLimitToRefresh = ""
     dynamic var roleId = 0
 }
 
@@ -28,7 +28,7 @@ class TokenController {
         return self.realm!.objects(Token.self).first
     }
     
-    func put(token:String, tokenIssuedAt:Int, tokenExpiredAt:Int, tokenLimitToRefresh:Int, roleId:Int){
+    func put(token:String, tokenIssuedAt:String, tokenExpiredAt:String, tokenLimitToRefresh:String, roleId:Int){
         self.realm = try! Realm()
         try! self.realm!.write {
             let currentToken = Token()

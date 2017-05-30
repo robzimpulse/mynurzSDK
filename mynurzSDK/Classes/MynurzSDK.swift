@@ -22,12 +22,18 @@ public class MynurzSDK: NSObject {
     var delegate: MynurzSDKDelegate?
     
     lazy var isTokenValid: Bool = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZ"
         guard let validToken = TokenController.sharedInstance.get() else {return false}
-        return validToken.tokenExpiredAt > Date().timeIntervalSince1970.toInt
+        guard let validDate = dateFormatter.date(from: validToken.tokenExpiredAt) else {return false}
+        return validDate > Date()
     }()
     lazy var isTokenRefreshable: Bool = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZ"
         guard let validToken = TokenController.sharedInstance.get() else {return false}
-        return validToken.tokenLimitToRefresh > Date().timeIntervalSince1970.toInt
+        guard let validDate = dateFormatter.date(from: validToken.tokenLimitToRefresh) else {return false}
+        return validDate > Date()
     }()
     
     public override init() {

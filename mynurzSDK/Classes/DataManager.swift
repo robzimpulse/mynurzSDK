@@ -22,10 +22,10 @@ class DataManager: NSObject {
     func putData(code:RequestCode, data: JSON){
         switch code {
         case .Login:
-            guard let tokenExpiredAt = data["data"]["token_expired_at"].int else {return}
-            guard let tokenLimitToRefresh = data["data"]["token_limit_to_refresh"].int else {return}
+            guard let tokenExpiredAt = data["data"]["token_expired_at"].string else {return}
+            guard let tokenLimitToRefresh = data["data"]["token_limit_to_refresh"].string else {return}
             guard let token = data["data"]["token"].string else {return}
-            guard let tokenIssueAt = data["data"]["token_issued_at"].int else {return}
+            guard let tokenIssueAt = data["data"]["token_issued_at"].string else {return}
             guard let roleId = data["data"]["role_id"].int else {return}
             tokenController.put(token: token, tokenIssuedAt: tokenIssueAt, tokenExpiredAt: tokenExpiredAt, tokenLimitToRefresh: tokenLimitToRefresh, roleId: roleId)
             self.pusherManager.startListening()

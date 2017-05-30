@@ -99,19 +99,19 @@ class SessionHandler: RequestAdapter, RequestRetrier {
                     return
                 }
                 
-                guard let tokenIssuedAt = json["data"]["token_issued_at"].int else {
+                guard let tokenIssuedAt = json["data"]["token_issued_at"].string else {
                     print("no token_issued_at found on data response")
                     completion(false,nil)
                     return
                 }
                 
-                guard let tokenExpiredAt = json["data"]["token_expired_at"].int else {
+                guard let tokenExpiredAt = json["data"]["token_expired_at"].string else {
                     print("no token_expired_at found on data response")
                     completion(false,nil)
                     return
                 }
                 
-                guard let tokenLimitToRefresh = json["data"]["token_limit_to_refresh"].int else {
+                guard let tokenLimitToRefresh = json["data"]["token_limit_to_refresh"].string else {
                     print("no token_limit_to_refresh found on data response")
                     completion(false,nil)
                     return
