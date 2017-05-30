@@ -92,4 +92,10 @@ public class EndpointManager: NSObject {
     lazy var FREELANCER_WORKING_EXPERIENCE_ADD: String = {return self.host.appending("/api/freelancer/working_experience/add")}()
     lazy var FREELANCER_WORKING_EXPERIENCE_UPDATE: String = {return self.host.appending("/api/freelancer/working_experience/update")}()
     lazy var FREELANCER_WORKING_EXPERIENCE_REMOVE: String = {return self.host.appending("/api/freelancer/working_experience/remove")}()
+    
+    lazy var FREELANCER_AVAILABLE_INQUIRY: String = {return self.host.appending("/api/freelancer/inquiries")}()
+    lazy var FREELANCER_ALL_PROPOSAL: String = {return self.host.appending("/api/freelancer/proposal")}()
+    lazy var FREELANCER_PROPOSAL_ADD: String = {return self.host.appending("/api/freelancer/proposal/add")}()
+    lazy var FREELANCER_PROPOSAL_ADD_COLLABORATOR: String = {return self.host.appending("/api/freelancer/proposal/collaborator/add")}()
+    lazy var FREELANCER_PROPOSAL_REMOVE_COLLABORATOR: String = {return self.host.appending("/api/freelancer/proposal/collaborator/remove")}()
 }
