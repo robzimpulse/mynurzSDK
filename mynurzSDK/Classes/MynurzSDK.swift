@@ -297,15 +297,15 @@ public class MynurzSDK: NSObject {
     public func updatePatientCustomer(withID id:Int, name:String, dob:String, gender: gender, weight: Double, height: Double, nationality:String, relationshipId:Int, photo:UIImage?){
         var param = [String:Any]()
         if let validPhoto = photo {
-            param = ["name":name, "dob":dob, "gender": gender.rawValue, "weight":weight,"photo":validPhoto,"height":height, "nationality":nationality,"relationship_id":relationshipId.toString,"id":id] as [String : Any]
+            param = ["name":name, "dob":dob, "gender": gender.rawValue, "weight":weight,"photo":validPhoto,"height":height, "nationality":nationality,"relationship_id":relationshipId.toString,"patient_id":id] as [String : Any]
         }else{
-            param = ["name":name, "dob":dob, "gender": gender.rawValue, "weight":weight,"height":height, "nationality":nationality,"relationship_id":relationshipId.toString,"id":id] as [String : Any]
+            param = ["name":name, "dob":dob, "gender": gender.rawValue, "weight":weight,"height":height, "nationality":nationality,"relationship_id":relationshipId.toString,"patient_id":id] as [String : Any]
         }
         requestManager.request(url: endpointManager.UPDATE_CUSTOMER_PATIENT, parameters: param, code: .UpdatePatientCustomer, progressCode: .UpdatePatientCustomerProgress)
     }
     
     public func removePatientCustomer(patientId: Int){
-        let param = ["id":patientId]
+        let param = ["patient_id":patientId]
         requestManager.request(method: .post, url: endpointManager.REMOVE_CUSTOMER_PATIENT, parameters: param, code: .RemovePatientCustomer)
     }
     
@@ -319,7 +319,7 @@ public class MynurzSDK: NSObject {
     }
 
     public func updateInquiryCustomer(inquiryId: Int,patientId: Int, patientCondition: String, address: String, countryCode: String, stateId: Int, areaId: Int, districtId: Int, cityId: Int, zipCode: String, professionId: Int, gender: gender, startDate: Date, endDate: Date, jobDetail: String){
-        let param = ["id":inquiryId,"patient_id":patientId,"patient_condition":patientCondition,"address":address,"country_code":countryCode,"state_id":stateId,"area_id":areaId,"district_id":districtId,"city_id":cityId,"zip_code":zipCode,"profession_id":professionId,"gender":gender.rawValue,"start_date":startDate.toString(format: "yyyy-MM-dd"),"end_date":endDate.toString(format: "yyyy-MM-dd"),"job_detail":jobDetail] as [String : Any]
+        let param = ["inquiry_id":inquiryId,"patient_id":patientId,"patient_condition":patientCondition,"address":address,"country_code":countryCode,"state_id":stateId,"area_id":areaId,"district_id":districtId,"city_id":cityId,"zip_code":zipCode,"profession_id":professionId,"gender":gender.rawValue,"start_date":startDate.toString(format: "yyyy-MM-dd"),"end_date":endDate.toString(format: "yyyy-MM-dd"),"job_detail":jobDetail] as [String : Any]
         requestManager.request(method: .post, url: endpointManager.UPDATE_CUSTOMER_INQUIRY, parameters: param, code: .UpdateInquiryCustomer)
     }
     
