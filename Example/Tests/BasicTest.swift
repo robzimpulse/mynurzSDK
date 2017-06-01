@@ -133,6 +133,11 @@ class BasicTest: QuickSpec {
                 expect(self.mock.code).toEventually(equal(RequestCode.UpdateInquiryCustomer), timeout: self.waitingTime)
             }
             
+            it("publish inquiry") {
+                self.sdk.publishInquiryCustomer(inquiryId: 1)
+                expect(self.mock.code).toEventually(equal(RequestCode.PublishInquiryCustomer), timeout: self.waitingTime)
+            }
+            
         }
         
         describe("Freelancer endpoint") {
@@ -246,6 +251,11 @@ class BasicTest: QuickSpec {
                 expect(self.mock.code).toEventually(equal(RequestCode.AddProposalFreelancer), timeout: self.waitingTime)
             }
             
+            it("update proposal") {
+                self.sdk.updateProposalFreelancer(proposalId: 1, description: "this is description", price: 350000)
+                expect(self.mock.code).toEventually(equal(RequestCode.UpdateProposalFreelancer), timeout: self.waitingTime)
+            }
+            
             it("add collaborator to specific proposal") {
                 self.sdk.addCollaboratorProposalFreelancer(freelancerId: 1, proposalId: 1)
                 expect(self.mock.code).toEventually(equal(RequestCode.AddCollaboratorProposalFreelancer), timeout: self.waitingTime)
@@ -254,6 +264,11 @@ class BasicTest: QuickSpec {
             it("remove collaborator from specific proposal") {
                 self.sdk.removeCollaboratorProposalFreelancer(freelancerId: 1, proposalId: 1)
                 expect(self.mock.code).toEventually(equal(RequestCode.RemoveCollaboratorProposalFreelancer), timeout: self.waitingTime)
+            }
+            
+            it("submit proposal") {
+                self.sdk.submitProposalFreelancer(proposalId: 1)
+                expect(self.mock.code).toEventually(equal(RequestCode.SubmitProposalFreelancer), timeout: self.waitingTime)
             }
             
         }

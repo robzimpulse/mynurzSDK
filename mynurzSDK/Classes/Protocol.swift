@@ -81,13 +81,16 @@ public enum RequestCode: Int {
     AddInquiryCustomerProgress,
     UpdateInquiryCustomer,
     UpdateInquiryCustomerProgress,
+    PublishInquiryCustomer,
     
     GetAvailableInquiryFreelancer,
     GetAllProposalFreelancer,
     AddProposalFreelancer,
     AddCollaboratorProposalFreelancer,
     RemoveCollaboratorProposalFreelancer,
-    PublishProposalFreelancer,
+    UpdateProposalFreelancer,
+    UpdateProposalFreelancerProgress,
+    SubmitProposalFreelancer,
     
     ReceivedChat,
     UpdateLocation

@@ -223,11 +223,11 @@ public class MynurzSDK: NSObject {
     }
     
     public func getAvailableInquiryFreelancer(){
-        requestManager.request(method: .get, url: endpointManager.FREELANCER_AVAILABLE_INQUIRY, parameters: nil, code: .GetAvailableInquiryFreelancer)
+        requestManager.request(method: .get, url: endpointManager.FREELANCER_INQUIRY_GET, parameters: nil, code: .GetAvailableInquiryFreelancer)
     }
     
     public func getAllProposalFreelancer(){
-        requestManager.request(method: .get, url: endpointManager.FREELANCER_ALL_PROPOSAL, parameters: nil, code: .GetAllProposalFreelancer)
+        requestManager.request(method: .get, url: endpointManager.FREELANCER_PROPOSAL_GET, parameters: nil, code: .GetAllProposalFreelancer)
     }
     
     public func addProposalFreelancer(inquiryId: Int, price: Int, fee: Int, description: String){
@@ -237,12 +237,22 @@ public class MynurzSDK: NSObject {
     
     public func addCollaboratorProposalFreelancer(freelancerId: Int, proposalId: Int){
         let param = ["freelancer_id":freelancerId,"proposal_id":proposalId]
-        requestManager.request(method: .post, url: endpointManager.FREELANCER_PROPOSAL_ADD_COLLABORATOR, parameters: param, code: .AddCollaboratorProposalFreelancer)
+        requestManager.request(method: .post, url: endpointManager.FREELANCER_PROPOSAL_COLLABORATOR_ADD, parameters: param, code: .AddCollaboratorProposalFreelancer)
     }
     
     public func removeCollaboratorProposalFreelancer(freelancerId: Int, proposalId: Int){
         let param = ["freelancer_id":freelancerId,"proposal_id":proposalId]
-        requestManager.request(method: .post, url: endpointManager.FREELANCER_PROPOSAL_REMOVE_COLLABORATOR, parameters: param, code: .RemoveCollaboratorProposalFreelancer)
+        requestManager.request(method: .post, url: endpointManager.FREELANCER_PROPOSAL_COLLABORATOR_REMOVE, parameters: param, code: .RemoveCollaboratorProposalFreelancer)
+    }
+    
+    public func updateProposalFreelancer(proposalId: Int, description: String, price: Int){
+        let param = ["proposal_id":proposalId, "description":description, "price":price] as [String : Any]
+        requestManager.request(method: .post, url: endpointManager.FREELANCER_PROPOSAL_UPDATE, parameters: param, code: .UpdateProposalFreelancer)
+    }
+    
+    public func submitProposalFreelancer(proposalId: Int){
+        let param = ["proposal_id":proposalId]
+        requestManager.request(method: .post, url: endpointManager.FREELANCER_PROPOSAL_SUBMIT, parameters: param, code: .SubmitProposalFreelancer)
     }
     
     // MARK : - Customer Endpoint
@@ -281,7 +291,7 @@ public class MynurzSDK: NSObject {
     }
     
     public func getPatientCustomer(){
-        requestManager.request(method: .get, url: endpointManager.GET_CUSTOMER_PATIENT, parameters: nil, code: .GetPatientCustomer)
+        requestManager.request(method: .get, url: endpointManager.CUSTOMER_PATIENT_GET, parameters: nil, code: .GetPatientCustomer)
     }
     
     public func addPatientCustomer(name:String, dob:String, gender: gender, weight: Double, height: Double, nationality:String, relationshipId:Int, photo: UIImage?){
@@ -291,7 +301,7 @@ public class MynurzSDK: NSObject {
         }else{
             param = ["name":name, "dob":dob, "gender": gender.rawValue, "weight":weight,"height":height, "nationality":nationality,"relationship_id":relationshipId.toString] as [String : Any]
         }
-        requestManager.request(url: endpointManager.ADD_CUSTOMER_PATIENT, parameters: param, code: .AddPatientCustomer, progressCode: .AddPatientCustomerProgress)
+        requestManager.request(url: endpointManager.CUSTOMER_PATIENT_ADD, parameters: param, code: .AddPatientCustomer, progressCode: .AddPatientCustomerProgress)
     }
     
     public func updatePatientCustomer(withID id:Int, name:String, dob:String, gender: gender, weight: Double, height: Double, nationality:String, relationshipId:Int, photo:UIImage?){
@@ -301,26 +311,31 @@ public class MynurzSDK: NSObject {
         }else{
             param = ["name":name, "dob":dob, "gender": gender.rawValue, "weight":weight,"height":height, "nationality":nationality,"relationship_id":relationshipId.toString,"patient_id":id] as [String : Any]
         }
-        requestManager.request(url: endpointManager.UPDATE_CUSTOMER_PATIENT, parameters: param, code: .UpdatePatientCustomer, progressCode: .UpdatePatientCustomerProgress)
+        requestManager.request(url: endpointManager.CUSTOMER_PATIENT_UPDATE, parameters: param, code: .UpdatePatientCustomer, progressCode: .UpdatePatientCustomerProgress)
     }
     
     public func removePatientCustomer(patientId: Int){
         let param = ["patient_id":patientId]
-        requestManager.request(method: .post, url: endpointManager.REMOVE_CUSTOMER_PATIENT, parameters: param, code: .RemovePatientCustomer)
+        requestManager.request(method: .post, url: endpointManager.CUSTOMER_PATIENT_REMOVE, parameters: param, code: .RemovePatientCustomer)
     }
     
     public func getInquiryCustomer(){
-        requestManager.request(method: .get, url: endpointManager.GET_CUSTOMER_INQUIRY, parameters: nil, code: .GetInquiryCustomer)
+        requestManager.request(method: .get, url: endpointManager.CUSTOMER_INQUIRY_GET, parameters: nil, code: .GetInquiryCustomer)
     }
     
     public func addInquiryCustomer(patientId: Int, patientCondition: String, address: String, countryCode: String, stateId: Int, areaId: Int, districtId: Int, cityId: Int, zipCode: String, professionId: Int, gender: gender, startDate: Date, endDate: Date, jobDetail: String){
         let param = ["patient_id":patientId,"patient_condition":patientCondition,"address":address,"country_code":countryCode,"state_id":stateId,"area_id":areaId,"district_id":districtId,"city_id":cityId,"zip_code":zipCode,"profession_id":professionId,"gender":gender.rawValue,"start_date":startDate.toString(format: "yyyy-MM-dd"),"end_date":endDate.toString(format: "yyyy-MM-dd"),"job_detail":jobDetail] as [String : Any]
-        requestManager.request(method: .post, url: endpointManager.ADD_CUSTOMER_INQUIRY, parameters: param, code: .AddInquiryCustomer)
+        requestManager.request(method: .post, url: endpointManager.CUSTOMER_INQUIRY_ADD, parameters: param, code: .AddInquiryCustomer)
     }
 
     public func updateInquiryCustomer(inquiryId: Int,patientId: Int, patientCondition: String, address: String, countryCode: String, stateId: Int, areaId: Int, districtId: Int, cityId: Int, zipCode: String, professionId: Int, gender: gender, startDate: Date, endDate: Date, jobDetail: String){
         let param = ["inquiry_id":inquiryId,"patient_id":patientId,"patient_condition":patientCondition,"address":address,"country_code":countryCode,"state_id":stateId,"area_id":areaId,"district_id":districtId,"city_id":cityId,"zip_code":zipCode,"profession_id":professionId,"gender":gender.rawValue,"start_date":startDate.toString(format: "yyyy-MM-dd"),"end_date":endDate.toString(format: "yyyy-MM-dd"),"job_detail":jobDetail] as [String : Any]
-        requestManager.request(method: .post, url: endpointManager.UPDATE_CUSTOMER_INQUIRY, parameters: param, code: .UpdateInquiryCustomer)
+        requestManager.request(method: .post, url: endpointManager.CUSTOMER_INQUIRY_UPDATE, parameters: param, code: .UpdateInquiryCustomer)
+    }
+    
+    public func publishInquiryCustomer(inquiryId: Int){
+        let param = ["inquiry_id":inquiryId]
+        requestManager.request(method: .post, url: endpointManager.CUSTOMER_INQUIRY_PUBLISH, parameters: param, code: .PublishInquiryCustomer)
     }
     
 }

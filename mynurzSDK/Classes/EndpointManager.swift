@@ -50,15 +50,15 @@ public class EndpointManager: NSObject {
     lazy var CUSTOMER_SEARCH_FREELANCER: String = {return self.host.appending("/api/customer/search_freelancer")}()
     lazy var CUSTOMER_SEARCH_CUSTOMER: String = {return self.host.appending("/api/customer/search_customer")}()
     
-    lazy var GET_CUSTOMER_PATIENT: String = {return self.host.appending("/api/customer/patient")}()
-    lazy var ADD_CUSTOMER_PATIENT: String = {return self.host.appending("/api/customer/patient/add")}()
-    lazy var UPDATE_CUSTOMER_PATIENT: String = {return self.host.appending("/api/customer/patient/update")}()
-    lazy var REMOVE_CUSTOMER_PATIENT: String = {return self.host.appending("/api/customer/patient/remove")}()
+    lazy var CUSTOMER_PATIENT_GET: String = {return self.host.appending("/api/customer/patient")}()
+    lazy var CUSTOMER_PATIENT_ADD: String = {return self.host.appending("/api/customer/patient/add")}()
+    lazy var CUSTOMER_PATIENT_UPDATE: String = {return self.host.appending("/api/customer/patient/update")}()
+    lazy var CUSTOMER_PATIENT_REMOVE: String = {return self.host.appending("/api/customer/patient/remove")}()
     
-    lazy var GET_CUSTOMER_INQUIRY: String = {return self.host.appending("/api/customer/inquiry")}()
-    lazy var ADD_CUSTOMER_INQUIRY: String = {return self.host.appending("/api/customer/inquiry/add")}()
-    lazy var UPDATE_CUSTOMER_INQUIRY: String = {return self.host.appending("/api/customer/inquiry/update")}()
-    
+    lazy var CUSTOMER_INQUIRY_GET: String = {return self.host.appending("/api/customer/inquiry")}()
+    lazy var CUSTOMER_INQUIRY_ADD: String = {return self.host.appending("/api/customer/inquiry/add")}()
+    lazy var CUSTOMER_INQUIRY_UPDATE: String = {return self.host.appending("/api/customer/inquiry/update")}()
+    lazy var CUSTOMER_INQUIRY_PUBLISH: String = {return self.host.appending("/api/customer/inquiry/publish")}()
     // MARK: - Freelancer End Point
     
     lazy var FREELANCER_PHOTO: String = {return self.host.appending("/api/freelancer/photo")}()
@@ -93,9 +93,12 @@ public class EndpointManager: NSObject {
     lazy var FREELANCER_WORKING_EXPERIENCE_UPDATE: String = {return self.host.appending("/api/freelancer/working_experience/update")}()
     lazy var FREELANCER_WORKING_EXPERIENCE_REMOVE: String = {return self.host.appending("/api/freelancer/working_experience/remove")}()
     
-    lazy var FREELANCER_AVAILABLE_INQUIRY: String = {return self.host.appending("/api/freelancer/inquiries")}()
-    lazy var FREELANCER_ALL_PROPOSAL: String = {return self.host.appending("/api/freelancer/proposal")}()
+    lazy var FREELANCER_INQUIRY_GET: String = {return self.host.appending("/api/freelancer/inquiries")}()
+    lazy var FREELANCER_PROPOSAL_GET: String = {return self.host.appending("/api/freelancer/proposal")}()
     lazy var FREELANCER_PROPOSAL_ADD: String = {return self.host.appending("/api/freelancer/proposal/add")}()
-    lazy var FREELANCER_PROPOSAL_ADD_COLLABORATOR: String = {return self.host.appending("/api/freelancer/proposal/collaborator/add")}()
-    lazy var FREELANCER_PROPOSAL_REMOVE_COLLABORATOR: String = {return self.host.appending("/api/freelancer/proposal/collaborator/remove")}()
+    lazy var FREELANCER_PROPOSAL_UPDATE: String = {return self.host.appending("/api/freelancer/proposal/update")}()
+    lazy var FREELANCER_PROPOSAL_SUBMIT: String = {return self.host.appending("/api/freelancer/proposal/submit")}()
+    lazy var FREELANCER_PROPOSAL_COLLABORATOR_ADD: String = {return self.host.appending("/api/freelancer/proposal/collaborator/add")}()
+    lazy var FREELANCER_PROPOSAL_COLLABORATOR_REMOVE: String = {return self.host.appending("/api/freelancer/proposal/collaborator/remove")}()
+    
 }
