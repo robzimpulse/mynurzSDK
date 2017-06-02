@@ -18,6 +18,7 @@ public class MynurzSDK: NSObject {
     public static let sharedInstance = MynurzSDK()
     let requestManager = RequestManager.sharedInstance
     let endpointManager = EndpointManager.sharedInstance
+    let firebaseManager = FirebaseManager.sharedInstance
     var reachablilityManager: NetworkReachabilityManager?
     var delegate: MynurzSDKDelegate?
     
@@ -71,6 +72,7 @@ public class MynurzSDK: NSObject {
         self.delegate = delegate
         self.requestManager.delegate = delegate
         self.requestManager.dataManager.pusherManager.delegate = delegate
+        self.firebaseManager.delegate = delegate
     }
     
     public func isUserOnline(userId: String) -> Bool{
