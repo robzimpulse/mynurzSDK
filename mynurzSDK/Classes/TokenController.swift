@@ -19,6 +19,8 @@ class Token: Object{
 
 class FirebaseToken: Object {
     dynamic var token = ""
+    dynamic var tokenIssuedAt = ""
+    dynamic var tokenExpiredAt = ""
 }
 
 class FirebaseTokenController {
@@ -31,11 +33,13 @@ class FirebaseTokenController {
         return self.realm!.objects(FirebaseToken.self).first
     }
     
-    func put(token:String){
+    func put(token:String, tokenIssuedAt:String, tokenExpiredAt:String){
         self.realm = try! Realm()
         try! self.realm!.write {
             let currentToken = FirebaseToken()
             currentToken.token = token
+            currentToken.tokenIssuedAt = tokenIssuedAt
+            currentToken.tokenExpiredAt = tokenExpiredAt
             if let oldToken = self.realm!.objects(FirebaseToken.self).first {
                 self.realm?.delete(oldToken)
             }

@@ -32,8 +32,10 @@ class DataManager: NSObject {
             self.pusherManager.startListening()
             return
         case .GetFirebaseToken:
-            guard let token = data["data"]["firebase_token"].string else {return}
-            firebaseTokenController.put(token:token)
+            guard let token = data["data"]["token"].string else {return}
+            guard let tokenIssueAt = data["data"]["token_issued_at"].string else {return}
+            guard let tokenExpiredAt = data["data"]["token_expired_at"].string else {return}
+            firebaseTokenController.put(token:token, tokenIssuedAt: tokenIssueAt, tokenExpiredAt: tokenExpiredAt)
             return
         case .Setting:
             guard let skills = data["data"]["skills"].array else {return}
