@@ -17,6 +17,40 @@ class Token: Object{
     dynamic var roleId = 0
 }
 
+class FirebaseToken: Object {
+    dynamic var token = ""
+}
+
+class FirebaseTokenController {
+    static let sharedInstance = FirebaseTokenController()
+    
+    var realm: Realm?
+    
+    func get() -> FirebaseToken? {
+        self.realm = try! Realm()
+        return self.realm!.objects(FirebaseToken.self).first
+    }
+    
+    func put(token:String){
+        self.realm = try! Realm()
+        try! self.realm!.write {
+            let currentToken = FirebaseToken()
+            currentToken.token = token
+            if let oldToken = self.realm!.objects(FirebaseToken.self).first {
+                self.realm?.delete(oldToken)
+            }
+            self.realm!.add(currentToken)
+        }
+    }
+    
+    func drop(){
+        self.realm = try! Realm()
+        try! self.realm!.write {
+            self.realm?.delete((self.realm?.objects(FirebaseToken.self))!)
+        }
+    }
+}
+
 class TokenController {
     
     static let sharedInstance = TokenController()

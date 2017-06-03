@@ -14,6 +14,7 @@ class DataManager: NSObject {
 
     public static let sharedInstance = DataManager()
     
+    let firebaseTokenController = FirebaseTokenController.sharedInstance
     let tokenController = TokenController.sharedInstance
     let settingController = SettingController.sharedInstance
     let profileController = ProfileController.sharedInstance
@@ -29,6 +30,10 @@ class DataManager: NSObject {
             guard let roleId = data["data"]["role_id"].int else {return}
             tokenController.put(token: token, tokenIssuedAt: tokenIssueAt, tokenExpiredAt: tokenExpiredAt, tokenLimitToRefresh: tokenLimitToRefresh, roleId: roleId)
             self.pusherManager.startListening()
+            return
+        case .GetFirebaseToken:
+            guard let token = data["data"]["firebase_token"].string else {return}
+            firebaseTokenController.put(token:token)
             return
         case .Setting:
             guard let skills = data["data"]["skills"].array else {return}

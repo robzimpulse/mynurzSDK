@@ -18,7 +18,6 @@ public class MynurzSDK: NSObject {
     public static let sharedInstance = MynurzSDK()
     let requestManager = RequestManager.sharedInstance
     let endpointManager = EndpointManager.sharedInstance
-    let firebaseManager = FirebaseManager.sharedInstance
     var reachablilityManager: NetworkReachabilityManager?
     var delegate: MynurzSDKDelegate?
     
@@ -72,7 +71,6 @@ public class MynurzSDK: NSObject {
         self.delegate = delegate
         self.requestManager.delegate = delegate
         self.requestManager.dataManager.pusherManager.delegate = delegate
-        self.firebaseManager.delegate = delegate
     }
     
     public func isUserOnline(userId: String) -> Bool{
@@ -133,6 +131,10 @@ public class MynurzSDK: NSObject {
     public func getAreas(districtId: Int){
         let url = endpointManager.GET_AREA + "?district_id=\(districtId)"
         requestManager.request(method: .get, url: url, parameters: nil, code: .GetAreas)
+    }
+    
+    public func getFirebaseToken(){
+        requestManager.request(method: .get, url: endpointManager.FIREBASE_TOKEN, parameters: nil, code: .GetFirebaseToken)
     }
     
     public func searchCustomer(uid: String?, email: String?, mobilePhone:String?){

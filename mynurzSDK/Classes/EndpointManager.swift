@@ -35,6 +35,7 @@ public class EndpointManager: NSObject {
     lazy var GET_CITY: String = {return self.host.appending("/api/cities")}()
     lazy var GET_DISTRICT: String = {return self.host.appending("/api/districts")}()
     lazy var GET_AREA: String = {return self.host.appending("/api/areas")}()
+    lazy var FIREBASE_TOKEN: String = {return self.host.appending("/api/firebase_token")}()
     lazy var LOGOUT: String = {return self.host.appending("/api/logout")}()
     
     // MARK: - Customer End Point
@@ -59,6 +60,7 @@ public class EndpointManager: NSObject {
     lazy var CUSTOMER_INQUIRY_ADD: String = {return self.host.appending("/api/customer/inquiry/add")}()
     lazy var CUSTOMER_INQUIRY_UPDATE: String = {return self.host.appending("/api/customer/inquiry/update")}()
     lazy var CUSTOMER_INQUIRY_PUBLISH: String = {return self.host.appending("/api/customer/inquiry/publish")}()
+    
     // MARK: - Freelancer End Point
     
     lazy var FREELANCER_PHOTO: String = {return self.host.appending("/api/freelancer/photo")}()

@@ -32,6 +32,7 @@ public enum RequestCode: Int {
     GetAreas,
     SearchCustomer,
     SearchFreelancer,
+    GetFirebaseToken,
     Logout,
     
     GetProfileFreelancer,
