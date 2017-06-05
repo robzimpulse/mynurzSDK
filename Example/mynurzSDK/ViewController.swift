@@ -13,7 +13,7 @@ import SwiftyJSON
 class ViewController: UIViewController, MynurzSDKDelegate {
     
 //    let sdk = MynurzSDK.sharedInstance
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 //        self.sdk.setDelegate(delegate: self)

@@ -16,7 +16,21 @@ class DataManager: NSObject {
     
     let firebaseTokenController = FirebaseTokenController.sharedInstance
     let tokenController = TokenController.sharedInstance
-    let settingController = SettingController.sharedInstance
+    let stateController = StateController.sharedInstance
+    let areaController = AreaController.sharedInstance
+    let cityController = CityController.sharedInstance
+    let countryController = CountryController.sharedInstance
+    let degreeController = DegreeController.sharedInstance
+    let districtController = DistrictController.sharedInstance
+    let employmentController = EmploymentController.sharedInstance
+    let jobStatusController = JobStatusController.sharedInstance
+    let professionController = ProfessionController.sharedInstance
+    let promotionCategoryController = PromotionCategoryController.sharedInstance
+    let relationshipController = RelationshipController.sharedInstance
+    let religionController = ReligionController.sharedInstance
+    let roleController = RoleController.sharedInstance
+    let skillController = SkillController.sharedInstance
+    let skillExperienceController = SkillExperienceController.sharedInstance
     let profileController = ProfileController.sharedInstance
     public let pusherManager = PusherManager.sharedInstance
     
@@ -50,108 +64,117 @@ class DataManager: NSObject {
             guard let degrees = data["data"]["degrees"].array else {return}
             guard let relationships = data["data"]["relationships"].array else {return}
             
-            settingController.drop()
-            
+            skillController.drop()
             for role in skills {
                 guard let id = role["id"].int else {continue}
                 guard let name = role["name"].string else {continue}
-                settingController.put(skillWithId: id, name: name)
+                skillController.put(id: id, name: name)
             }
             
+            roleController.drop()
             for role in roles {
                 guard let id = role["id"].int else {continue}
                 guard let name = role["name"].string else {continue}
-                settingController.put(roleWithId: id, name: name)
+                roleController.put(id: id, name: name)
             }
             
+            professionController.drop()
             for role in professions {
                 guard let id = role["id"].int else {continue}
                 guard let name = role["name"].string else {continue}
-                settingController.put(roleWithId: id, name: name)
+                professionController.put(id: id, name: name)
             }
             
+            jobStatusController.drop()
             for role in jobStatuses {
                 guard let id = role["id"].int else {continue}
                 guard let name = role["name"].string else {continue}
-                settingController.put(roleWithId: id, name: name)
+                jobStatusController.put(id: id, name: name)
             }
             
+            countryController.drop()
             for role in countries {
                 guard let id = role["id"].int else {continue}
                 guard let name = role["name"].string else {continue}
-                settingController.put(roleWithId: id, name: name)
+                countryController.put(id: id, name: name)
             }
             
+            promotionCategoryController.drop()
             for role in promotionCategories {
                 guard let id = role["id"].int else {continue}
                 guard let name = role["name"].string else {continue}
-                settingController.put(roleWithId: id, name: name)
+                promotionCategoryController.put(id: id, name: name)
             }
             
+            skillExperienceController.drop()
             for role in skillExperiences {
                 guard let id = role["id"].int else {continue}
                 guard let name = role["name"].string else {continue}
-                settingController.put(roleWithId: id, name: name)
+                skillExperienceController.put(id: id, name: name)
             }
             
+            employmentController.drop()
             for role in employments {
                 guard let id = role["id"].int else {continue}
                 guard let name = role["name"].string else {continue}
-                settingController.put(roleWithId: id, name: name)
+                employmentController.put(id: id, name: name)
             }
             
+            religionController.drop()
             for religion in religions {
                 guard let id = religion["id"].int else {continue}
                 guard let name = religion["name"].string else {continue}
-                settingController.put(religionWithId: id, name: name)
+                religionController.put(id: id, name: name)
             }
             
+            degreeController.drop()
             for role in degrees {
                 guard let id = role["id"].int else {continue}
                 guard let name = role["name"].string else {continue}
-                settingController.put(roleWithId: id, name: name)
+                degreeController.put(id: id, name: name)
             }
             
+            relationshipController.drop()
             for role in relationships {
                 guard let id = role["id"].int else {continue}
                 guard let name = role["name"].string else {continue}
-                settingController.put(relationshipWithId: id, name: name)
+                relationshipController.put(id: id, name: name)
             }
             return
         case .GetStates:
-            settingController.dropState()
+            stateController.drop()
             guard let states = data["data"].array else {return}
             for role in states {
                 guard let id = role["id"].int else {continue}
                 guard let name = role["name"].string else {continue}
-                settingController.put(stateWithId: id, name: name)
+                stateController.put(id: id, name: name)
             }
             return
         case .GetCities:
-            settingController.dropCity()
+            cityController.drop()
             guard let cities = data["data"].array else {return}
             for role in cities {
                 guard let id = role["id"].int else {continue}
                 guard let name = role["name"].string else {continue}
-                settingController.put(cityWithId: id, name: name)
+                cityController.put(id: id, name: name)
             }
             return
         case .GetDistricts:
-            settingController.dropDistrict()
+            districtController.drop()
             guard let districts = data["data"].array else {return}
             for role in districts {
                 guard let id = role["id"].int else {continue}
                 guard let name = role["name"].string else {continue}
-                settingController.put(districtWithId: id, name: name)
+                districtController.put(id: id, name: name)
             }
             return
         case .GetAreas:
-            settingController.dropArea()
+            areaController.drop()
             guard let areas = data["data"].array else {return}
             for role in areas {
                 guard let id = role["id"].int else {continue}
                 guard let name = role["name"].string else {continue}
-                settingController.put(areaWithId: id, name: name)
+                areaController.put(id: id, name: name)
             }
             return
         case .GetProfileCustomer:
@@ -201,7 +224,6 @@ class DataManager: NSObject {
             return
         case .Logout:
             profileController.drop()
-            settingController.drop()
             tokenController.drop()
             self.pusherManager.stopListening()
             return
