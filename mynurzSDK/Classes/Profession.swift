@@ -55,7 +55,7 @@ public class ProfessionController {
     
 }
 
-class ProfessionTablePicker: UITableViewController, UISearchResultsUpdating {
+public class ProfessionTablePicker: UITableViewController, UISearchResultsUpdating {
     
     var searchController: UISearchController?
     open var customFont: UIFont?
@@ -64,7 +64,7 @@ class ProfessionTablePicker: UITableViewController, UISearchResultsUpdating {
     var data = [String]()
     let professionController = ProfessionController.sharedInstance
     
-    override func viewDidLoad() {
+    override public func viewDidLoad() {
         super.viewDidLoad()
         
         self.automaticallyAdjustsScrollViewInsets = false
@@ -87,7 +87,7 @@ class ProfessionTablePicker: UITableViewController, UISearchResultsUpdating {
         
     }
     
-    override func didReceiveMemoryWarning() {
+    override public func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
@@ -113,11 +113,11 @@ class ProfessionTablePicker: UITableViewController, UISearchResultsUpdating {
     
     // MARK: - Table view data source
     
-    override func numberOfSections(in tableView: UITableView) -> Int {
+    override public func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let validSearchController = searchController else {return self.data.count}
         guard let validText = validSearchController.searchBar.text else {return self.data.count}
         
@@ -128,7 +128,7 @@ class ProfessionTablePicker: UITableViewController, UISearchResultsUpdating {
         return self.data.count
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    override public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .default, reuseIdentifier: "reuseIdentifier")
         
         if let validLabel = cell.textLabel {
@@ -148,7 +148,7 @@ class ProfessionTablePicker: UITableViewController, UISearchResultsUpdating {
         return cell
     }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    override public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         guard let validClosure = self.didSelectClosure else {return}
         validClosure(professionController.get(byName: self.data[indexPath.row])?.id ?? 0, self.data[indexPath.row])
