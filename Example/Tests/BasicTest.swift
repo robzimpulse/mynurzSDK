@@ -286,7 +286,7 @@ class BasicTest: QuickSpec {
             }
             
             it("register freelancer") {
-                self.sdk.registerFreelancer(firstname: "freelancer", lastname: "register", email: "freelancer@kronusasia.com", password: "111111", passwordConfirmation: "111111", mobilePhone: "+6281222542155")
+                self.sdk.registerFreelancer(firstname: "freelancer", lastname: "register", email: "freelancer@kronusasia.com", password: "111111", passwordConfirmation: "111111", mobilePhone: "+6281222542155", professionId: 1)
                 expect(self.mock.code).toEventually(equal(RequestCode.RegisterFreelancer), timeout: self.waitingTime)
             }
             
