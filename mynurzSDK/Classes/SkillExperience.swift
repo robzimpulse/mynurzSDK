@@ -10,8 +10,8 @@ import UIKit
 import RealmSwift
 
 public class SkillExperience: Object{
-    dynamic var id = 0
-    dynamic var name = ""
+    public dynamic var id = 0
+    public dynamic var name = ""
 }
 
 public class SkillExperienceController {

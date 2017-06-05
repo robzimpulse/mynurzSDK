@@ -10,8 +10,8 @@ import Foundation
 import RealmSwift
 
 public class City: Object{
-    dynamic var id = 0
-    dynamic var name = ""
+    public dynamic var id = 0
+    public dynamic var name = ""
 }
 
 public class CityController {
