@@ -118,6 +118,11 @@ class BasicTest: QuickSpec {
                 expect(self.mock.code).toEventually(equal(RequestCode.UpdatePhotoCustomer), timeout: self.waitingTime)
             }
             
+            it("update nationality") {
+                self.sdk.updateNationalityCustomer(nationality: "IDN")
+                expect(self.mock.code).toEventually(equal(RequestCode.UpdateNationalityCustomer), timeout: self.waitingTime)
+            }
+            
             it("update subscription status") {
                 self.sdk.updateSubscribeCustomer(status: true)
                 expect(self.mock.code).toEventually(equal(RequestCode.UpdateSubscribeCustomer), timeout: self.waitingTime)
@@ -249,6 +254,11 @@ class BasicTest: QuickSpec {
             it("update address") {
                 self.sdk.updateAddressFreelancer(address: "test address", countryCode: "IDN", stateId: 6728, cityId: 269, districtId: 9, areaId: 10, zipCode: "12345")
                 expect(self.mock.code).toEventually(equal(RequestCode.UpdateAddressFreelancer), timeout: self.waitingTime)
+            }
+            
+            it("update nationality") {
+                self.sdk.updateNationalityFreelancer(nationality: "IDN")
+                expect(self.mock.code).toEventually(equal(RequestCode.UpdateNationalityFreelancer), timeout: self.waitingTime)
             }
             
             it("get skills") {

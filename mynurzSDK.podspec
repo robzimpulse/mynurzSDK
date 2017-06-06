@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
 s.name             = 'mynurzSDK'
-s.version          = '0.2.3'
+s.version          = '0.2.4'
 s.summary          = 'Software Development Kit for accessing Mynurz API'
 
 s.homepage         = 'https://mynurz.com'

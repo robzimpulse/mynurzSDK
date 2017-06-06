@@ -66,6 +66,8 @@ public enum RequestCode: Int {
     UpdateProfileFreelancerProgress,
     UpdateAddressFreelancer,
     UpdateAddressFreelancerProgress,
+    UpdateNationalityFreelancer,
+    UpdateNationalityFreelancerProgress,
     
     GetProfileCustomer,
     UpdatePhotoCustomer,
@@ -80,6 +82,8 @@ public enum RequestCode: Int {
     UpdatePasswordCustomerProgress,
     UpdatePhoneCustomer,
     UpdatePhoneCustomerProgress,
+    UpdateNationalityCustomer,
+    UpdateNationalityCustomerProgress,
     
     GetPatientCustomer,
     AddPatientCustomer,

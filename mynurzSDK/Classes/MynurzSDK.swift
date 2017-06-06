@@ -231,6 +231,11 @@ public class MynurzSDK: NSObject {
         requestManager.request(url: endpointManager.FREELANCER_IDCARD, image: photo, code: .UpdateIDCardFreelancer, progressCode: .UpdateIDCardFreelancerProgress)
     }
     
+    public func updateNationalityFreelancer(nationality: String){
+        let param = ["country_code_iso3":nationality]
+        requestManager.request(method: .post, url: endpointManager.FREELANCER_NATIONALITY, parameters: param, code: .UpdateNationalityFreelancer)
+    }
+    
     public func updatePackagePriceFreelancer(packagePrice: Int){
         let param = ["package_price":packagePrice]
         requestManager.request(method: .post, url: endpointManager.FREELANCER_PACKAGE_PRICE, parameters: param, code: .UpdatePackagePriceFreelancer)
@@ -332,6 +337,11 @@ public class MynurzSDK: NSObject {
     public func updatePhoneCustomer(mobilePhone: String){
         let param = ["mobile_phone":mobilePhone]
         requestManager.request(method: .post, url: endpointManager.CUSTOMER_PHONE, parameters: param, code: .UpdatePhoneCustomer)
+    }
+    
+    public func updateNationalityCustomer(nationality: String){
+        let param = ["country_code_iso3":nationality]
+        requestManager.request(method: .post, url: endpointManager.CUSTOMER_NATIONALITY, parameters: param, code: .UpdateNationalityCustomer)
     }
     
     public func getPatientCustomer(){
