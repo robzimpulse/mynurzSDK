@@ -107,10 +107,48 @@ public class MynurzSDK: NSObject {
         requestManager.request(method: .get, url: endpointManager.LOGOUT, parameters: nil, code: .Logout)
     }
     
-    // MARK : - Authenticated Endpoint
+    public func getSkill(){
+        requestManager.request(method: .get, url: endpointManager.GET_SKILL, parameters: nil, code: .GetSkills)
+    }
     
-    public func setting(){
-        requestManager.request(method: .get, url: endpointManager.SETTING, parameters: nil, code: .Setting)
+    public func getSkillExperience(){
+        requestManager.request(method: .get, url: endpointManager.GET_SKILL_EXPERIENCE, parameters: nil, code: .GetSkillExperiences)
+    }
+    
+    public func getRole(){
+        requestManager.request(method: .get, url: endpointManager.GET_ROLE, parameters: nil, code: .GetRoles)
+    }
+    
+    public func getReligion(){
+        requestManager.request(method: .get, url: endpointManager.GET_RELIGION, parameters: nil, code: .GetReligions)
+    }
+    
+    public func getPromotionCategory(){
+        requestManager.request(method: .get, url: endpointManager.GET_PROMOTION_CATEGORY, parameters: nil, code: .GetPromotionCategories)
+    }
+    
+    public func getProfession(){
+        requestManager.request(method: .get, url: endpointManager.GET_PROFESSION, parameters: nil, code: .GetProfessions)
+    }
+    
+    public func getJobStatus(){
+        requestManager.request(method: .get, url: endpointManager.GET_JOB_STATUS, parameters: nil, code: .GetJobStatuses)
+    }
+    
+    public func getEmployment(){
+        requestManager.request(method: .get, url: endpointManager.GET_EMPLOYMENT, parameters: nil, code: .GetEmployments)
+    }
+    
+    public func getDegree(){
+        requestManager.request(method: .get, url: endpointManager.GET_DEGREE, parameters: nil, code: .GetDegrees)
+    }
+    
+    public func getRelationship(){
+        requestManager.request(method: .get, url: endpointManager.GET_RELATIONSHIP, parameters: nil, code: .GetRelationships)
+    }
+    
+    public func getCountry(){
+        requestManager.request(method: .get, url: endpointManager.GET_COUNTRY, parameters: nil, code: .GetCountries)
     }
     
     public func getStates(countryId: Int){
@@ -132,6 +170,8 @@ public class MynurzSDK: NSObject {
         let url = endpointManager.GET_AREA + "?district_id=\(districtId)"
         requestManager.request(method: .get, url: url, parameters: nil, code: .GetAreas)
     }
+    
+    // MARK : - Authenticated Endpoint
     
     public func getFirebaseToken(){
         requestManager.request(method: .get, url: endpointManager.FIREBASE_TOKEN, parameters: nil, code: .GetFirebaseToken)
