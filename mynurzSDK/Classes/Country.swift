@@ -12,6 +12,9 @@ import RealmSwift
 public class Country: Object{
     public dynamic var id = 0
     public dynamic var name = ""
+    public dynamic var countryCode = ""
+    public dynamic var countryCodeIso3 = ""
+    public dynamic var enable = 0
 }
 
 public class CountryController {
@@ -20,12 +23,15 @@ public class CountryController {
     
     var realm: Realm?
     
-    public func put(id:Int, name:String) {
+    public func put(id:Int, name:String, countryCode:String, countryCodeIso3:String, enable:Int) {
         self.realm = try! Realm()
         try! self.realm!.write {
             let object = Country()
             object.id = id
             object.name = name
+            object.countryCode = countryCode
+            object.countryCodeIso3 = countryCodeIso3
+            object.enable = enable
             self.realm!.add(object)
         }
     }
@@ -45,6 +51,21 @@ public class CountryController {
         return self.realm!.objects(Country.self).filter("name = '\(name)'").first
     }
     
+    public func get(byCountryCode countryCode: String) -> Country? {
+        self.realm = try! Realm()
+        return self.realm!.objects(Country.self).filter("countryCode = '\(countryCode)'").first
+    }
+    
+    public func get(byCountryCodeIso3 countryCodeIso3: String) -> Country? {
+        self.realm = try! Realm()
+        return self.realm!.objects(Country.self).filter("countryCodeIso3 = '\(countryCodeIso3)'").first
+    }
+    
+    public func get(byEnabled enable: Int) -> Results<Country> {
+        self.realm = try! Realm()
+        return self.realm!.objects(Country.self).filter("enable = \(enable)")
+    }
+    
     public func drop() {
         self.realm = try! Realm()
         try! self.realm!.write {
@@ -58,9 +79,9 @@ public class CountryTablePicker: UITableViewController, UISearchResultsUpdating 
     
     var searchController: UISearchController?
     open var customFont: UIFont?
-    open var didSelectClosure: ((Int, String) -> ())?
-    var filteredData = [String]()
-    var data = [String]()
+    open var didSelectClosure: ((Int, String, String, String) -> ())?
+    var filteredData = [Country]()
+    var data = [Country]()
     let controller = CountryController.sharedInstance
     
     override public func viewDidLoad() {
@@ -80,8 +101,8 @@ public class CountryTablePicker: UITableViewController, UISearchResultsUpdating 
         self.tableView.reloadData()
         self.definesPresentationContext = true
         
-        for appenData in controller.get() {
-            data.append(appenData.name)
+        for appenData in controller.get(byEnabled: 1) {
+            data.append(appenData)
         }
         
     }
@@ -91,13 +112,13 @@ public class CountryTablePicker: UITableViewController, UISearchResultsUpdating 
     }
     
     func filter(_ searchText: String){
-        filteredData = [String]()
+        filteredData = [Country]()
         
-        self.data.forEach({ name in
-            if name.characters.count > searchText.characters.count {
-                let result = name.compare(searchText, options: [.caseInsensitive, .diacriticInsensitive], range: searchText.characters.startIndex ..< searchText.characters.endIndex)
+        self.data.forEach({ country in
+            if country.name.characters.count > searchText.characters.count {
+                let result = country.name.compare(searchText, options: [.caseInsensitive, .diacriticInsensitive], range: searchText.characters.startIndex ..< searchText.characters.endIndex)
                 if result == .orderedSame {
-                    filteredData.append(name)
+                    filteredData.append(country)
                 }
             }
         })
@@ -133,9 +154,9 @@ public class CountryTablePicker: UITableViewController, UISearchResultsUpdating 
         if let validLabel = cell.textLabel {
             if let validSearchController = searchController {
                 if validSearchController.searchBar.text!.characters.count > 0 {
-                    validLabel.text = filteredData[indexPath.row]
+                    validLabel.text = filteredData[indexPath.row].name
                 }else{
-                    validLabel.text = data[indexPath.row]
+                    validLabel.text = data[indexPath.row].name
                 }
             }
             
@@ -150,7 +171,8 @@ public class CountryTablePicker: UITableViewController, UISearchResultsUpdating 
     override public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         guard let validClosure = self.didSelectClosure else {return}
-        validClosure(controller.get(byName: self.data[indexPath.row])?.id ?? 0, self.data[indexPath.row])
+        let selectedData = self.data[indexPath.row]
+        validClosure(selectedData.id,selectedData.name, selectedData.countryCode, selectedData.countryCodeIso3)
     }
     
 }

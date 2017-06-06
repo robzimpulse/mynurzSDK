@@ -25,7 +25,6 @@ public enum RequestCode: Int {
     RegisterCustomer,
     RegisterFreelancer,
     ResetLink,
-    Setting,
     SearchCustomer,
     SearchFreelancer,
     GetFirebaseToken,

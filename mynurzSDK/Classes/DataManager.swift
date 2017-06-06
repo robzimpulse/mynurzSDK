@@ -51,94 +51,106 @@ class DataManager: NSObject {
             guard let tokenExpiredAt = data["data"]["token_expired_at"].string else {return}
             firebaseTokenController.put(token:token, tokenIssuedAt: tokenIssueAt, tokenExpiredAt: tokenExpiredAt)
             return
-        case .Setting:
-            guard let skills = data["data"]["skills"].array else {return}
-            guard let roles = data["data"]["roles"].array else {return}
-            guard let professions = data["data"]["professions"].array else {return}
-            guard let jobStatuses = data["data"]["job_statuses"].array else {return}
-            guard let countries = data["data"]["countries"].array else {return}
-            guard let promotionCategories = data["data"]["promotion_categories"].array else {return}
-            guard let skillExperiences = data["data"]["skill_experiences"].array else {return}
-            guard let religions = data["data"]["religions"].array else {return}
-            guard let employments = data["data"]["employments"].array else {return}
-            guard let degrees = data["data"]["degrees"].array else {return}
-            guard let relationships = data["data"]["relationships"].array else {return}
-            
+        case .GetSkills:
+            guard let skills = data["data"].array else {return}
             skillController.drop()
             for role in skills {
                 guard let id = role["id"].int else {continue}
                 guard let name = role["name"].string else {continue}
                 skillController.put(id: id, name: name)
             }
-            
+            return
+        case .GetRoles:
+            guard let roles = data["data"].array else {return}
             roleController.drop()
             for role in roles {
                 guard let id = role["id"].int else {continue}
                 guard let name = role["name"].string else {continue}
                 roleController.put(id: id, name: name)
             }
-            
+            return
+        case .GetProfessions:
+            guard let professions = data["data"].array else {return}
             professionController.drop()
             for role in professions {
                 guard let id = role["id"].int else {continue}
                 guard let name = role["name"].string else {continue}
                 professionController.put(id: id, name: name)
             }
-            
+            return
+        case .GetJobStatuses:
+            guard let jobStatuses = data["data"].array else {return}
             jobStatusController.drop()
             for role in jobStatuses {
                 guard let id = role["id"].int else {continue}
                 guard let name = role["name"].string else {continue}
                 jobStatusController.put(id: id, name: name)
             }
-            
-            countryController.drop()
-            for role in countries {
-                guard let id = role["id"].int else {continue}
-                guard let name = role["name"].string else {continue}
-                countryController.put(id: id, name: name)
-            }
-            
+            return
+        case .GetPromotionCategories:
+            guard let promotionCategories = data["data"].array else {return}
             promotionCategoryController.drop()
             for role in promotionCategories {
                 guard let id = role["id"].int else {continue}
                 guard let name = role["name"].string else {continue}
                 promotionCategoryController.put(id: id, name: name)
             }
-            
+            return
+        case .GetSkillExperiences:
+            guard let skillExperiences = data["data"].array else {return}
             skillExperienceController.drop()
             for role in skillExperiences {
                 guard let id = role["id"].int else {continue}
                 guard let name = role["name"].string else {continue}
                 skillExperienceController.put(id: id, name: name)
             }
-            
-            employmentController.drop()
-            for role in employments {
-                guard let id = role["id"].int else {continue}
-                guard let name = role["name"].string else {continue}
-                employmentController.put(id: id, name: name)
-            }
-            
+            return
+        case .GetReligions:
+            guard let religions = data["data"].array else {return}
             religionController.drop()
             for religion in religions {
                 guard let id = religion["id"].int else {continue}
                 guard let name = religion["name"].string else {continue}
                 religionController.put(id: id, name: name)
             }
-            
+            return
+        case .GetEmployments:
+            guard let employments = data["data"].array else {return}
+            employmentController.drop()
+            for role in employments {
+                guard let id = role["id"].int else {continue}
+                guard let name = role["name"].string else {continue}
+                employmentController.put(id: id, name: name)
+            }
+            return
+        case .GetDegrees:
+            guard let degrees = data["data"].array else {return}
             degreeController.drop()
             for role in degrees {
                 guard let id = role["id"].int else {continue}
                 guard let name = role["name"].string else {continue}
                 degreeController.put(id: id, name: name)
             }
-            
+            return
+        case .GetRelationships:
+            guard let relationships = data["data"].array else {return}
             relationshipController.drop()
             for role in relationships {
                 guard let id = role["id"].int else {continue}
                 guard let name = role["name"].string else {continue}
                 relationshipController.put(id: id, name: name)
+            }
+            return
+        case .GetCountries:
+            guard let countries = data["data"].array else {return}
+            countryController.drop()
+            for role in countries {
+                guard let id = role["id"].int else {continue}
+                guard let name = role["name"].string else {continue}
+                guard let countryCode = role["country_code"].string else {continue}
+                guard let countryCodeIso3 = role["country_code_iso3"].string else {continue}
+                guard let enable = role["enable"].int else {continue}
+                countryController.put(id: id, name: name, countryCode: countryCode, countryCodeIso3: countryCodeIso3, enable: enable)
             }
             return
         case .GetStates:

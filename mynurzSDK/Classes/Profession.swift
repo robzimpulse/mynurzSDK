@@ -60,8 +60,8 @@ public class ProfessionTablePicker: UITableViewController, UISearchResultsUpdati
     var searchController: UISearchController?
     open var customFont: UIFont?
     open var didSelectClosure: ((Int, String) -> ())?
-    var filteredData = [String]()
-    var data = [String]()
+    var filteredData = [Profession]()
+    var data = [Profession]()
     let professionController = ProfessionController.sharedInstance
     
     override public func viewDidLoad() {
@@ -82,7 +82,7 @@ public class ProfessionTablePicker: UITableViewController, UISearchResultsUpdati
         self.definesPresentationContext = true
         
         for appenData in professionController.get() {
-            data.append(appenData.name)
+            data.append(appenData)
         }
         
     }
@@ -92,13 +92,13 @@ public class ProfessionTablePicker: UITableViewController, UISearchResultsUpdati
     }
     
     func filter(_ searchText: String){
-        filteredData = [String]()
+        filteredData = [Profession]()
         
-        self.data.forEach({ name in
-            if name.characters.count > searchText.characters.count {
-                let result = name.compare(searchText, options: [.caseInsensitive, .diacriticInsensitive], range: searchText.characters.startIndex ..< searchText.characters.endIndex)
+        self.data.forEach({ profession in
+            if profession.name.characters.count > searchText.characters.count {
+                let result = profession.name.compare(searchText, options: [.caseInsensitive, .diacriticInsensitive], range: searchText.characters.startIndex ..< searchText.characters.endIndex)
                 if result == .orderedSame {
-                    filteredData.append(name)
+                    filteredData.append(profession)
                 }
             }
         })
@@ -134,9 +134,9 @@ public class ProfessionTablePicker: UITableViewController, UISearchResultsUpdati
         if let validLabel = cell.textLabel {
             if let validSearchController = searchController {
                 if validSearchController.searchBar.text!.characters.count > 0 {
-                    validLabel.text = filteredData[indexPath.row]
+                    validLabel.text = filteredData[indexPath.row].name
                 }else{
-                    validLabel.text = data[indexPath.row]
+                    validLabel.text = data[indexPath.row].name
                 }
             }
             
@@ -150,8 +150,9 @@ public class ProfessionTablePicker: UITableViewController, UISearchResultsUpdati
     
     override public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        let selectedData = self.data[indexPath.row]
         guard let validClosure = self.didSelectClosure else {return}
-        validClosure(professionController.get(byName: self.data[indexPath.row])?.id ?? 0, self.data[indexPath.row])
+        validClosure(selectedData.id, selectedData.name)
     }
     
 }

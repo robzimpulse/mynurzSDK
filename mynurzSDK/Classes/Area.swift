@@ -59,8 +59,8 @@ public class AreaTablePicker: UITableViewController, UISearchResultsUpdating {
     var searchController: UISearchController?
     open var customFont: UIFont?
     open var didSelectClosure: ((Int, String) -> ())?
-    var filteredData = [String]()
-    var data = [String]()
+    var filteredData = [Area]()
+    var data = [Area]()
     let controller = AreaController.sharedInstance
     
     override public func viewDidLoad() {
@@ -81,7 +81,7 @@ public class AreaTablePicker: UITableViewController, UISearchResultsUpdating {
         self.definesPresentationContext = true
         
         for appenData in controller.get() {
-            data.append(appenData.name)
+            data.append(appenData)
         }
         
     }
@@ -91,13 +91,13 @@ public class AreaTablePicker: UITableViewController, UISearchResultsUpdating {
     }
     
     func filter(_ searchText: String){
-        filteredData = [String]()
+        filteredData = [Area]()
         
-        self.data.forEach({ name in
-            if name.characters.count > searchText.characters.count {
-                let result = name.compare(searchText, options: [.caseInsensitive, .diacriticInsensitive], range: searchText.characters.startIndex ..< searchText.characters.endIndex)
+        self.data.forEach({ area in
+            if area.name.characters.count > searchText.characters.count {
+                let result = area.name.compare(searchText, options: [.caseInsensitive, .diacriticInsensitive], range: searchText.characters.startIndex ..< searchText.characters.endIndex)
                 if result == .orderedSame {
-                    filteredData.append(name)
+                    filteredData.append(area)
                 }
             }
         })
@@ -133,9 +133,9 @@ public class AreaTablePicker: UITableViewController, UISearchResultsUpdating {
         if let validLabel = cell.textLabel {
             if let validSearchController = searchController {
                 if validSearchController.searchBar.text!.characters.count > 0 {
-                    validLabel.text = filteredData[indexPath.row]
+                    validLabel.text = filteredData[indexPath.row].name
                 }else{
-                    validLabel.text = data[indexPath.row]
+                    validLabel.text = data[indexPath.row].name
                 }
             }
             
@@ -150,7 +150,8 @@ public class AreaTablePicker: UITableViewController, UISearchResultsUpdating {
     override public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         guard let validClosure = self.didSelectClosure else {return}
-        validClosure(controller.get(byName: self.data[indexPath.row])?.id ?? 0, self.data[indexPath.row])
+        let selectedData = data[indexPath.row]
+        validClosure(selectedData.id, selectedData.name)
     }
     
 }
