@@ -111,7 +111,8 @@ public enum RequestCode: Int {
     
     ReceivedChat,
     UpdateLocation,
-    ChargeStripe
+    ChargeStripe,
+    ChargeOmise
 }
 
 public protocol MynurzSDKDelegate {

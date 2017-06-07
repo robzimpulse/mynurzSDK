@@ -11,8 +11,9 @@ import MidtransKit
 import Stripe
 import mynurzSDK
 import SwiftyJSON
+import OmiseSDK
 
-class ViewController: UIViewController, MidtransUIPaymentViewControllerDelegate, STPAddCardViewControllerDelegate, MynurzSDKDelegate {
+class ViewController: UIViewController, MidtransUIPaymentViewControllerDelegate, STPAddCardViewControllerDelegate, MynurzSDKDelegate, CreditCardFormDelegate {
     
     let sdk = MynurzSDK.sharedInstance
     
@@ -42,7 +43,11 @@ class ViewController: UIViewController, MidtransUIPaymentViewControllerDelegate,
     
     // example checkout using omise (thailand)
     @IBAction func checkoutOmise(_ sender: Any) {
-        
+        let creditCardView = CreditCardFormController.makeCreditCardForm(withPublicKey: sdk.omisePublicKey)
+        creditCardView.delegate = self
+        creditCardView.handleErrors = true
+        let navigationController = UINavigationController(rootViewController: creditCardView)
+        self.present(navigationController, animated: true, completion: nil)
     }
     
     // example checkout using stripe (singapore)
@@ -95,6 +100,20 @@ class ViewController: UIViewController, MidtransUIPaymentViewControllerDelegate,
     
     func responseSuccess(message: String, code: RequestCode, data: JSON) {
         print("\(message) - \(code)")
+    }
+    
+    // MARK: Omise delegate
+    
+    func creditCardForm(_ controller: CreditCardFormController, didFailWithError error: Error) {
+        controller.dismiss(animated: true, completion: nil)
+        print(error)
+    }
+    
+    func creditCardForm(_ controller: CreditCardFormController, didSucceedWithToken token: OmiseToken) {
+        controller.dismiss(animated: true, completion: nil)
+        guard let validToken = token.tokenId else {return}
+        self.sdk.postChargeOmise(param: ["card": validToken, "amount": 35000000, "currency":"THB"])
+        
     }
     
 }

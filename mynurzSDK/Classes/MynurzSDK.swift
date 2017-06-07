@@ -49,6 +49,10 @@ public class MynurzSDK: NSObject {
         return self.endpointManager.stripePublishableKey
     }()
     
+    public lazy var omisePublicKey: String = {
+        return self.endpointManager.omisePublicKey
+    }()
+    
     public override init() {
         super.init()
         
@@ -192,6 +196,10 @@ public class MynurzSDK: NSObject {
     
     public func postChargeStripe(param: [String:Any]){
         requestManager.request(method: .post, url: endpointManager.STRIPE_CHARGE, parameters: param, code: .ChargeStripe)
+    }
+    
+    public func postChargeOmise(param: [String:Any]){
+        requestManager.request(method: .post, url: endpointManager.OMISE_CHARGE, parameters: param, code: .ChargeOmise)
     }
     
     public func searchCustomer(uid: String?, email: String?, mobilePhone:String?){

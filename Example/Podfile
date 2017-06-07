@@ -6,6 +6,7 @@ target 'mynurzSDK_Example' do
     pod 'MidtransCoreKit'
     pod 'MidtransKit'
     pod 'Stripe'
+    pod 'CardIO'
 
   target 'mynurzSDK_Tests' do
     inherit! :search_paths

@@ -28,6 +28,7 @@ public class EndpointManager: NSObject {
     
     lazy var MIDTRANS_CHARGE: String = {return self.host.appending("/api/midtrans")}()
     lazy var STRIPE_CHARGE: String = {return self.host.appending("/api/stripe/charge")}()
+    lazy var OMISE_CHARGE: String = {return self.host.appending("/api/omise/charge")}()
     
     // MARK: - Authentication
     
