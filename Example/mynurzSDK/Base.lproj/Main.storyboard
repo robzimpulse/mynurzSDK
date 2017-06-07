@@ -1,21 +1,60 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="vXZ-lx-hvc">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController id="vXZ-lx-hvc" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="vXZ-lx-hvc" customClass="ViewController" customModule="mynurzSDK_Example" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DyW-d5-Fzd">
+                                <rect key="frame" x="102.5" y="179.5" width="170" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Midtrans Checkout"/>
+                                <connections>
+                                    <action selector="checkoutMidtrans:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="xPL-R0-TF9"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7IC-NU-3mO">
+                                <rect key="frame" x="112.5" y="315.5" width="149" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Omise Checkout"/>
+                                <connections>
+                                    <action selector="checkoutOmise:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="mEf-A1-C8P"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MGr-2r-40w">
+                                <rect key="frame" x="115" y="451.5" width="145" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Stripe Checkout"/>
+                                <connections>
+                                    <action selector="checkoutStripe:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="tew-ZZ-neg"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="7IC-NU-3mO" firstAttribute="centerY" secondItem="kh9-bI-dsS" secondAttribute="centerY" id="I9E-Jc-sgL"/>
+                            <constraint firstItem="MGr-2r-40w" firstAttribute="top" secondItem="7IC-NU-3mO" secondAttribute="bottom" constant="100" id="SAg-kr-eof"/>
+                            <constraint firstItem="7IC-NU-3mO" firstAttribute="top" secondItem="DyW-d5-Fzd" secondAttribute="bottom" constant="100" id="ofq-u9-pNR"/>
+                            <constraint firstItem="MGr-2r-40w" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="qpC-Sc-xbF"/>
+                            <constraint firstItem="DyW-d5-Fzd" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="xjo-Uz-u6l"/>
+                            <constraint firstItem="7IC-NU-3mO" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="yrq-ls-2ag"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>

@@ -11,6 +11,7 @@ import SwiftyJSON
 
 public enum ErrorCode: Int {
     case None = 100000,
+    InvalidRequestData,
     InvalidResponseData,
     RejectedByServer,
     RequestError,
@@ -109,7 +110,8 @@ public enum RequestCode: Int {
     SubmitProposalFreelancer,
     
     ReceivedChat,
-    UpdateLocation
+    UpdateLocation,
+    ChargeStripe
 }
 
 public protocol MynurzSDKDelegate {

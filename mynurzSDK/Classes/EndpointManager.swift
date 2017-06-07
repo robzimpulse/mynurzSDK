@@ -18,8 +18,16 @@ public class EndpointManager: NSObject {
     public static let sharedInstance = EndpointManager()
     
     var host = "http://mynurznew.app"
+    var midtransClientKey = "VT-client-AoZKEG2XOkHtEPw2"
+    var omisePublicKey = "pkey_test_58820b5b9axpbqqmmgv"
+    var stripePublishableKey = "pk_test_sE3n6dQNn01rQzfXP89fKMcx"
     
     lazy var cleanHost: String = {return self.host.replacingOccurrences(of: "https://", with: "").replacingOccurrences(of: "http://", with: "")}()
+    
+    // MARKL - Midtrans merchant url
+    
+    lazy var MIDTRANS_CHARGE: String = {return self.host.appending("/api/midtrans")}()
+    lazy var STRIPE_CHARGE: String = {return self.host.appending("/api/stripe/charge")}()
     
     // MARK: - Authentication
     

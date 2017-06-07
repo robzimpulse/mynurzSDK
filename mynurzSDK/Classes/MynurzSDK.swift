@@ -21,19 +21,32 @@ public class MynurzSDK: NSObject {
     var reachablilityManager: NetworkReachabilityManager?
     var delegate: MynurzSDKDelegate?
     
-    lazy var isTokenValid: Bool = {
+    public lazy var isTokenValid: Bool = {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZ"
         guard let validToken = TokenController.sharedInstance.get() else {return false}
         guard let validDate = dateFormatter.date(from: validToken.tokenExpiredAt) else {return false}
         return validDate > Date()
     }()
-    lazy var isTokenRefreshable: Bool = {
+    
+    public lazy var isTokenRefreshable: Bool = {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZ"
         guard let validToken = TokenController.sharedInstance.get() else {return false}
         guard let validDate = dateFormatter.date(from: validToken.tokenLimitToRefresh) else {return false}
         return validDate > Date()
+    }()
+    
+    public lazy var midtransMerchantUrl: String = {
+       return self.endpointManager.MIDTRANS_CHARGE
+    }()
+    
+    public lazy var midtransClientKey: String = {
+        return self.endpointManager.midtransClientKey
+    }()
+    
+    public lazy var stripePublishableKey: String = {
+        return self.endpointManager.stripePublishableKey
     }()
     
     public override init() {
@@ -175,6 +188,10 @@ public class MynurzSDK: NSObject {
     
     public func getFirebaseToken(){
         requestManager.request(method: .get, url: endpointManager.FIREBASE_TOKEN, parameters: nil, code: .GetFirebaseToken)
+    }
+    
+    public func postChargeStripe(param: [String:Any]){
+        requestManager.request(method: .post, url: endpointManager.STRIPE_CHARGE, parameters: param, code: .ChargeStripe)
     }
     
     public func searchCustomer(uid: String?, email: String?, mobilePhone:String?){
