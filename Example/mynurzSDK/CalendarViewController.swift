@@ -8,6 +8,7 @@
 
 import UIKit
 import JTAppleCalendar
+import EZSwiftExtensions
 
 class CalendarViewController: UIViewController {
 
@@ -17,8 +18,8 @@ class CalendarViewController: UIViewController {
     let formatter = DateFormatter()
     let dummySchedule = [
         "2017 06 02":["siang","malam"],
-        "2017 06 05":["session","malam"],
-        "2017 06 08":["siang","session"]
+        "2017 06 05":["malam"],
+        "2017 06 08":["siang"]
     ]
     var detailData = [String]()
     
@@ -28,6 +29,7 @@ class CalendarViewController: UIViewController {
         calendarView.minimumLineSpacing = CGFloat.leastNonzeroMagnitude
         calendarView.minimumInteritemSpacing = CGFloat.leastNonzeroMagnitude
         calendarView.isRangeSelectionUsed = false
+        calendarView.allowsMultipleSelection = false
         detailView.tableFooterView = UIView()
     }
 
@@ -35,17 +37,16 @@ class CalendarViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
-    func handleTextColor(view: JTAppleCell?, cellState: CellState){
+    func handleSelectedCell(view: JTAppleCell?, date: Date, cellState: CellState){
         guard let validCell = view as? CustomCalendarCell else {return}
-        
-        if cellState.dateBelongsTo == .thisMonth {
-            validCell.isHidden = false
+        if validCell.isSelected {
+            validCell.addBorder(width: 1, color: UIColor.black)
         }else{
-            validCell.isHidden = true
+            validCell.addBorder(width: 1, color: UIColor.white)
         }
     }
     
-    func handleScheduleMark(view: JTAppleCell?, date: Date){
+    func handleScheduleMark(view: JTAppleCell?, date: Date, cellState: CellState){
         guard let validCell = view as? CustomCalendarCell else {return}
         if let validDate = dummySchedule[date.toString(format: formatter.dateFormat)] {
             if validDate.contains("siang") {
@@ -58,15 +59,17 @@ class CalendarViewController: UIViewController {
             }else{
                 validCell.shiftMalam.backgroundColor = UIColor.clear
             }
-            if validDate.contains("session") {
-                validCell.shiftSession.backgroundColor = UIColor.blue
-            }else{
-                validCell.shiftSession.backgroundColor = UIColor.clear
-            }
+            validCell.shiftSession08.backgroundColor = UIColor.clear
+            validCell.shiftSession12.backgroundColor = UIColor.clear
+            validCell.shiftSession16.backgroundColor = UIColor.clear
+            validCell.shiftSession20.backgroundColor = UIColor.clear
         }else{
             validCell.shiftSiang.backgroundColor = UIColor.clear
             validCell.shiftMalam.backgroundColor = UIColor.clear
-            validCell.shiftSession.backgroundColor = UIColor.clear
+            validCell.shiftSession08.backgroundColor = UIColor.clear
+            validCell.shiftSession12.backgroundColor = UIColor.clear
+            validCell.shiftSession16.backgroundColor = UIColor.clear
+            validCell.shiftSession20.backgroundColor = UIColor.clear
         }
     }
     
@@ -80,7 +83,7 @@ extension CalendarViewController: JTAppleCalendarViewDataSource {
         
         let startDate = formatter.date(from: "2017 01 01")!
         let endDate = formatter.date(from: "2017 12 31")!
-        return ConfigurationParameters(startDate: startDate,endDate: endDate,numberOfRows: 6,calendar: Calendar.current,generateInDates: .forAllMonths,generateOutDates: .tillEndOfRow,firstDayOfWeek: .monday,hasStrictBoundaries: true)
+        return ConfigurationParameters(startDate: startDate,endDate: endDate)
     }
 }
 
@@ -90,30 +93,38 @@ extension CalendarViewController: JTAppleCalendarViewDelegate {
             return JTAppleCell(x: 0, y: 0, w: 75, h: 75)
         }
         validCell.dateLabel.text = cellState.text
-        self.handleScheduleMark(view: validCell, date: date)
-        self.handleTextColor(view: validCell, cellState: cellState)
+        if cellState.dateBelongsTo == .thisMonth {
+            validCell.dateLabel.textColor = UIColor.black
+        }else{
+            validCell.dateLabel.textColor = UIColor.lightGray
+        }
+        self.handleSelectedCell(view: validCell, date: date, cellState: cellState)
+        self.handleScheduleMark(view: validCell, date: date, cellState: cellState)
         return validCell
     }
     
     func calendar(_ calendar: JTAppleCalendarView, didSelectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
-        
-        if let validData = dummySchedule[date.toString(format: formatter.dateFormat)] {
+        guard let validCell = cell else{return}
+        if let validData = self.dummySchedule[date.toString(format: self.formatter.dateFormat)] {
             self.detailData = validData
         }else{
             self.detailData = [String]()
         }
         detailView.reloadData()
-        calendar.reloadData()
+        self.handleSelectedCell(view: validCell, date: date, cellState: cellState)
+        self.handleScheduleMark(view: validCell, date: date, cellState: cellState)
     }
     
     func calendar(_ calendar: JTAppleCalendarView, didDeselectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
-        calendar.reloadData()
+        guard let validCell = cell else{return}
+        self.handleSelectedCell(view: validCell, date: date, cellState: cellState)
+        self.handleScheduleMark(view: validCell, date: date, cellState: cellState)
     }
     
     func calendar(_ calendar: JTAppleCalendarView, headerViewForDateRange range: (start: Date, end: Date), at indexPath: IndexPath) -> JTAppleCollectionReusableView {
         let header = calendar.dequeueReusableJTAppleSupplementaryView(withReuseIdentifier: "headerLabel", for: indexPath)
         if let validLabel = header.viewWithTag(100) as? UILabel {
-            validLabel.text = range.start.monthAsString
+            validLabel.text = "\(range.start.monthAsString) \(range.start.year)"
         }
         return header
     }
@@ -151,5 +162,8 @@ class CustomCalendarCell: JTAppleCell {
  
     @IBOutlet weak var shiftSiang: UIView!
     @IBOutlet weak var shiftMalam: UIView!
-    @IBOutlet weak var shiftSession: UIView!
+    @IBOutlet weak var shiftSession08: UIView!
+    @IBOutlet weak var shiftSession12: UIView!
+    @IBOutlet weak var shiftSession16: UIView!
+    @IBOutlet weak var shiftSession20: UIView!
 }
