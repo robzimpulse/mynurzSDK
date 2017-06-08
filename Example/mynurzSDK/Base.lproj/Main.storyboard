@@ -4,8 +4,9 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -22,7 +23,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DyW-d5-Fzd">
-                                <rect key="frame" x="102.5" y="179.5" width="170" height="36"/>
+                                <rect key="frame" x="102.5" y="229.5" width="170" height="36"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="Midtrans Checkout"/>
                                 <connections>
@@ -38,19 +39,29 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MGr-2r-40w">
-                                <rect key="frame" x="115" y="451.5" width="145" height="36"/>
+                                <rect key="frame" x="115" y="401.5" width="145" height="36"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="Stripe Checkout"/>
                                 <connections>
                                     <action selector="checkoutStripe:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="tew-ZZ-neg"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rac-W3-mhd">
+                                <rect key="frame" x="147" y="143.5" width="81" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Calendar"/>
+                                <connections>
+                                    <segue destination="PdK-qr-tlc" kind="presentation" id="Tc3-ma-eAX"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="7IC-NU-3mO" firstAttribute="centerY" secondItem="kh9-bI-dsS" secondAttribute="centerY" id="I9E-Jc-sgL"/>
-                            <constraint firstItem="MGr-2r-40w" firstAttribute="top" secondItem="7IC-NU-3mO" secondAttribute="bottom" constant="100" id="SAg-kr-eof"/>
-                            <constraint firstItem="7IC-NU-3mO" firstAttribute="top" secondItem="DyW-d5-Fzd" secondAttribute="bottom" constant="100" id="ofq-u9-pNR"/>
+                            <constraint firstItem="Rac-W3-mhd" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="JNt-KV-BNl"/>
+                            <constraint firstItem="MGr-2r-40w" firstAttribute="top" secondItem="7IC-NU-3mO" secondAttribute="bottom" constant="50" id="SAg-kr-eof"/>
+                            <constraint firstItem="DyW-d5-Fzd" firstAttribute="top" secondItem="Rac-W3-mhd" secondAttribute="bottom" constant="50" id="Sv0-BY-32M"/>
+                            <constraint firstItem="7IC-NU-3mO" firstAttribute="top" secondItem="DyW-d5-Fzd" secondAttribute="bottom" constant="50" id="ofq-u9-pNR"/>
                             <constraint firstItem="MGr-2r-40w" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="qpC-Sc-xbF"/>
                             <constraint firstItem="DyW-d5-Fzd" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="xjo-Uz-u6l"/>
                             <constraint firstItem="7IC-NU-3mO" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="yrq-ls-2ag"/>
@@ -59,6 +70,160 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
+        </scene>
+        <!--Ib Calendar Data Source-->
+        <scene sceneID="ElH-HD-lAY">
+            <objects>
+                <viewController id="PdK-qr-tlc" customClass="CalendarViewController" customModule="mynurzSDK_Example" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Rpy-Ge-fob"/>
+                        <viewControllerLayoutGuide type="bottom" id="hVI-xW-NSH"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="2YH-9x-CWh">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="MFR-GB-Ls4" customClass="JTAppleCalendarView" customModule="JTAppleCalendar">
+                                <rect key="frame" x="0.0" y="20" width="375" height="300"/>
+                                <color key="backgroundColor" white="0.89786086309523794" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="300" id="O5G-Ra-3Wx"/>
+                                </constraints>
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="gNw-wt-bES">
+                                    <size key="itemSize" width="75" height="75"/>
+                                    <size key="headerReferenceSize" width="200" height="50"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="customCell" id="FUA-Lv-suN" customClass="CustomCalendarCell" customModule="mynurzSDK_Example" customModuleProvider="target">
+                                        <rect key="frame" x="200" y="0.0" width="75" height="75"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="75" height="75"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" translatesAutoresizingMaskIntoConstraints="NO" id="iEc-to-avN">
+                                                    <rect key="frame" x="8" y="62" width="59" height="5"/>
+                                                    <subviews>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F5a-5Q-CSL">
+                                                            <rect key="frame" x="0.0" y="0.0" width="5" height="5"/>
+                                                            <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="5" id="Hyk-vL-EHP"/>
+                                                                <constraint firstAttribute="width" secondItem="F5a-5Q-CSL" secondAttribute="height" multiplier="1:1" id="Raz-Uw-4sW"/>
+                                                            </constraints>
+                                                        </view>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="erc-oO-gay">
+                                                            <rect key="frame" x="27.5" y="0.0" width="4.5" height="5"/>
+                                                            <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                        </view>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RGq-CN-tLd">
+                                                            <rect key="frame" x="54.5" y="0.0" width="4.5" height="5"/>
+                                                            <color key="backgroundColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                        </view>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstItem="erc-oO-gay" firstAttribute="width" secondItem="F5a-5Q-CSL" secondAttribute="width" id="FXx-Gv-JQF"/>
+                                                        <constraint firstItem="RGq-CN-tLd" firstAttribute="width" secondItem="erc-oO-gay" secondAttribute="width" id="UP8-Q1-jpF"/>
+                                                        <constraint firstItem="RGq-CN-tLd" firstAttribute="height" secondItem="erc-oO-gay" secondAttribute="height" id="sL3-5U-aUb"/>
+                                                        <constraint firstItem="erc-oO-gay" firstAttribute="height" secondItem="F5a-5Q-CSL" secondAttribute="height" id="wO1-At-2aS"/>
+                                                    </constraints>
+                                                </stackView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TOL-5q-jVh">
+                                                    <rect key="frame" x="16.5" y="27.5" width="42" height="20.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstItem="iEc-to-avN" firstAttribute="leading" secondItem="FUA-Lv-suN" secondAttribute="leadingMargin" id="0UQ-eV-lcs"/>
+                                            <constraint firstItem="iEc-to-avN" firstAttribute="centerX" secondItem="FUA-Lv-suN" secondAttribute="centerX" id="14Y-Pe-sXX"/>
+                                            <constraint firstAttribute="trailingMargin" secondItem="iEc-to-avN" secondAttribute="trailing" id="5Re-61-QcP"/>
+                                            <constraint firstItem="TOL-5q-jVh" firstAttribute="centerX" secondItem="FUA-Lv-suN" secondAttribute="centerX" id="Dka-Z4-9zn"/>
+                                            <constraint firstAttribute="bottomMargin" secondItem="iEc-to-avN" secondAttribute="bottom" id="ep2-mY-xg4"/>
+                                            <constraint firstItem="TOL-5q-jVh" firstAttribute="centerY" secondItem="FUA-Lv-suN" secondAttribute="centerY" id="tcJ-bZ-sWF"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="dateLabel" destination="TOL-5q-jVh" id="wbk-Ao-05G"/>
+                                            <outlet property="shiftMalam" destination="erc-oO-gay" id="VZO-uM-jac"/>
+                                            <outlet property="shiftSession" destination="RGq-CN-tLd" id="HbP-QA-b0g"/>
+                                            <outlet property="shiftSiang" destination="F5a-5Q-CSL" id="NoV-ju-6R6"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="headerLabel" id="fbe-Sl-UmV" customClass="JTAppleCollectionReusableView" customModule="JTAppleCalendar">
+                                    <rect key="frame" x="0.0" y="0.0" width="200" height="300"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="100" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nil-bx-6w2">
+                                            <rect key="frame" x="75.5" y="138" width="49" height="24"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <constraints>
+                                        <constraint firstItem="Nil-bx-6w2" firstAttribute="centerY" secondItem="fbe-Sl-UmV" secondAttribute="centerY" id="IFf-Xp-mx1"/>
+                                        <constraint firstItem="Nil-bx-6w2" firstAttribute="centerX" secondItem="fbe-Sl-UmV" secondAttribute="centerX" id="z95-21-uiV"/>
+                                    </constraints>
+                                </collectionReusableView>
+                                <connections>
+                                    <outlet property="ibCalendarDataSource" destination="PdK-qr-tlc" id="kIP-aB-w65"/>
+                                    <outlet property="ibCalendarDelegate" destination="PdK-qr-tlc" id="sHb-Gc-duN"/>
+                                </connections>
+                            </collectionView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="poA-BM-Gkr">
+                                <rect key="frame" x="0.0" y="320" width="375" height="347"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="dataCell" textLabel="YHK-zV-V1A" style="IBUITableViewCellStyleDefault" id="fDe-QQ-SfC">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fDe-QQ-SfC" id="NRi-jI-WGD">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="YHK-zV-V1A">
+                                                    <rect key="frame" x="15" y="0.0" width="345" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="PdK-qr-tlc" id="orl-dF-bGK"/>
+                                    <outlet property="delegate" destination="PdK-qr-tlc" id="KBg-qq-N4h"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="MFR-GB-Ls4" secondAttribute="trailing" id="2hM-8y-pc9"/>
+                            <constraint firstItem="MFR-GB-Ls4" firstAttribute="leading" secondItem="2YH-9x-CWh" secondAttribute="leading" id="2wf-z5-IXy"/>
+                            <constraint firstItem="MFR-GB-Ls4" firstAttribute="top" secondItem="Rpy-Ge-fob" secondAttribute="bottom" id="4Hd-UG-Fa4"/>
+                            <constraint firstItem="hVI-xW-NSH" firstAttribute="top" secondItem="poA-BM-Gkr" secondAttribute="bottom" id="MlC-KS-LWL"/>
+                            <constraint firstItem="MFR-GB-Ls4" firstAttribute="centerX" secondItem="2YH-9x-CWh" secondAttribute="centerX" id="bve-mM-ek2"/>
+                            <constraint firstAttribute="trailing" secondItem="poA-BM-Gkr" secondAttribute="trailing" id="cGu-5h-GQe"/>
+                            <constraint firstItem="poA-BM-Gkr" firstAttribute="top" secondItem="MFR-GB-Ls4" secondAttribute="bottom" id="nbB-br-9Tm"/>
+                            <constraint firstItem="poA-BM-Gkr" firstAttribute="leading" secondItem="2YH-9x-CWh" secondAttribute="leading" id="ngq-KR-eNu"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="calendarView" destination="MFR-GB-Ls4" id="WH9-zT-Dei"/>
+                        <outlet property="detailView" destination="poA-BM-Gkr" id="jmf-x3-jIs"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fwq-54-5Xx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="868" y="55.322338830584712"/>
         </scene>
     </scenes>
 </document>

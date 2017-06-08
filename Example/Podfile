@@ -3,10 +3,12 @@ use_frameworks!
 target 'mynurzSDK_Example' do
     pod 'mynurzSDK', :path => '../'
     
+    # pods for experimenting UI
     pod 'MidtransCoreKit'
     pod 'MidtransKit'
     pod 'Stripe'
     pod 'CardIO'
+    pod 'JTAppleCalendar', '~> 7.0'
 
   target 'mynurzSDK_Tests' do
     inherit! :search_paths
