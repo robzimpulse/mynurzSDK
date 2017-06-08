@@ -9,6 +9,7 @@
 import UIKit
 import JTAppleCalendar
 import EZSwiftExtensions
+import MGSwipeTableCell
 
 class CalendarViewController: UIViewController {
 
@@ -135,7 +136,7 @@ extension CalendarViewController: JTAppleCalendarViewDelegate {
     
 }
 
-extension CalendarViewController: UITableViewDelegate, UITableViewDataSource {
+extension CalendarViewController: UITableViewDelegate, UITableViewDataSource, MGSwipeTableCellDelegate {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -145,14 +146,51 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource {
         return detailData.count
     }
     
+    func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        tableView.reloadData()
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let validCell = tableView.dequeueReusableCell(withIdentifier: "dataCell") else {
+        guard let validCell = tableView.dequeueReusableCell(withIdentifier: "dataCell") as? MGSwipeTableCell else {
             return UITableViewCell()
         }
         
+        validCell.delegate = self
+        
         validCell.textLabel?.text = detailData[indexPath.row]
         
+        let deleteButton = MGSwipeButton(title: "Delete", backgroundColor: .red) {
+            (cell) -> Bool in
+            self.detailData.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .left)
+            return false
+        }
+        
+        let archiveButton = MGSwipeButton(title: "Archive", backgroundColor: .green) {
+            (cell) -> Bool in
+            self.detailData.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .right)
+            return false
+        }
+        
+        validCell.leftButtons = [archiveButton]
+        validCell.leftSwipeSettings.transition = .clipCenter
+        
+        validCell.rightButtons = [deleteButton]
+        validCell.rightSwipeSettings.transition = .clipCenter
+        
         return validCell
+    }
+    
+    
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        print("displayed cell for :\(indexPath)")
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        print("selected row for :\(indexPath)")
     }
     
 }
