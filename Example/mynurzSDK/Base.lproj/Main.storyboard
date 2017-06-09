@@ -8,65 +8,6 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
-        <scene sceneID="ufC-wZ-h7g">
-            <objects>
-                <viewController id="vXZ-lx-hvc" customClass="ViewController" customModule="mynurzSDK_Example" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
-                        <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DyW-d5-Fzd">
-                                <rect key="frame" x="102.5" y="229.5" width="170" height="36"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <state key="normal" title="Midtrans Checkout"/>
-                                <connections>
-                                    <action selector="checkoutMidtrans:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="xPL-R0-TF9"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7IC-NU-3mO">
-                                <rect key="frame" x="112.5" y="315.5" width="149" height="36"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <state key="normal" title="Omise Checkout"/>
-                                <connections>
-                                    <action selector="checkoutOmise:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="mEf-A1-C8P"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MGr-2r-40w">
-                                <rect key="frame" x="115" y="401.5" width="145" height="36"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <state key="normal" title="Stripe Checkout"/>
-                                <connections>
-                                    <action selector="checkoutStripe:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="tew-ZZ-neg"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rac-W3-mhd">
-                                <rect key="frame" x="147" y="143.5" width="81" height="36"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <state key="normal" title="Calendar"/>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="7IC-NU-3mO" firstAttribute="centerY" secondItem="kh9-bI-dsS" secondAttribute="centerY" id="I9E-Jc-sgL"/>
-                            <constraint firstItem="Rac-W3-mhd" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="JNt-KV-BNl"/>
-                            <constraint firstItem="MGr-2r-40w" firstAttribute="top" secondItem="7IC-NU-3mO" secondAttribute="bottom" constant="50" id="SAg-kr-eof"/>
-                            <constraint firstItem="DyW-d5-Fzd" firstAttribute="top" secondItem="Rac-W3-mhd" secondAttribute="bottom" constant="50" id="Sv0-BY-32M"/>
-                            <constraint firstItem="7IC-NU-3mO" firstAttribute="top" secondItem="DyW-d5-Fzd" secondAttribute="bottom" constant="50" id="ofq-u9-pNR"/>
-                            <constraint firstItem="MGr-2r-40w" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="qpC-Sc-xbF"/>
-                            <constraint firstItem="DyW-d5-Fzd" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="xjo-Uz-u6l"/>
-                            <constraint firstItem="7IC-NU-3mO" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="yrq-ls-2ag"/>
-                        </constraints>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-474" y="-296"/>
-        </scene>
         <!--Midtrans Credit Card-->
         <scene sceneID="b3E-cT-jhX">
             <objects>
@@ -97,7 +38,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RDr-zu-46u" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1129" y="-67"/>
+            <point key="canvasLocation" x="2727" y="-664"/>
         </scene>
         <!--Mynurz SDK Demo-->
         <scene sceneID="kgF-C5-s4o">
@@ -110,48 +51,8 @@
                         <sections>
                             <tableViewSection id="h86-tp-BF4">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="VJO-NO-eKj" style="IBUITableViewCellStyleDefault" id="Z5b-W8-yCi">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Z5b-W8-yCi" id="ryp-Y9-tXc">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Calendar Component" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="VJO-NO-eKj">
-                                                    <rect key="frame" x="15" y="0.0" width="345" height="43.5"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="PdK-qr-tlc" kind="show" id="mHb-GF-HoO"/>
-                                        </connections>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="JED-hJ-doG" style="IBUITableViewCellStyleDefault" id="pGI-WT-44f">
-                                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pGI-WT-44f" id="y03-WW-1Uu">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Add Credit Card Component" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="JED-hJ-doG">
-                                                    <rect key="frame" x="15" y="0.0" width="345" height="43.5"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="5ZB-mh-CsC" kind="show" id="bGG-d7-u7s"/>
-                                        </connections>
-                                    </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="3cm-7M-U1Q" style="IBUITableViewCellStyleDefault" id="2vt-uO-4AP">
-                                        <rect key="frame" x="0.0" y="88" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2vt-uO-4AP" id="vrg-HY-YQI">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -171,7 +72,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="IVU-eY-ptF" style="IBUITableViewCellStyleDefault" id="Cby-XD-BNb">
-                                        <rect key="frame" x="0.0" y="132" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Cby-XD-BNb" id="wra-zP-jAe">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -191,7 +92,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="1iC-Ch-2ZV" style="IBUITableViewCellStyleDefault" id="3Dt-HJ-EDU">
-                                        <rect key="frame" x="0.0" y="176" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="88" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3Dt-HJ-EDU" id="EcI-jX-m53">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -211,13 +112,73 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="jui-oZ-4o3" style="IBUITableViewCellStyleDefault" id="gEI-Kb-yTk">
-                                        <rect key="frame" x="0.0" y="220" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="132" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gEI-Kb-yTk" id="d9P-Xc-AZq">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Text" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="jui-oZ-4o3">
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Popup Webview Component" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="jui-oZ-4o3">
+                                                    <rect key="frame" x="15" y="0.0" width="345" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="9om-6M-ptE" kind="show" id="Gnu-KS-tN8"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="VJO-NO-eKj" style="IBUITableViewCellStyleDefault" id="Z5b-W8-yCi">
+                                        <rect key="frame" x="0.0" y="176" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Z5b-W8-yCi" id="ryp-Y9-tXc">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Calendar Component" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="VJO-NO-eKj">
+                                                    <rect key="frame" x="15" y="0.0" width="345" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="PdK-qr-tlc" kind="show" id="mHb-GF-HoO"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="JED-hJ-doG" style="IBUITableViewCellStyleDefault" id="pGI-WT-44f">
+                                        <rect key="frame" x="0.0" y="220" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pGI-WT-44f" id="y03-WW-1Uu">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Add Credit Card Component" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="JED-hJ-doG">
+                                                    <rect key="frame" x="15" y="0.0" width="345" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="5ZB-mh-CsC" kind="show" id="bGG-d7-u7s"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="1Kk-9m-enl" style="IBUITableViewCellStyleDefault" id="1Yk-Un-2Fu">
+                                        <rect key="frame" x="0.0" y="264" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1Yk-Un-2Fu" id="EKH-y1-IS0">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Text" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1Kk-9m-enl">
                                                     <rect key="frame" x="15" y="0.0" width="345" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -411,7 +372,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fwq-54-5Xx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="425" y="-67"/>
+            <point key="canvasLocation" x="2033" y="-664"/>
         </scene>
         <!--Add Credit Card Component-->
         <scene sceneID="qVO-uJ-vW4">
@@ -443,7 +404,39 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="efH-Zw-l0C" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="425" y="1321"/>
+            <point key="canvasLocation" x="2033" y="674"/>
+        </scene>
+        <!--Popup Webview Component-->
+        <scene sceneID="2TC-B1-ccE">
+            <objects>
+                <viewController title="Popup Webview Component" id="9om-6M-ptE" customClass="PopupWebviewViewController" customModule="mynurzSDK_Example" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="LNz-uo-hxp"/>
+                        <viewControllerLayoutGuide type="bottom" id="VUi-8B-NPP"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="bk1-AP-r9b">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wNl-gA-lDM">
+                                <rect key="frame" x="162" y="315.5" width="51" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Show"/>
+                                <connections>
+                                    <action selector="Show:" destination="9om-6M-ptE" eventType="touchUpInside" id="Yk0-u9-IvT"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="wNl-gA-lDM" firstAttribute="centerY" secondItem="bk1-AP-r9b" secondAttribute="centerY" id="FCy-FY-JhT"/>
+                            <constraint firstItem="wNl-gA-lDM" firstAttribute="centerX" secondItem="bk1-AP-r9b" secondAttribute="centerX" id="T86-fk-uWS"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="07h-e3-RvJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2726" y="673"/>
         </scene>
         <!--Stripe Credit Card-->
         <scene sceneID="0HG-0z-zDT">
@@ -475,7 +468,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EwA-Qv-ckO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1129" y="1321"/>
+            <point key="canvasLocation" x="2726" y="9"/>
         </scene>
         <!--Omise Credit Card-->
         <scene sceneID="eDx-jf-WCa">
@@ -507,7 +500,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b7c-HJ-h2G" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1129" y="609"/>
+            <point key="canvasLocation" x="2033" y="10"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="f2L-et-3Bo">
