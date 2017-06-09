@@ -12,8 +12,10 @@
 		3E58283E1EE80387002C6774 /* OmiseSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3E58283B1EE8032A002C6774 /* OmiseSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3EC0F95F1EE83980003AC62A /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC0F95E1EE83980003AC62A /* CalendarViewController.swift */; };
 		3EC724B61ECB119A00BFB560 /* Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC724B51ECB119A00BFB560 /* Mock.swift */; };
+		3ECD2D401EEA3E55009B40EC /* OmiseCCViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ECD2D3F1EEA3E55009B40EC /* OmiseCCViewController.swift */; };
+		3ECD2D421EEA3E6E009B40EC /* MidtransCCViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ECD2D411EEA3E6E009B40EC /* MidtransCCViewController.swift */; };
+		3ECD2D441EEA3E76009B40EC /* StripeCCViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ECD2D431EEA3E76009B40EC /* StripeCCViewController.swift */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
-		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
@@ -53,12 +55,14 @@
 		3E58283B1EE8032A002C6774 /* OmiseSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OmiseSDK.framework; path = Carthage/Build/iOS/OmiseSDK.framework; sourceTree = "<group>"; };
 		3EC0F95E1EE83980003AC62A /* CalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		3EC724B51ECB119A00BFB560 /* Mock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mock.swift; sourceTree = "<group>"; };
+		3ECD2D3F1EEA3E55009B40EC /* OmiseCCViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OmiseCCViewController.swift; sourceTree = "<group>"; };
+		3ECD2D411EEA3E6E009B40EC /* MidtransCCViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MidtransCCViewController.swift; sourceTree = "<group>"; };
+		3ECD2D431EEA3E76009B40EC /* StripeCCViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StripeCCViewController.swift; sourceTree = "<group>"; };
 		54C62BBAA4653D4816A92B40 /* Pods-mynurzSDK_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mynurzSDK_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-mynurzSDK_Example/Pods-mynurzSDK_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		5B0AF430FAF70525FCFA0B8F /* Pods_mynurzSDK_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_mynurzSDK_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD01AFB9204008FA782 /* mynurzSDK_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = mynurzSDK_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACD51AFB9204008FA782 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		607FACD71AFB9204008FA782 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		607FACDA1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		607FACDC1AFB9204008FA782 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		607FACDF1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -117,7 +121,9 @@
 			isa = PBXGroup;
 			children = (
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
-				607FACD71AFB9204008FA782 /* ViewController.swift */,
+				3ECD2D3F1EEA3E55009B40EC /* OmiseCCViewController.swift */,
+				3ECD2D411EEA3E6E009B40EC /* MidtransCCViewController.swift */,
+				3ECD2D431EEA3E76009B40EC /* StripeCCViewController.swift */,
 				3EC0F95E1EE83980003AC62A /* CalendarViewController.swift */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
@@ -394,8 +400,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				3EC0F95F1EE83980003AC62A /* CalendarViewController.swift in Sources */,
-				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
+				3ECD2D421EEA3E6E009B40EC /* MidtransCCViewController.swift in Sources */,
+				3ECD2D401EEA3E55009B40EC /* OmiseCCViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
+				3ECD2D441EEA3E76009B40EC /* StripeCCViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="FDP-yx-FPa">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -48,9 +48,6 @@
                                 <rect key="frame" x="147" y="143.5" width="81" height="36"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="Calendar"/>
-                                <connections>
-                                    <segue destination="PdK-qr-tlc" kind="presentation" id="Tc3-ma-eAX"/>
-                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -68,11 +65,149 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="-474" y="-296"/>
+        </scene>
+        <!--Midtrans Credit Card-->
+        <scene sceneID="b3E-cT-jhX">
+            <objects>
+                <viewController title="Midtrans Credit Card" id="0CG-d9-jBW" customClass="MidtransCCViewController" customModule="mynurzSDK_Example" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="cdm-3G-ElQ"/>
+                        <viewControllerLayoutGuide type="bottom" id="teM-pw-hLr"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="x15-nK-OZc">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gNi-Xp-RSj">
+                                <rect key="frame" x="161.5" y="315.5" width="51" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Show"/>
+                                <connections>
+                                    <action selector="Show:" destination="0CG-d9-jBW" eventType="touchUpInside" id="zan-Mr-Q42"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="gNi-Xp-RSj" firstAttribute="centerY" secondItem="x15-nK-OZc" secondAttribute="centerY" id="nth-mN-AGV"/>
+                            <constraint firstItem="gNi-Xp-RSj" firstAttribute="centerX" secondItem="x15-nK-OZc" secondAttribute="centerX" id="pSd-ag-Lsb"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RDr-zu-46u" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1286" y="609"/>
+        </scene>
+        <!--Mynurz SDK Demo-->
+        <scene sceneID="kgF-C5-s4o">
+            <objects>
+                <tableViewController id="Pud-KP-5Fg" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="jxe-BS-7lp">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <sections>
+                            <tableViewSection id="h86-tp-BF4">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="VJO-NO-eKj" style="IBUITableViewCellStyleDefault" id="Z5b-W8-yCi">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Z5b-W8-yCi" id="ryp-Y9-tXc">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Calendar Component" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="VJO-NO-eKj">
+                                                    <rect key="frame" x="15" y="0.0" width="345" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="PdK-qr-tlc" kind="show" id="mHb-GF-HoO"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="3cm-7M-U1Q" style="IBUITableViewCellStyleDefault" id="2vt-uO-4AP">
+                                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2vt-uO-4AP" id="vrg-HY-YQI">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Midtrans Checkout" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="3cm-7M-U1Q">
+                                                    <rect key="frame" x="15" y="0.0" width="345" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="0CG-d9-jBW" kind="show" id="Rjk-Qq-Omb"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="IVU-eY-ptF" style="IBUITableViewCellStyleDefault" id="Cby-XD-BNb">
+                                        <rect key="frame" x="0.0" y="88" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Cby-XD-BNb" id="wra-zP-jAe">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Omise Credit Card" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="IVU-eY-ptF">
+                                                    <rect key="frame" x="15" y="0.0" width="345" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="xMZ-ET-ytU" kind="show" id="5nu-1i-eoH"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="1iC-Ch-2ZV" style="IBUITableViewCellStyleDefault" id="3Dt-HJ-EDU">
+                                        <rect key="frame" x="0.0" y="132" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3Dt-HJ-EDU" id="EcI-jX-m53">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Stripe Credit Card" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1iC-Ch-2ZV">
+                                                    <rect key="frame" x="15" y="0.0" width="345" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="I4j-DH-kns" kind="show" id="2uV-cO-Vld"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="Pud-KP-5Fg" id="krf-ye-BH7"/>
+                            <outlet property="delegate" destination="Pud-KP-5Fg" id="Q8K-Or-4IA"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Mynurz SDK Demo" id="Q4v-pN-C7F"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="t9s-3A-E0c" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="425" y="609"/>
         </scene>
         <!--Ib Calendar Data Source-->
         <scene sceneID="ElH-HD-lAY">
             <objects>
-                <viewController id="PdK-qr-tlc" customClass="CalendarViewController" customModule="mynurzSDK_Example" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="PdK-qr-tlc" customClass="CalendarViewController" customModule="mynurzSDK_Example" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Rpy-Ge-fob"/>
                         <viewControllerLayoutGuide type="bottom" id="hVI-xW-NSH"/>
@@ -82,7 +217,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="MFR-GB-Ls4" customClass="JTAppleCalendarView" customModule="JTAppleCalendar">
-                                <rect key="frame" x="0.0" y="20" width="375" height="350"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="350"/>
                                 <color key="backgroundColor" white="0.89786086309523794" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="350" id="O5G-Ra-3Wx"/>
@@ -186,7 +321,7 @@
                                 </connections>
                             </collectionView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="poA-BM-Gkr">
-                                <rect key="frame" x="0.0" y="370" width="375" height="297"/>
+                                <rect key="frame" x="0.0" y="414" width="375" height="253"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="dataCell" textLabel="1Er-pI-04k" detailTextLabel="ybj-lJ-cOh" style="IBUITableViewCellStyleValue1" id="KXw-2v-asS" customClass="MGSwipeTableCell">
@@ -239,7 +374,89 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fwq-54-5Xx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="868" y="55.322338830584712"/>
+            <point key="canvasLocation" x="1286" y="-51"/>
+        </scene>
+        <!--Stripe Credit Card-->
+        <scene sceneID="0HG-0z-zDT">
+            <objects>
+                <viewController title="Stripe Credit Card" id="I4j-DH-kns" customClass="StripeCCViewController" customModule="mynurzSDK_Example" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="nap-4L-PDe"/>
+                        <viewControllerLayoutGuide type="bottom" id="sW5-8e-BUD"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="tYn-Da-6zb">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DRX-9O-FF4">
+                                <rect key="frame" x="162" y="315" width="51" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Show"/>
+                                <connections>
+                                    <action selector="Show:" destination="I4j-DH-kns" eventType="touchUpInside" id="Wuy-5e-Gkw"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="DRX-9O-FF4" firstAttribute="centerX" secondItem="tYn-Da-6zb" secondAttribute="centerX" id="AXQ-nq-NU0"/>
+                            <constraint firstItem="DRX-9O-FF4" firstAttribute="centerY" secondItem="tYn-Da-6zb" secondAttribute="centerY" id="pHA-Zj-9qB"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EwA-Qv-ckO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="442" y="1474"/>
+        </scene>
+        <!--Omise Credit Card-->
+        <scene sceneID="eDx-jf-WCa">
+            <objects>
+                <viewController title="Omise Credit Card" id="xMZ-ET-ytU" customClass="OmiseCCViewController" customModule="mynurzSDK_Example" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="qFD-pg-9e8"/>
+                        <viewControllerLayoutGuide type="bottom" id="OUD-2H-k4p"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="qxp-Fo-XII">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QSG-3k-muf">
+                                <rect key="frame" x="162" y="315.5" width="51" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Show"/>
+                                <connections>
+                                    <action selector="Show:" destination="xMZ-ET-ytU" eventType="touchUpInside" id="L7k-ba-D9x"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="QSG-3k-muf" firstAttribute="centerX" secondItem="qxp-Fo-XII" secondAttribute="centerX" id="Itf-gy-DcQ"/>
+                            <constraint firstItem="QSG-3k-muf" firstAttribute="centerY" secondItem="qxp-Fo-XII" secondAttribute="centerY" id="KtG-FM-2Ax"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="b7c-HJ-h2G" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1286" y="1474"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="f2L-et-3Bo">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="FDP-yx-FPa" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="6ex-U5-ZI8">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Pud-KP-5Fg" kind="relationship" relationship="rootViewController" id="eef-7T-bPe"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HyA-DW-urf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-426.39999999999998" y="609.44527736131943"/>
         </scene>
     </scenes>
 </document>
