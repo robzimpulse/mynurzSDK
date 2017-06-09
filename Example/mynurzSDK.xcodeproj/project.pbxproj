@@ -15,6 +15,7 @@
 		3ECD2D401EEA3E55009B40EC /* OmiseCCViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ECD2D3F1EEA3E55009B40EC /* OmiseCCViewController.swift */; };
 		3ECD2D421EEA3E6E009B40EC /* MidtransCCViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ECD2D411EEA3E6E009B40EC /* MidtransCCViewController.swift */; };
 		3ECD2D441EEA3E76009B40EC /* StripeCCViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ECD2D431EEA3E76009B40EC /* StripeCCViewController.swift */; };
+		3ECD2D461EEA4529009B40EC /* AddCreditCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ECD2D451EEA4529009B40EC /* AddCreditCardViewController.swift */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
@@ -58,6 +59,7 @@
 		3ECD2D3F1EEA3E55009B40EC /* OmiseCCViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OmiseCCViewController.swift; sourceTree = "<group>"; };
 		3ECD2D411EEA3E6E009B40EC /* MidtransCCViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MidtransCCViewController.swift; sourceTree = "<group>"; };
 		3ECD2D431EEA3E76009B40EC /* StripeCCViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StripeCCViewController.swift; sourceTree = "<group>"; };
+		3ECD2D451EEA4529009B40EC /* AddCreditCardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddCreditCardViewController.swift; sourceTree = "<group>"; };
 		54C62BBAA4653D4816A92B40 /* Pods-mynurzSDK_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mynurzSDK_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-mynurzSDK_Example/Pods-mynurzSDK_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		5B0AF430FAF70525FCFA0B8F /* Pods_mynurzSDK_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_mynurzSDK_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD01AFB9204008FA782 /* mynurzSDK_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = mynurzSDK_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -124,6 +126,7 @@
 				3ECD2D3F1EEA3E55009B40EC /* OmiseCCViewController.swift */,
 				3ECD2D411EEA3E6E009B40EC /* MidtransCCViewController.swift */,
 				3ECD2D431EEA3E76009B40EC /* StripeCCViewController.swift */,
+				3ECD2D451EEA4529009B40EC /* AddCreditCardViewController.swift */,
 				3EC0F95E1EE83980003AC62A /* CalendarViewController.swift */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
@@ -400,6 +403,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3EC0F95F1EE83980003AC62A /* CalendarViewController.swift in Sources */,
+				3ECD2D461EEA4529009B40EC /* AddCreditCardViewController.swift in Sources */,
 				3ECD2D421EEA3E6E009B40EC /* MidtransCCViewController.swift in Sources */,
 				3ECD2D401EEA3E55009B40EC /* OmiseCCViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,

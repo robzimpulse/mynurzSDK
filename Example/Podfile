@@ -10,6 +10,7 @@ target 'mynurzSDK_Example' do
     pod 'CardIO'
     pod 'JTAppleCalendar', '~> 7.0'
     pod 'MGSwipeTableCell'
+    pod 'MFCard'
 
   target 'mynurzSDK_Tests' do
     inherit! :search_paths
