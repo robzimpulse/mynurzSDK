@@ -219,7 +219,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Parallax Header" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="UPb-bU-65l">
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Parallax Header Component" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="UPb-bU-65l">
                                                     <rect key="frame" x="15" y="0.0" width="345" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -239,7 +239,27 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Text" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Hoc-Kx-QXf">
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Chat Component" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Hoc-Kx-QXf">
+                                                    <rect key="frame" x="15" y="0.0" width="345" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="pjG-Uu-ZfA" kind="show" id="ZbR-7y-DWY"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="Tas-i3-fqw" style="IBUITableViewCellStyleDefault" id="AT1-Mm-kLX">
+                                        <rect key="frame" x="0.0" y="440" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="AT1-Mm-kLX" id="lRW-Su-F3p">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Text" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Tas-i3-fqw">
                                                     <rect key="frame" x="15" y="0.0" width="345" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -435,10 +455,28 @@
             </objects>
             <point key="canvasLocation" x="2033" y="-664"/>
         </scene>
-        <!--Parallax Header-->
+        <!--Chat Component-->
+        <scene sceneID="RSE-5R-MRE">
+            <objects>
+                <viewController title="Chat Component" id="pjG-Uu-ZfA" customClass="ChatViewController" customModule="mynurzSDK_Example" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="LiR-V6-Tl1"/>
+                        <viewControllerLayoutGuide type="bottom" id="q9V-Pd-tzN"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="1tQ-Db-rv1">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4NZ-87-edS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="425" y="1358"/>
+        </scene>
+        <!--Parallax Header Component-->
         <scene sceneID="RDv-7M-Ilt">
             <objects>
-                <tableViewController title="Parallax Header" automaticallyAdjustsScrollViewInsets="NO" id="n8r-vK-tc6" customClass="ParallaxHeaderTableViewController" customModule="mynurzSDK_Example" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="Parallax Header Component" automaticallyAdjustsScrollViewInsets="NO" id="n8r-vK-tc6" customClass="ParallaxHeaderTableViewController" customModule="mynurzSDK_Example" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="SHO-74-YoS">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -685,7 +723,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="FDP-yx-FPa" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="6ex-U5-ZI8">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="6ex-U5-ZI8">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
