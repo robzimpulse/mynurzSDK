@@ -21,6 +21,7 @@ public class EndpointManager: NSObject {
     var midtransClientKey = "VT-client-AoZKEG2XOkHtEPw2"
     var omisePublicKey = "pkey_test_58820b5b9axpbqqmmgv"
     var stripePublishableKey = "pk_test_sE3n6dQNn01rQzfXP89fKMcx"
+    var googleMapKey = "AIzaSyAhTxXrCjwOP1kGNY1RmROaZ_GJ8mgOK6M"
     
     lazy var cleanHost: String = {return self.host.replacingOccurrences(of: "https://", with: "").replacingOccurrences(of: "http://", with: "")}()
     

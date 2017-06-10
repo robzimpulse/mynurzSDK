@@ -53,6 +53,10 @@ public class MynurzSDK: NSObject {
         return self.endpointManager.omisePublicKey
     }()
     
+    public lazy var googleMapKey: String = {
+        return self.endpointManager.googleMapKey
+    }()
+    
     public override init() {
         super.init()
         

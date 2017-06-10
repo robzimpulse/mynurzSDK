@@ -10,6 +10,9 @@
 		3E278ECB1ECA082B001C2801 /* BasicTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E278ECA1ECA082B001C2801 /* BasicTest.swift */; };
 		3E58283C1EE8032A002C6774 /* OmiseSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E58283B1EE8032A002C6774 /* OmiseSDK.framework */; };
 		3E58283E1EE80387002C6774 /* OmiseSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3E58283B1EE8032A002C6774 /* OmiseSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		3E60C8D51EEB14D2002C0148 /* GoogleMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E60C8D41EEB14D2002C0148 /* GoogleMapViewController.swift */; };
+		3E6587A11EEB847400582E81 /* CardViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6587A01EEB847400582E81 /* CardViewViewController.swift */; };
+		3E6587A31EEB911D00582E81 /* ParallaxHeaderTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6587A21EEB911D00582E81 /* ParallaxHeaderTableViewController.swift */; };
 		3EC0F95F1EE83980003AC62A /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC0F95E1EE83980003AC62A /* CalendarViewController.swift */; };
 		3EC724B61ECB119A00BFB560 /* Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC724B51ECB119A00BFB560 /* Mock.swift */; };
 		3ECD2D401EEA3E55009B40EC /* OmiseCCViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ECD2D3F1EEA3E55009B40EC /* OmiseCCViewController.swift */; };
@@ -55,6 +58,9 @@
 		3E278ECA1ECA082B001C2801 /* BasicTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicTest.swift; sourceTree = "<group>"; };
 		3E5828371EE7FAEC002C6774 /* OmiseSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OmiseSDK.framework; path = "../../Old Development/mynurzSDK-old-again/Example/Carthage/Build/iOS/OmiseSDK.framework"; sourceTree = "<group>"; };
 		3E58283B1EE8032A002C6774 /* OmiseSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OmiseSDK.framework; path = Carthage/Build/iOS/OmiseSDK.framework; sourceTree = "<group>"; };
+		3E60C8D41EEB14D2002C0148 /* GoogleMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleMapViewController.swift; sourceTree = "<group>"; };
+		3E6587A01EEB847400582E81 /* CardViewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardViewViewController.swift; sourceTree = "<group>"; };
+		3E6587A21EEB911D00582E81 /* ParallaxHeaderTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParallaxHeaderTableViewController.swift; sourceTree = "<group>"; };
 		3EC0F95E1EE83980003AC62A /* CalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		3EC724B51ECB119A00BFB560 /* Mock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mock.swift; sourceTree = "<group>"; };
 		3ECD2D3F1EEA3E55009B40EC /* OmiseCCViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OmiseCCViewController.swift; sourceTree = "<group>"; };
@@ -130,8 +136,11 @@
 				3ECD2D431EEA3E76009B40EC /* StripeCCViewController.swift */,
 				3ECD2D451EEA4529009B40EC /* AddCreditCardViewController.swift */,
 				3ECD2D471EEA4BA8009B40EC /* PopupWebviewViewController.swift */,
+				3E60C8D41EEB14D2002C0148 /* GoogleMapViewController.swift */,
+				3E6587A01EEB847400582E81 /* CardViewViewController.swift */,
 				3EC0F95E1EE83980003AC62A /* CalendarViewController.swift */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
+				3E6587A21EEB911D00582E81 /* ParallaxHeaderTableViewController.swift */,
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
 				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
 				607FACD31AFB9204008FA782 /* Supporting Files */,
@@ -406,8 +415,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				3EC0F95F1EE83980003AC62A /* CalendarViewController.swift in Sources */,
+				3E6587A11EEB847400582E81 /* CardViewViewController.swift in Sources */,
 				3ECD2D461EEA4529009B40EC /* AddCreditCardViewController.swift in Sources */,
+				3E60C8D51EEB14D2002C0148 /* GoogleMapViewController.swift in Sources */,
 				3ECD2D421EEA3E6E009B40EC /* MidtransCCViewController.swift in Sources */,
+				3E6587A31EEB911D00582E81 /* ParallaxHeaderTableViewController.swift in Sources */,
 				3ECD2D401EEA3E55009B40EC /* OmiseCCViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 				3ECD2D481EEA4BA8009B40EC /* PopupWebviewViewController.swift in Sources */,

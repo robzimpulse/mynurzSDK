@@ -13,6 +13,8 @@ target 'mynurzSDK_Example' do
     pod 'MFCard'
     pod 'PTPopupWebView'
     pod 'URLEmbeddedView'
+    pod 'GoogleMaps'
+    pod 'MXParallaxHeader'
 
   target 'mynurzSDK_Tests' do
     inherit! :search_paths
