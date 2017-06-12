@@ -16,6 +16,7 @@ target 'mynurzSDK_Example' do
     pod 'GoogleMaps'
     pod 'MXParallaxHeader'
     pod 'JSQMessagesViewController'
+    pod 'DropDown'
 
   target 'mynurzSDK_Tests' do
     inherit! :search_paths

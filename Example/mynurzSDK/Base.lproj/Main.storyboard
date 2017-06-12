@@ -259,7 +259,27 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Text" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Tas-i3-fqw">
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Dropdown Component" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Tas-i3-fqw">
+                                                    <rect key="frame" x="15" y="0.0" width="345" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="nNU-g9-K8s" kind="show" id="fTs-1f-eZT"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="yNL-Kh-Lij" style="IBUITableViewCellStyleDefault" id="fny-ha-iP1">
+                                        <rect key="frame" x="0.0" y="484" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fny-ha-iP1" id="783-dn-Y6D">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Text" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="yNL-Kh-Lij">
                                                     <rect key="frame" x="15" y="0.0" width="345" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -455,6 +475,38 @@
             </objects>
             <point key="canvasLocation" x="2033" y="-664"/>
         </scene>
+        <!--Dropdown Component-->
+        <scene sceneID="MWF-KH-puc">
+            <objects>
+                <viewController title="Dropdown Component" id="nNU-g9-K8s" customClass="DropdownViewController" customModule="mynurzSDK_Example" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="aJm-Ll-cPk"/>
+                        <viewControllerLayoutGuide type="bottom" id="iPo-Uo-yia"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="0ah-yu-Ne4">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iAU-BV-Tha">
+                                <rect key="frame" x="162" y="315.5" width="51" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Show"/>
+                                <connections>
+                                    <action selector="Show:" destination="nNU-g9-K8s" eventType="touchUpInside" id="pfm-og-iSz"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="iAU-BV-Tha" firstAttribute="centerX" secondItem="0ah-yu-Ne4" secondAttribute="centerX" id="bAG-fG-Fka"/>
+                            <constraint firstItem="iAU-BV-Tha" firstAttribute="centerY" secondItem="0ah-yu-Ne4" secondAttribute="centerY" id="rWV-dE-sfm"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pQ6-7F-5Rg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2033" y="2018"/>
+        </scene>
         <!--Chat Component-->
         <scene sceneID="RSE-5R-MRE">
             <objects>
@@ -471,7 +523,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4NZ-87-edS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="425" y="1358"/>
+            <point key="canvasLocation" x="2726" y="2019"/>
         </scene>
         <!--Parallax Header Component-->
         <scene sceneID="RDv-7M-Ilt">
@@ -723,7 +775,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="FDP-yx-FPa" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="6ex-U5-ZI8">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="6ex-U5-ZI8">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
