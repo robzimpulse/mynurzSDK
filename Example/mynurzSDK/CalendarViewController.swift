@@ -18,9 +18,9 @@ class CalendarViewController: UIViewController {
     
     let formatter = DateFormatter()
     let dummySchedule = [
-        "2017 06 02":["siang","malam"],
-        "2017 06 05":["malam"],
-        "2017 06 08":["siang"]
+        "2017-06-02":["siang","malam"],
+        "2017-06-05":["malam"],
+        "2017-06-08":["siang"]
     ]
     var detailData = [String]()
     
@@ -78,12 +78,12 @@ class CalendarViewController: UIViewController {
 
 extension CalendarViewController: JTAppleCalendarViewDataSource {
     func configureCalendar(_ calendar: JTAppleCalendarView) -> ConfigurationParameters {
-        formatter.dateFormat = "yyyy MM dd"
+        formatter.dateFormat = "yyyy-MM-dd"
         formatter.timeZone = Calendar.current.timeZone
         formatter.locale = Calendar.current.locale
         
-        let startDate = formatter.date(from: "2017 01 01")!
-        let endDate = formatter.date(from: "2017 12 31")!
+        let startDate = formatter.date(from: "2017-01-01")!
+        let endDate = formatter.date(from: "2017-12-31")!
         return ConfigurationParameters(startDate: startDate,endDate: endDate)
     }
 }

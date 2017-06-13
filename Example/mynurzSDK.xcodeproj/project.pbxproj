@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3E278ECB1ECA082B001C2801 /* BasicTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E278ECA1ECA082B001C2801 /* BasicTest.swift */; };
+		3E278ECB1ECA082B001C2801 /* AuthTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E278ECA1ECA082B001C2801 /* AuthTest.swift */; };
 		3E58283C1EE8032A002C6774 /* OmiseSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E58283B1EE8032A002C6774 /* OmiseSDK.framework */; };
 		3E58283E1EE80387002C6774 /* OmiseSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3E58283B1EE8032A002C6774 /* OmiseSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3E60C8D51EEB14D2002C0148 /* GoogleMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E60C8D41EEB14D2002C0148 /* GoogleMapViewController.swift */; };
@@ -22,6 +22,14 @@
 		3ECD2D441EEA3E76009B40EC /* StripeCCViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ECD2D431EEA3E76009B40EC /* StripeCCViewController.swift */; };
 		3ECD2D461EEA4529009B40EC /* AddCreditCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ECD2D451EEA4529009B40EC /* AddCreditCardViewController.swift */; };
 		3ECD2D481EEA4BA8009B40EC /* PopupWebviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ECD2D471EEA4BA8009B40EC /* PopupWebviewViewController.swift */; };
+		3EED8AD21EEFC011004C6733 /* CustomerInquiryTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EED8AD01EEFBFAA004C6733 /* CustomerInquiryTest.swift */; };
+		3EED8AD31EEFC016004C6733 /* FreelancerProposalTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EED8ACE1EEFBF60004C6733 /* FreelancerProposalTest.swift */; };
+		3EED8AD51EEFC11B004C6733 /* CustomerProfileTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EED8AD41EEFC11B004C6733 /* CustomerProfileTest.swift */; };
+		3EED8AD71EEFC1FF004C6733 /* CustomerSettingTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EED8AD61EEFC1FF004C6733 /* CustomerSettingTest.swift */; };
+		3EED8AD91EEFC2F9004C6733 /* CustomerPatientTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EED8AD81EEFC2F9004C6733 /* CustomerPatientTest.swift */; };
+		3EED8ADB1EEFC422004C6733 /* FreelancerSettingTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EED8ADA1EEFC422004C6733 /* FreelancerSettingTest.swift */; };
+		3EED8ADD1EEFC499004C6733 /* FreelancerProfileTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EED8ADC1EEFC499004C6733 /* FreelancerProfileTest.swift */; };
+		3EED8ADF1EEFC4F6004C6733 /* FreelancerLicenseTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EED8ADE1EEFC4F6004C6733 /* FreelancerLicenseTest.swift */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
@@ -57,7 +65,7 @@
 /* Begin PBXFileReference section */
 		093E623BB71B9E8A69E56389 /* Pods-mynurzSDK_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mynurzSDK_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-mynurzSDK_Example/Pods-mynurzSDK_Example.release.xcconfig"; sourceTree = "<group>"; };
 		1019686B18F6E4EB0874F078 /* mynurzSDK.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = mynurzSDK.podspec; path = ../mynurzSDK.podspec; sourceTree = "<group>"; };
-		3E278ECA1ECA082B001C2801 /* BasicTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicTest.swift; sourceTree = "<group>"; };
+		3E278ECA1ECA082B001C2801 /* AuthTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthTest.swift; sourceTree = "<group>"; };
 		3E5828371EE7FAEC002C6774 /* OmiseSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OmiseSDK.framework; path = "../../Old Development/mynurzSDK-old-again/Example/Carthage/Build/iOS/OmiseSDK.framework"; sourceTree = "<group>"; };
 		3E58283B1EE8032A002C6774 /* OmiseSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OmiseSDK.framework; path = Carthage/Build/iOS/OmiseSDK.framework; sourceTree = "<group>"; };
 		3E60C8D41EEB14D2002C0148 /* GoogleMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleMapViewController.swift; sourceTree = "<group>"; };
@@ -72,6 +80,14 @@
 		3ECD2D431EEA3E76009B40EC /* StripeCCViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StripeCCViewController.swift; sourceTree = "<group>"; };
 		3ECD2D451EEA4529009B40EC /* AddCreditCardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddCreditCardViewController.swift; sourceTree = "<group>"; };
 		3ECD2D471EEA4BA8009B40EC /* PopupWebviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopupWebviewViewController.swift; sourceTree = "<group>"; };
+		3EED8ACE1EEFBF60004C6733 /* FreelancerProposalTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FreelancerProposalTest.swift; sourceTree = "<group>"; };
+		3EED8AD01EEFBFAA004C6733 /* CustomerInquiryTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomerInquiryTest.swift; sourceTree = "<group>"; };
+		3EED8AD41EEFC11B004C6733 /* CustomerProfileTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomerProfileTest.swift; sourceTree = "<group>"; };
+		3EED8AD61EEFC1FF004C6733 /* CustomerSettingTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomerSettingTest.swift; sourceTree = "<group>"; };
+		3EED8AD81EEFC2F9004C6733 /* CustomerPatientTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomerPatientTest.swift; sourceTree = "<group>"; };
+		3EED8ADA1EEFC422004C6733 /* FreelancerSettingTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FreelancerSettingTest.swift; sourceTree = "<group>"; };
+		3EED8ADC1EEFC499004C6733 /* FreelancerProfileTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FreelancerProfileTest.swift; sourceTree = "<group>"; };
+		3EED8ADE1EEFC4F6004C6733 /* FreelancerLicenseTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FreelancerLicenseTest.swift; sourceTree = "<group>"; };
 		54C62BBAA4653D4816A92B40 /* Pods-mynurzSDK_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mynurzSDK_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-mynurzSDK_Example/Pods-mynurzSDK_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		5B0AF430FAF70525FCFA0B8F /* Pods_mynurzSDK_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_mynurzSDK_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD01AFB9204008FA782 /* mynurzSDK_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = mynurzSDK_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -167,7 +183,15 @@
 			isa = PBXGroup;
 			children = (
 				607FACE91AFB9204008FA782 /* Supporting Files */,
-				3E278ECA1ECA082B001C2801 /* BasicTest.swift */,
+				3E278ECA1ECA082B001C2801 /* AuthTest.swift */,
+				3EED8AD01EEFBFAA004C6733 /* CustomerInquiryTest.swift */,
+				3EED8AD81EEFC2F9004C6733 /* CustomerPatientTest.swift */,
+				3EED8AD61EEFC1FF004C6733 /* CustomerSettingTest.swift */,
+				3EED8AD41EEFC11B004C6733 /* CustomerProfileTest.swift */,
+				3EED8ACE1EEFBF60004C6733 /* FreelancerProposalTest.swift */,
+				3EED8ADE1EEFC4F6004C6733 /* FreelancerLicenseTest.swift */,
+				3EED8ADC1EEFC499004C6733 /* FreelancerProfileTest.swift */,
+				3EED8ADA1EEFC422004C6733 /* FreelancerSettingTest.swift */,
 				3EC724B51ECB119A00BFB560 /* Mock.swift */,
 			);
 			path = Tests;
@@ -439,8 +463,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3E278ECB1ECA082B001C2801 /* BasicTest.swift in Sources */,
+				3EED8AD71EEFC1FF004C6733 /* CustomerSettingTest.swift in Sources */,
+				3EED8AD21EEFC011004C6733 /* CustomerInquiryTest.swift in Sources */,
+				3EED8AD51EEFC11B004C6733 /* CustomerProfileTest.swift in Sources */,
+				3EED8ADB1EEFC422004C6733 /* FreelancerSettingTest.swift in Sources */,
+				3EED8ADF1EEFC4F6004C6733 /* FreelancerLicenseTest.swift in Sources */,
+				3E278ECB1ECA082B001C2801 /* AuthTest.swift in Sources */,
+				3EED8ADD1EEFC499004C6733 /* FreelancerProfileTest.swift in Sources */,
+				3EED8AD31EEFC016004C6733 /* FreelancerProposalTest.swift in Sources */,
 				3EC724B61ECB119A00BFB560 /* Mock.swift in Sources */,
+				3EED8AD91EEFC2F9004C6733 /* CustomerPatientTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
