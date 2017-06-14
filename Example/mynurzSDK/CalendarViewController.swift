@@ -16,6 +16,7 @@ class CalendarViewController: UIViewController {
     @IBOutlet weak var detailView: UITableView!
     @IBOutlet weak var calendarView: JTAppleCalendarView!
     
+    var counter = 0
     let formatter = DateFormatter()
     let dummySchedule = [
         "2017-06-02":["siang","malam"],
@@ -24,53 +25,93 @@ class CalendarViewController: UIViewController {
     ]
     var detailData = [String]()
     
+    func getStartDate() -> Date? {
+        return self.calendarView.selectedDates.first
+    }
+    
+    func getStopDate() -> Date? {
+        guard self.calendarView.selectedDates.first != self.calendarView.selectedDates.last else {return nil}
+        return self.calendarView.selectedDates.last
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         calendarView.scrollingMode = .stopAtEachSection
         calendarView.minimumLineSpacing = CGFloat.leastNonzeroMagnitude
         calendarView.minimumInteritemSpacing = CGFloat.leastNonzeroMagnitude
-        calendarView.isRangeSelectionUsed = false
-        calendarView.allowsMultipleSelection = false
+        calendarView.isRangeSelectionUsed = true
+        calendarView.allowsMultipleSelection = true
         detailView.tableFooterView = UIView()
+        let panGensture = UILongPressGestureRecognizer(target: self, action: #selector(didStartRangeSelecting(gesture:)))
+        panGensture.minimumPressDuration = 0.5
+        calendarView.addGestureRecognizer(panGensture)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
-    func handleSelectedCell(view: JTAppleCell?, date: Date, cellState: CellState){
-        guard let validCell = view as? CustomCalendarCell else {return}
-        if validCell.isSelected {
-            validCell.addBorder(width: 1, color: UIColor.black)
-        }else{
-            validCell.addBorder(width: 1, color: UIColor.white)
+    func didStartRangeSelecting(gesture: UILongPressGestureRecognizer) {
+        guard let validGestureview = gesture.view else { return }
+        var rangeSelectedDates = calendarView.selectedDates
+        let point = gesture.location(in: validGestureview)
+        
+        if gesture.state == .began {
+            calendarView.deselectAllDates(triggerSelectionDelegate: true)
+        }
+        
+        if gesture.state == .changed {
+            if let cellState = calendarView.cellStatus(at: point) {
+                let date = cellState.date
+                if !rangeSelectedDates.contains(date) {
+                    let dateRange = calendarView.generateDateRange(from: rangeSelectedDates.first ?? date, to: date)
+                    for aDate in dateRange {
+                        if !rangeSelectedDates.contains(aDate) {
+                            rangeSelectedDates.append(aDate)
+                        }
+                    }
+                    guard let validFirstSelectedDate = rangeSelectedDates.first else {return}
+                    calendarView.selectDates(from: validFirstSelectedDate, to: date, keepSelectionIfMultiSelectionAllowed: true)
+                } else {
+                    let indexOfNewlySelectedDate = rangeSelectedDates.index(of: date)! + 1
+                    let lastIndex = rangeSelectedDates.endIndex
+                    let followingDay = Calendar.current.date(byAdding: .day, value: 1, to: date)!
+                    calendarView.selectDates(from: followingDay, to: rangeSelectedDates.last!, keepSelectionIfMultiSelectionAllowed: false)
+                    rangeSelectedDates.removeSubrange(indexOfNewlySelectedDate..<lastIndex)
+                }
+            }
+        }
+        
+        if gesture.state == .ended {
+            rangeSelectedDates.removeAll(keepingCapacity: false)
         }
     }
+
     
-    func handleScheduleMark(view: JTAppleCell?, date: Date, cellState: CellState){
+    func handleDefaultCell(view: JTAppleCell?, date: Date, cellState: CellState, selectedDates: [Date]){
         guard let validCell = view as? CustomCalendarCell else {return}
-        if let validDate = dummySchedule[date.toString(format: formatter.dateFormat)] {
-            if validDate.contains("siang") {
-                validCell.shiftSiang.backgroundColor = UIColor.red
-            }else{
-                validCell.shiftSiang.backgroundColor = UIColor.clear
-            }
-            if validDate.contains("malam") {
-                validCell.shiftMalam.backgroundColor = UIColor.green
-            }else{
-                validCell.shiftMalam.backgroundColor = UIColor.clear
-            }
-            validCell.shiftSession08.backgroundColor = UIColor.clear
-            validCell.shiftSession12.backgroundColor = UIColor.clear
-            validCell.shiftSession16.backgroundColor = UIColor.clear
-            validCell.shiftSession20.backgroundColor = UIColor.clear
+        validCell.dateLabel.text = cellState.text
+        validCell.shiftSiang.backgroundColor = UIColor.clear
+        validCell.shiftMalam.backgroundColor = UIColor.clear
+        validCell.shiftSession08.backgroundColor = UIColor.clear
+        validCell.shiftSession12.backgroundColor = UIColor.clear
+        validCell.shiftSession16.backgroundColor = UIColor.clear
+        validCell.shiftSession20.backgroundColor = UIColor.clear
+        if cellState.dateBelongsTo == .thisMonth {
+            validCell.dateLabel.textColor = UIColor.black
         }else{
-            validCell.shiftSiang.backgroundColor = UIColor.clear
-            validCell.shiftMalam.backgroundColor = UIColor.clear
-            validCell.shiftSession08.backgroundColor = UIColor.clear
-            validCell.shiftSession12.backgroundColor = UIColor.clear
-            validCell.shiftSession16.backgroundColor = UIColor.clear
-            validCell.shiftSession20.backgroundColor = UIColor.clear
+            validCell.dateLabel.textColor = UIColor.lightGray
+        }
+        switch cellState.selectedPosition() {
+        case .full, .left, .right:
+            validCell.addBorder(width: 1, color: UIColor.black)
+            break
+        case .middle:
+            validCell.addBorder(width: 1, color: UIColor.red)
+            break
+        default:
+            validCell.addBorder(width: 1, color: UIColor.white)
+            break
         }
     }
     
@@ -84,42 +125,29 @@ extension CalendarViewController: JTAppleCalendarViewDataSource {
         
         let startDate = formatter.date(from: "2017-01-01")!
         let endDate = formatter.date(from: "2017-12-31")!
+        
         return ConfigurationParameters(startDate: startDate,endDate: endDate)
     }
 }
 
 extension CalendarViewController: JTAppleCalendarViewDelegate {
+
     func calendar(_ calendar: JTAppleCalendarView, cellForItemAt date: Date, cellState: CellState, indexPath: IndexPath) -> JTAppleCell {
         guard let validCell = calendar.dequeueReusableJTAppleCell(withReuseIdentifier: "customCell", for: indexPath) as? CustomCalendarCell else {
             return JTAppleCell(x: 0, y: 0, w: 75, h: 75)
         }
-        validCell.dateLabel.text = cellState.text
-        if cellState.dateBelongsTo == .thisMonth {
-            validCell.dateLabel.textColor = UIColor.black
-        }else{
-            validCell.dateLabel.textColor = UIColor.lightGray
-        }
-        self.handleSelectedCell(view: validCell, date: date, cellState: cellState)
-        self.handleScheduleMark(view: validCell, date: date, cellState: cellState)
+        self.handleDefaultCell(view: validCell, date: date, cellState: cellState, selectedDates: calendar.selectedDates)
         return validCell
     }
     
     func calendar(_ calendar: JTAppleCalendarView, didSelectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
-        guard let validCell = cell else{return}
-        if let validData = self.dummySchedule[date.toString(format: self.formatter.dateFormat)] {
-            self.detailData = validData
-        }else{
-            self.detailData = [String]()
-        }
-        detailView.reloadData()
-        self.handleSelectedCell(view: validCell, date: date, cellState: cellState)
-        self.handleScheduleMark(view: validCell, date: date, cellState: cellState)
+        guard let validCell = cell as? CustomCalendarCell else {return}
+        self.handleDefaultCell(view: validCell, date: date, cellState: cellState, selectedDates: calendar.selectedDates)
     }
     
     func calendar(_ calendar: JTAppleCalendarView, didDeselectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
-        guard let validCell = cell else{return}
-        self.handleSelectedCell(view: validCell, date: date, cellState: cellState)
-        self.handleScheduleMark(view: validCell, date: date, cellState: cellState)
+        guard let validCell = cell as? CustomCalendarCell else {return}
+        self.handleDefaultCell(view: validCell, date: date, cellState: cellState, selectedDates: calendar.selectedDates)
     }
     
     func calendar(_ calendar: JTAppleCalendarView, headerViewForDateRange range: (start: Date, end: Date), at indexPath: IndexPath) -> JTAppleCollectionReusableView {
@@ -204,4 +232,12 @@ class CustomCalendarCell: JTAppleCell {
     @IBOutlet weak var shiftSession12: UIView!
     @IBOutlet weak var shiftSession16: UIView!
     @IBOutlet weak var shiftSession20: UIView!
+}
+
+extension Array where Element: Hashable {
+    func after(item: Element) -> Element? {
+        guard let validIndex = self.index(of: item) else {return nil}
+        guard let validItem = self.get(at: validIndex) else {return nil}
+        return validItem
+    }
 }
