@@ -103,11 +103,21 @@ class CalendarViewController: UIViewController {
             validCell.dateLabel.textColor = UIColor.lightGray
         }
         switch cellState.selectedPosition() {
-        case .full, .left, .right:
-            validCell.addBorder(width: 1, color: UIColor.black)
+        case .left:
+            // range date on left position
+            validCell.addBorder(width: 1, color: UIColor.red)
+            break
+        case .right:
+            // range date on right position
+            validCell.addBorder(width: 1, color: UIColor.blue)
             break
         case .middle:
-            validCell.addBorder(width: 1, color: UIColor.red)
+            // range date on middle position
+            validCell.addBorder(width: 1, color: UIColor.black)
+            break
+        case .full:
+            // single date
+            validCell.addBorder(width: 1, color: UIColor.green)
             break
         default:
             validCell.addBorder(width: 1, color: UIColor.white)
