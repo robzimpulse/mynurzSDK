@@ -136,7 +136,7 @@ extension CalendarViewController: JTAppleCalendarViewDataSource {
         let startDate = formatter.date(from: "2017-01-01")!
         let endDate = formatter.date(from: "2017-12-31")!
         
-        return ConfigurationParameters(startDate: startDate,endDate: endDate)
+        return ConfigurationParameters(startDate: startDate, endDate: endDate, numberOfRows: 6, calendar: Calendar.current, generateInDates: .forAllMonths, generateOutDates: .tillEndOfGrid, firstDayOfWeek: .monday, hasStrictBoundaries: false)
     }
 }
 
@@ -219,8 +219,6 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource, MG
         
         return validCell
     }
-    
-    
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         print("displayed cell for :\(indexPath)")
