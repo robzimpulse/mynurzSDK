@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="FDP-yx-FPa">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="nQa-XB-SqH">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -44,7 +45,7 @@
         <!--Mynurz SDK Demo-->
         <scene sceneID="kgF-C5-s4o">
             <objects>
-                <tableViewController id="Pud-KP-5Fg" sceneMemberID="viewController">
+                <tableViewController id="Pud-KP-5Fg" customClass="DrawerViewController" customModule="mynurzSDK_Example" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="jxe-BS-7lp">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -279,7 +280,24 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Text" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="yNL-Kh-Lij">
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Shimmer Component" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="yNL-Kh-Lij">
+                                                    <rect key="frame" x="15" y="0.0" width="345" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="LXf-Wc-81G" style="IBUITableViewCellStyleDefault" id="fhX-02-6Yk">
+                                        <rect key="frame" x="0.0" y="528" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fhX-02-6Yk" id="Lg7-LD-h6z">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Text" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="LXf-Wc-81G">
                                                     <rect key="frame" x="15" y="0.0" width="345" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -474,6 +492,147 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fwq-54-5Xx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2033" y="-664"/>
+        </scene>
+        <!--Drawer Controller-->
+        <scene sceneID="3Ci-Mr-VA4">
+            <objects>
+                <viewController id="nQa-XB-SqH" customClass="DrawerController" customModule="KWDrawerController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="BAg-2G-AQy"/>
+                        <viewControllerLayoutGuide type="bottom" id="Jan-8b-UyB"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="sMf-Ch-Cyy">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="mainSegueIdentifier" value="MainDrawer"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="leftSegueIdentifier" value="LeftDrawer"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="rightSegueIdentifier" value="RightDrawer"/>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <segue destination="r8a-mt-YH0" kind="custom" identifier="LeftDrawer" customClass="DrawerEmbedLeftControllerSegue" customModule="KWDrawerController" id="J82-dx-7Vz"/>
+                        <segue destination="KJe-be-tIc" kind="custom" identifier="RightDrawer" customClass="DrawerEmbedRightControllerSegue" customModule="KWDrawerController" id="XVk-Z2-naW"/>
+                        <segue destination="FDP-yx-FPa" kind="custom" identifier="MainDrawer" customClass="DrawerEmbedMainControllerSegue" customModule="KWDrawerController" id="ATU-In-lWj"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8J4-vu-gZw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-426" y="-470"/>
+        </scene>
+        <!--Left Drawer View Controller-->
+        <scene sceneID="DRN-uT-U44">
+            <objects>
+                <viewController id="r8a-mt-YH0" customClass="LeftDrawerViewController" customModule="mynurzSDK_Example" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="btq-qQ-67B"/>
+                        <viewControllerLayoutGuide type="bottom" id="Bet-FW-ocM"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="080-Be-STi">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sBX-Yc-3d7">
+                                <rect key="frame" x="165" y="315.5" width="45" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Back"/>
+                                <connections>
+                                    <action selector="back:" destination="r8a-mt-YH0" eventType="touchUpInside" id="csh-8u-FGg"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DNx-zF-Lbc" customClass="FBShimmeringView">
+                                <rect key="frame" x="16" y="625" width="138.5" height="42"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Shimmer" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xUS-sa-jep">
+                                        <rect key="frame" x="0.5" y="0.0" width="138.5" height="42"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="35"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="xUS-sa-jep" secondAttribute="width" id="Ba1-Gv-9XY"/>
+                                    <constraint firstAttribute="height" secondItem="xUS-sa-jep" secondAttribute="height" id="Vcn-qx-Pdg"/>
+                                    <constraint firstItem="xUS-sa-jep" firstAttribute="centerX" secondItem="DNx-zF-Lbc" secondAttribute="centerX" id="sch-np-KmH"/>
+                                    <constraint firstItem="xUS-sa-jep" firstAttribute="centerY" secondItem="DNx-zF-Lbc" secondAttribute="centerY" id="u4H-bo-3ug"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Bet-FW-ocM" firstAttribute="top" secondItem="DNx-zF-Lbc" secondAttribute="bottom" id="CZ9-QN-pXD"/>
+                            <constraint firstItem="DNx-zF-Lbc" firstAttribute="leading" secondItem="080-Be-STi" secondAttribute="leadingMargin" id="FJM-88-kR5"/>
+                            <constraint firstItem="sBX-Yc-3d7" firstAttribute="centerY" secondItem="080-Be-STi" secondAttribute="centerY" id="Ps9-UP-nHf"/>
+                            <constraint firstItem="sBX-Yc-3d7" firstAttribute="centerX" secondItem="080-Be-STi" secondAttribute="centerX" id="mjl-x7-cct"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="shimmerLabel" destination="xUS-sa-jep" id="b2f-co-lSl"/>
+                        <outlet property="shimmerView" destination="DNx-zF-Lbc" id="D3D-9v-8fh"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oYm-r1-dzr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="425" y="-886"/>
+        </scene>
+        <!--Right Drawer View Controller-->
+        <scene sceneID="11g-X8-AVR">
+            <objects>
+                <viewController id="KJe-be-tIc" customClass="RightDrawerViewController" customModule="mynurzSDK_Example" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="vQh-4w-rUB"/>
+                        <viewControllerLayoutGuide type="bottom" id="IGV-jq-Okr"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="0Rh-zV-tK8">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xwE-o4-jML">
+                                <rect key="frame" x="165" y="315.5" width="45" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Back"/>
+                                <connections>
+                                    <action selector="Show:" destination="9om-6M-ptE" eventType="touchUpInside" id="Bo2-v6-vB5"/>
+                                    <action selector="back:" destination="KJe-be-tIc" eventType="touchUpInside" id="YdI-XI-fWj"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rnV-OL-Wk2" customClass="FBShimmeringView">
+                                <rect key="frame" x="220.5" y="625" width="138.5" height="42"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Shimmer" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dIi-xh-wvR">
+                                        <rect key="frame" x="-0.5" y="0.0" width="138.5" height="42"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="35"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="dIi-xh-wvR" firstAttribute="centerX" secondItem="rnV-OL-Wk2" secondAttribute="centerX" id="4e6-gJ-AWX"/>
+                                    <constraint firstItem="dIi-xh-wvR" firstAttribute="centerY" secondItem="rnV-OL-Wk2" secondAttribute="centerY" id="5pR-LK-kTo"/>
+                                    <constraint firstAttribute="height" secondItem="dIi-xh-wvR" secondAttribute="height" id="Fix-bR-em7"/>
+                                    <constraint firstAttribute="width" secondItem="dIi-xh-wvR" secondAttribute="width" id="JFB-vj-B4x"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="IGV-jq-Okr" firstAttribute="top" secondItem="rnV-OL-Wk2" secondAttribute="bottom" id="GGW-xt-O29"/>
+                            <constraint firstItem="xwE-o4-jML" firstAttribute="centerY" secondItem="0Rh-zV-tK8" secondAttribute="centerY" id="IBc-TK-L3f"/>
+                            <constraint firstItem="xwE-o4-jML" firstAttribute="centerX" secondItem="0Rh-zV-tK8" secondAttribute="centerX" id="XW7-Pk-JLa"/>
+                            <constraint firstItem="rnV-OL-Wk2" firstAttribute="trailing" secondItem="0Rh-zV-tK8" secondAttribute="trailingMargin" id="aOe-ob-gYQ"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="shimmerLabel" destination="dIi-xh-wvR" id="EcV-Ks-UJw"/>
+                        <outlet property="shimmerView" destination="rnV-OL-Wk2" id="QYd-G5-YoC"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9yB-J6-SOm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="425" y="-99"/>
         </scene>
         <!--Dropdown Component-->
         <scene sceneID="MWF-KH-puc">

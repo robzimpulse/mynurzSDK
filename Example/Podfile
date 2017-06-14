@@ -18,6 +18,8 @@ target 'mynurzSDK_Example' do
     pod 'JSQMessagesViewController'
     pod 'DropDown'
     pod 'MIBadgeButton-Swift', :git => 'https://github.com/mustafaibrahim989/MIBadgeButton-Swift.git', :branch => 'master'
+    pod 'KWDrawerController', '~> 3.5'
+    pod 'Shimmer'
 
   target 'mynurzSDK_Tests' do
     inherit! :search_paths

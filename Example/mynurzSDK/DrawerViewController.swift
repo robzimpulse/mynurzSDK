@@ -1,0 +1,163 @@
+//
+//  DrawerViewController.swift
+//  mynurzSDK
+//
+//  Created by Robyarta on 6/14/17.
+//  Copyright © 2017 CocoaPods. All rights reserved.
+//
+
+import UIKit
+import KWDrawerController
+import Shimmer
+
+class DrawerViewController: UITableViewController, DrawerControllerDelegate {
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Right", style: .done, target: self, action: #selector(openRightDrawer))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Left", style: .done, target: self, action: #selector(openLeftDrawer))
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        guard let validDrawerController = self.drawerController else {return}
+        validDrawerController.delegate = self
+    }
+    
+    func openLeftDrawer(){
+        guard let validDrawerController = self.drawerController else {return}
+        validDrawerController.openSide(.left)
+    }
+    
+    func openRightDrawer(){
+        guard let validDrawerController = self.drawerController else {return}
+        validDrawerController.openSide(.right)
+    }
+    
+    func drawerDidBeganAnimation(drawerController: DrawerController, side: DrawerSide) {
+        //        print("\(self.className) - began animation")
+    }
+    
+    func drawerDidFinishAnimation(drawerController: DrawerController, side: DrawerSide) {
+        //        print("\(self.className) - finish animation")
+    }
+    
+    func drawerDidCancelAnimation(drawerController: DrawerController, side: DrawerSide) {
+        //        print("\(self.className) - cancel animation")
+    }
+    
+    func drawerDidAnimation(drawerController: DrawerController, side: DrawerSide, percentage: Float) {
+        //        print("\(self.className) - progress animation : \(percentage)")
+    }
+    
+    func drawerWillFinishAnimation(drawerController: DrawerController, side: DrawerSide) {
+        //        print("\(self.className) - will finish")
+    }
+    
+    func drawerWillCancelAnimation(drawerController: DrawerController, side: DrawerSide) {
+        //        print("\(self.className) - will cancel")
+    }
+
+
+}
+
+class LeftDrawerViewController: UIViewController, DrawerControllerDelegate {
+    
+    @IBOutlet weak var shimmerLabel: UILabel!
+    @IBOutlet weak var shimmerView: FBShimmeringView!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        guard let validDrawerController = self.drawerController else {return}
+        validDrawerController.delegate = self
+        
+        shimmerView.contentView = shimmerLabel
+        shimmerView.isShimmering = true
+    }
+    
+    @IBAction func back(_ sender: Any) {
+        guard let validDrawerController = self.drawerController else {return}
+        validDrawerController.closeSide()
+    }
+    
+    func drawerDidBeganAnimation(drawerController: DrawerController, side: DrawerSide) {
+        //        print("\(self.className) - began animation")
+    }
+    
+    func drawerDidFinishAnimation(drawerController: DrawerController, side: DrawerSide) {
+        //        print("\(self.className) - finish animation")
+    }
+    
+    func drawerDidCancelAnimation(drawerController: DrawerController, side: DrawerSide) {
+        //        print("\(self.className) - cancel animation")
+    }
+    
+    func drawerDidAnimation(drawerController: DrawerController, side: DrawerSide, percentage: Float) {
+        //        print("\(self.className) - progress animation : \(percentage)")
+    }
+    
+    func drawerWillFinishAnimation(drawerController: DrawerController, side: DrawerSide) {
+        //        print("\(self.className) - will finish")
+    }
+    
+    func drawerWillCancelAnimation(drawerController: DrawerController, side: DrawerSide) {
+        //        print("\(self.className) - will cancel")
+    }
+
+    
+}
+
+class RightDrawerViewController: UIViewController, DrawerControllerDelegate {
+    
+    @IBOutlet weak var shimmerLabel: UILabel!
+    @IBOutlet weak var shimmerView: FBShimmeringView!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        guard let validDrawerController = self.drawerController else {return}
+        validDrawerController.delegate = self
+        
+        shimmerView.contentView = shimmerLabel
+        shimmerView.isShimmering = true
+    }
+    
+    @IBAction func back(_ sender: Any) {
+        guard let validDrawerController = self.drawerController else {return}
+        validDrawerController.closeSide()
+    }
+    
+    
+    func drawerDidBeganAnimation(drawerController: DrawerController, side: DrawerSide) {
+        //        print("\(self.className) - began animation")
+    }
+    
+    func drawerDidFinishAnimation(drawerController: DrawerController, side: DrawerSide) {
+        //        print("\(self.className) - finish animation")
+    }
+    
+    func drawerDidCancelAnimation(drawerController: DrawerController, side: DrawerSide) {
+        //        print("\(self.className) - cancel animation")
+    }
+    
+    func drawerDidAnimation(drawerController: DrawerController, side: DrawerSide, percentage: Float) {
+        //        print("\(self.className) - progress animation : \(percentage)")
+    }
+    
+    func drawerWillFinishAnimation(drawerController: DrawerController, side: DrawerSide) {
+        //        print("\(self.className) - will finish")
+    }
+    
+    func drawerWillCancelAnimation(drawerController: DrawerController, side: DrawerSide) {
+        //        print("\(self.className) - will cancel")
+    }
+
+    
+}
