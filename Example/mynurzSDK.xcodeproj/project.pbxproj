@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		3E278ECB1ECA082B001C2801 /* AuthTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E278ECA1ECA082B001C2801 /* AuthTest.swift */; };
 		3E53E0511EF0D98D00B22312 /* DrawerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E53E0501EF0D98D00B22312 /* DrawerViewController.swift */; };
+		3E53E0531EF125BE00B22312 /* BlurPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E53E0521EF125BE00B22312 /* BlurPopupViewController.swift */; };
 		3E58283C1EE8032A002C6774 /* OmiseSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E58283B1EE8032A002C6774 /* OmiseSDK.framework */; };
 		3E58283E1EE80387002C6774 /* OmiseSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3E58283B1EE8032A002C6774 /* OmiseSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3E60C8D51EEB14D2002C0148 /* GoogleMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E60C8D41EEB14D2002C0148 /* GoogleMapViewController.swift */; };
@@ -68,6 +69,7 @@
 		1019686B18F6E4EB0874F078 /* mynurzSDK.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = mynurzSDK.podspec; path = ../mynurzSDK.podspec; sourceTree = "<group>"; };
 		3E278ECA1ECA082B001C2801 /* AuthTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthTest.swift; sourceTree = "<group>"; };
 		3E53E0501EF0D98D00B22312 /* DrawerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawerViewController.swift; sourceTree = "<group>"; };
+		3E53E0521EF125BE00B22312 /* BlurPopupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlurPopupViewController.swift; sourceTree = "<group>"; };
 		3E5828371EE7FAEC002C6774 /* OmiseSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OmiseSDK.framework; path = "../../Old Development/mynurzSDK-old-again/Example/Carthage/Build/iOS/OmiseSDK.framework"; sourceTree = "<group>"; };
 		3E58283B1EE8032A002C6774 /* OmiseSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OmiseSDK.framework; path = Carthage/Build/iOS/OmiseSDK.framework; sourceTree = "<group>"; };
 		3E60C8D41EEB14D2002C0148 /* GoogleMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleMapViewController.swift; sourceTree = "<group>"; };
@@ -161,6 +163,7 @@
 				3EA86C831EEE3A6A000695CF /* DropdownViewController.swift */,
 				3ECD2D3F1EEA3E55009B40EC /* OmiseCCViewController.swift */,
 				3E6587A21EEB911D00582E81 /* ParallaxHeaderTableViewController.swift */,
+				3E53E0521EF125BE00B22312 /* BlurPopupViewController.swift */,
 				3ECD2D471EEA4BA8009B40EC /* PopupWebviewViewController.swift */,
 				3E6AD7CC1EEC0CB90079D166 /* ChatViewController.swift */,
 				3E53E0501EF0D98D00B22312 /* DrawerViewController.swift */,
@@ -453,6 +456,7 @@
 				3EA86C841EEE3A6A000695CF /* DropdownViewController.swift in Sources */,
 				3ECD2D461EEA4529009B40EC /* AddCreditCardViewController.swift in Sources */,
 				3E60C8D51EEB14D2002C0148 /* GoogleMapViewController.swift in Sources */,
+				3E53E0531EF125BE00B22312 /* BlurPopupViewController.swift in Sources */,
 				3E53E0511EF0D98D00B22312 /* DrawerViewController.swift in Sources */,
 				3ECD2D421EEA3E6E009B40EC /* MidtransCCViewController.swift in Sources */,
 				3E6587A31EEB911D00582E81 /* ParallaxHeaderTableViewController.swift in Sources */,

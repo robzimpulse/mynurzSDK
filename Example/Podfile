@@ -20,6 +20,7 @@ target 'mynurzSDK_Example' do
     pod 'MIBadgeButton-Swift', :git => 'https://github.com/mustafaibrahim989/MIBadgeButton-Swift.git', :branch => 'master'
     pod 'KWDrawerController', '~> 3.5'
     pod 'Shimmer'
+    pod 'MIBlurPopup'
 
   target 'mynurzSDK_Tests' do
     inherit! :search_paths

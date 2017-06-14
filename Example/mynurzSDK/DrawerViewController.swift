@@ -24,6 +24,10 @@ class DrawerViewController: UITableViewController, DrawerControllerDelegate {
         validDrawerController.delegate = self
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
     func openLeftDrawer(){
         guard let validDrawerController = self.drawerController else {return}
         validDrawerController.openSide(.left)

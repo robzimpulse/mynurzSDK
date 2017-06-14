@@ -297,7 +297,27 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Text" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="LXf-Wc-81G">
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Blur Popup Component" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="LXf-Wc-81G">
+                                                    <rect key="frame" x="15" y="0.0" width="345" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="gMj-iG-iDQ" kind="custom" customClass="MIBlurPopupSegue" customModule="MIBlurPopup" id="FqT-tA-AQx"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="tVA-RW-Vm6" style="IBUITableViewCellStyleDefault" id="NKs-Lk-NqP">
+                                        <rect key="frame" x="0.0" y="572" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="NKs-Lk-NqP" id="DcI-TH-pAb">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Text" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="tVA-RW-Vm6">
                                                     <rect key="frame" x="15" y="0.0" width="345" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -633,6 +653,61 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9yB-J6-SOm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="425" y="-99"/>
+        </scene>
+        <!--Blur Popup Component-->
+        <scene sceneID="Hq9-pS-hlm">
+            <objects>
+                <viewController title="Blur Popup Component" modalPresentationStyle="overCurrentContext" id="gMj-iG-iDQ" customClass="BlurPopupViewController" customModule="mynurzSDK_Example" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="W0m-Jv-NMR"/>
+                        <viewControllerLayoutGuide type="bottom" id="2uq-OZ-c5y"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="aPw-52-jiu">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DTd-iO-4dg" customClass="CardView" customModule="mynurzSDK_Example" customModuleProvider="target">
+                                <rect key="frame" x="87" y="233" width="200" height="200"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="FcZ-B1-vq0"/>
+                                    <constraint firstAttribute="height" constant="200" id="jvb-ba-jsG"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="4"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowOffsetWidth">
+                                        <integer key="value" value="2"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowOffsetHeight">
+                                        <integer key="value" value="2"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Tq-Ll-fed">
+                                <rect key="frame" x="160" y="443" width="54" height="30"/>
+                                <state key="normal" title="Dismiss"/>
+                                <connections>
+                                    <action selector="back:" destination="gMj-iG-iDQ" eventType="touchUpInside" id="SdJ-sd-S5w"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="DTd-iO-4dg" firstAttribute="centerX" secondItem="aPw-52-jiu" secondAttribute="centerX" id="WuI-uq-2kW"/>
+                            <constraint firstItem="2Tq-Ll-fed" firstAttribute="centerX" secondItem="aPw-52-jiu" secondAttribute="centerX" id="fap-6M-bE7"/>
+                            <constraint firstItem="DTd-iO-4dg" firstAttribute="centerY" secondItem="aPw-52-jiu" secondAttribute="centerY" id="i9Z-gn-LZP"/>
+                            <constraint firstItem="2Tq-Ll-fed" firstAttribute="top" secondItem="DTd-iO-4dg" secondAttribute="bottom" constant="10" id="iVm-mh-tlz"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="cardView" destination="DTd-iO-4dg" id="0Rj-D5-Tu4"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cet-Az-cwG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1313" y="2018"/>
         </scene>
         <!--Dropdown Component-->
         <scene sceneID="MWF-KH-puc">
