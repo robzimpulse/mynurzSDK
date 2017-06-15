@@ -21,6 +21,7 @@ target 'mynurzSDK_Example' do
     pod 'KWDrawerController', '~> 3.5'
     pod 'Shimmer'
     pod 'MIBlurPopup'
+    pod 'StatefulViewController', '~> 3.0'
 
   target 'mynurzSDK_Tests' do
     inherit! :search_paths

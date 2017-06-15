@@ -16,6 +16,7 @@
 		3E6587A11EEB847400582E81 /* CardViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6587A01EEB847400582E81 /* CardViewViewController.swift */; };
 		3E6587A31EEB911D00582E81 /* ParallaxHeaderTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6587A21EEB911D00582E81 /* ParallaxHeaderTableViewController.swift */; };
 		3E6AD7CD1EEC0CB90079D166 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6AD7CC1EEC0CB90079D166 /* ChatViewController.swift */; };
+		3E9CAEA21EF2224E004423FF /* VCPlaceHolderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E9CAEA11EF2224E004423FF /* VCPlaceHolderViewController.swift */; };
 		3EA86C841EEE3A6A000695CF /* DropdownViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA86C831EEE3A6A000695CF /* DropdownViewController.swift */; };
 		3EC0F95F1EE83980003AC62A /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC0F95E1EE83980003AC62A /* CalendarViewController.swift */; };
 		3EC724B61ECB119A00BFB560 /* Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC724B51ECB119A00BFB560 /* Mock.swift */; };
@@ -76,6 +77,7 @@
 		3E6587A01EEB847400582E81 /* CardViewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardViewViewController.swift; sourceTree = "<group>"; };
 		3E6587A21EEB911D00582E81 /* ParallaxHeaderTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParallaxHeaderTableViewController.swift; sourceTree = "<group>"; };
 		3E6AD7CC1EEC0CB90079D166 /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		3E9CAEA11EF2224E004423FF /* VCPlaceHolderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VCPlaceHolderViewController.swift; sourceTree = "<group>"; };
 		3EA86C831EEE3A6A000695CF /* DropdownViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropdownViewController.swift; sourceTree = "<group>"; };
 		3EC0F95E1EE83980003AC62A /* CalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		3EC724B51ECB119A00BFB560 /* Mock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mock.swift; sourceTree = "<group>"; };
@@ -168,6 +170,7 @@
 				3E6AD7CC1EEC0CB90079D166 /* ChatViewController.swift */,
 				3E53E0501EF0D98D00B22312 /* DrawerViewController.swift */,
 				3ECD2D431EEA3E76009B40EC /* StripeCCViewController.swift */,
+				3E9CAEA11EF2224E004423FF /* VCPlaceHolderViewController.swift */,
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
 				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
@@ -461,6 +464,7 @@
 				3ECD2D421EEA3E6E009B40EC /* MidtransCCViewController.swift in Sources */,
 				3E6587A31EEB911D00582E81 /* ParallaxHeaderTableViewController.swift in Sources */,
 				3ECD2D401EEA3E55009B40EC /* OmiseCCViewController.swift in Sources */,
+				3E9CAEA21EF2224E004423FF /* VCPlaceHolderViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 				3ECD2D481EEA4BA8009B40EC /* PopupWebviewViewController.swift in Sources */,
 				3ECD2D441EEA3E76009B40EC /* StripeCCViewController.swift in Sources */,
