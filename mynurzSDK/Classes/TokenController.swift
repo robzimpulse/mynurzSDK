@@ -9,12 +9,12 @@
 import Foundation
 import RealmSwift
 
-class Token: Object{
-    dynamic var token = ""
-    dynamic var tokenIssuedAt = ""
-    dynamic var tokenExpiredAt = ""
-    dynamic var tokenLimitToRefresh = ""
-    dynamic var roleId = 0
+public class Token: Object{
+    public dynamic var token = ""
+    public dynamic var tokenIssuedAt = ""
+    public dynamic var tokenExpiredAt = ""
+    public dynamic var tokenLimitToRefresh = ""
+    public dynamic var roleId = 0
 }
 
 class FirebaseToken: Object {

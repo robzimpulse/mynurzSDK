@@ -23,7 +23,7 @@ public class MynurzSDK: NSObject {
     
     public lazy var isTokenValid: Bool = {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZ"
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
         guard let validToken = TokenController.sharedInstance.get() else {return false}
         guard let validDate = dateFormatter.date(from: validToken.tokenExpiredAt) else {return false}
         return validDate > Date()
@@ -31,7 +31,7 @@ public class MynurzSDK: NSObject {
     
     public lazy var isTokenRefreshable: Bool = {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZ"
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
         guard let validToken = TokenController.sharedInstance.get() else {return false}
         guard let validDate = dateFormatter.date(from: validToken.tokenLimitToRefresh) else {return false}
         return validDate > Date()

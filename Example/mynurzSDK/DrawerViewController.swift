@@ -9,9 +9,13 @@
 import UIKit
 import KWDrawerController
 import Shimmer
+import SwiftyJSON
+import mynurzSDK
 
-class DrawerViewController: UITableViewController, DrawerControllerDelegate {
+class DrawerViewController: UITableViewController, DrawerControllerDelegate, MynurzSDKDelegate {
 
+    let sdk = MynurzSDK.sharedInstance
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Right", style: .done, target: self, action: #selector(openRightDrawer))
@@ -22,6 +26,8 @@ class DrawerViewController: UITableViewController, DrawerControllerDelegate {
         super.viewWillAppear(animated)
         guard let validDrawerController = self.drawerController else {return}
         validDrawerController.delegate = self
+//        sdk.setDelegate(delegate: self)
+//        sdk.login(email: "freelancer@kronusasia.com", password: "111111")
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -62,7 +68,14 @@ class DrawerViewController: UITableViewController, DrawerControllerDelegate {
         //        print("\(self.className) - will cancel")
     }
 
-
+    func responseSuccess(message: String, code: RequestCode, data: JSON) {
+        print(sdk.isTokenRefreshable, sdk.isTokenValid)
+    }
+    
+    func responseError(message: String, code: RequestCode, errorCode: ErrorCode, data: JSON?) {
+        print(sdk.isTokenRefreshable, sdk.isTokenValid)
+    }
+    
 }
 
 class LeftDrawerViewController: UIViewController, DrawerControllerDelegate {
