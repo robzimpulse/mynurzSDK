@@ -25,6 +25,7 @@ public enum RequestCode: Int {
     Login,
     RegisterCustomer,
     RegisterFreelancer,
+    RefreshToken,
     ResetLink,
     SearchCustomer,
     SearchFreelancer,

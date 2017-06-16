@@ -124,6 +124,10 @@ public class MynurzSDK: NSObject {
         requestManager.request(method: .post, url: endpointManager.RESET_LINK, parameters: param, code: .ResetLink)
     }
     
+    public func refreshToken(){
+        requestManager.request(method: .get, url: endpointManager.REFRESH_TOKEN, parameters: nil, code: .RefreshToken)
+    }
+    
     public func logout(){
         requestManager.request(method: .get, url: endpointManager.LOGOUT, parameters: nil, code: .Logout)
     }
