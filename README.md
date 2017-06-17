@@ -16,7 +16,7 @@ mynurzSDK is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod 'MynurzSDK', :git => 'https://github.com/robzimpulse/mynurzSDK', :tag => '0.2.8'
+pod 'MynurzSDK', :git => 'https://github.com/robzimpulse/mynurzSDK', :tag => '0.3.0'
 ```
 
 ## Author
