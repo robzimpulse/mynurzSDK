@@ -26,8 +26,9 @@ class DrawerViewController: UITableViewController, DrawerControllerDelegate, Myn
         super.viewWillAppear(animated)
         guard let validDrawerController = self.drawerController else {return}
         validDrawerController.delegate = self
-//        sdk.setDelegate(delegate: self)
-//        sdk.login(email: "freelancer@kronusasia.com", password: "111111")
+        sdk.setDelegate(delegate: self)
+        sdk.changeServerMode(mode: .Development)
+        sdk.login(email: "freelancer@kronusasia.com", password: "111111")
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

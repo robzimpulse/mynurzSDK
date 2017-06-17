@@ -8,14 +8,23 @@
 
 import UIKit
 
-public enum gender: String {
-    case male = "male"
-    case female = "female"
-}
-
 public class EndpointManager: NSObject {
 
-    public static let sharedInstance = EndpointManager()
+    public static let sharedInstance = EndpointManager(mode: .Local)
+    public static let devSharedInstance = EndpointManager(mode: .Development)
+    public static let liveSharedInstance = EndpointManager(mode: .Live)
+    
+    public init(mode: Server) {
+        switch mode {
+        case .Live:
+            host = "https://new-dev.mynurz.com"
+            break
+        case .Development:
+            host = "https://new-dev.mynurz.com"
+            break
+        default: break
+        }
+    }
     
     var host = "http://mynurznew.app"
     var midtransClientKey = "VT-client-AoZKEG2XOkHtEPw2"

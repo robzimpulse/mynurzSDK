@@ -19,6 +19,17 @@ public enum ErrorCode: Int {
     NoNetworkPusher
 }
 
+public enum gender: String {
+    case male = "male"
+    case female = "female"
+}
+
+public enum Server: Int {
+    case Development = 100000,
+    Live,
+    Local
+}
+
 public enum RequestCode: Int {
     case None = 100000,
     
